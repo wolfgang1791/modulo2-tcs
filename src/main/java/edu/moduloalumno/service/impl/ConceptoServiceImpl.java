@@ -35,6 +35,15 @@ public class ConceptoServiceImpl implements IConceptoService {
 		
 		return conceptoList;
 	}
+        
+        @Override
+	public List<Concepto> getConceptoIdByApeNomRestringidoCodigo(String codigo) {
+		
+		List<Concepto> conceptoList = conceptoDAO.getConceptoIdByApeNomRestringidoCodigo(codigo);
+		
+		return conceptoList;
+	}
+        
 	
 	@Override
 	public List<Concepto> getConceptoIdByApeNomRestringido(String apeNom) {

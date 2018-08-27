@@ -67,11 +67,20 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 
 	@Override
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApe(String nomApe) {
-		String sql = "select r.id_rec, r.id_alum, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, c.concepto, r.numero, f.nombre, r.moneda, r.importe, r.fecha, r.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.nom_alumno,'') || ' ' ||coalesce(ap.ape_paterno,'') || ' ' ||coalesce(ap.ape_materno,'')) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) order by c.concepto, r.fecha";
+		String sql = "select r.id_rec, r.id_alum, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, c.concepto, r.numero, f.nombre, r.moneda, r.importe, r.fecha, r.id_programa, ap.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.nom_alumno,'') || ' ' ||coalesce(ap.ape_paterno,'') || ' ' ||coalesce(ap.ape_materno,'')) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) order by c.concepto, r.fecha";
 		// RowMapper<Recaudaciones> rowMapper = new
 		// BeanPropertyRowMapper<Recaudaciones>(Recaudaciones.class);
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, nomApe);
+	}
+        
+        @Override
+/**/	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo) {
+		String sql = "select r.id_rec, r.id_alum, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, c.concepto, r.numero, f.nombre, r.moneda, r.importe, r.fecha, r.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'') || ' ') and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) order by c.concepto, r.fecha";
+		// RowMapper<Recaudaciones> rowMapper = new
+		// BeanPropertyRowMapper<Recaudaciones>(Recaudaciones.class);
+		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, codigo);
 	}
 
 	@Override

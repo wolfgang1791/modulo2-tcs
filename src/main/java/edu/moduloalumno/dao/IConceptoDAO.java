@@ -9,6 +9,8 @@ public interface IConceptoDAO {
 	List<Concepto> getAllConceptos();
 	
 	List<Concepto> getConceptoIdByApeNom(String apeNom);
+        
+        List<Concepto> getConceptoIdByApeNomRestringidoCodigo(String codigo);
 	
 	List<Concepto> getConceptoIdByApeNomRestringido(String apeNom);
 	

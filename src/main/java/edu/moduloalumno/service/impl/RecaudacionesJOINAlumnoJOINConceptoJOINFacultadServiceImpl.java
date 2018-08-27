@@ -60,7 +60,14 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> recaudacionesList = recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApe(nomApe);
 		return recaudacionesList;
 	}
+        
+        @Override
+	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo) {
 
+		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> recaudacionesList = recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(codigo);
+		return recaudacionesList;
+	}
+        
 	@Override
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConcepto(String concepto, String nomApe) {
 

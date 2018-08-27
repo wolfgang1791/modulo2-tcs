@@ -69,7 +69,7 @@ public class ConceptoController {
 		logger.info("< getConceptoIdByApeNom [Concepto]");
 		return new ResponseEntity<List<Concepto>>(list, HttpStatus.OK);
 	}
-	
+         
 	@RequestMapping(value = "/leer/restringido/{apeNom}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Concepto>> getConceptoIdByApeNomRestringido(@PathVariable("apeNom") String apeNom) {
 		logger.info("> getConceptoIdByApeNomRestringido [Concepto]");
@@ -92,7 +92,31 @@ public class ConceptoController {
 		return new ResponseEntity<List<Concepto>>(list, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/leer/{nombres}/{apellidos}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	
+        @RequestMapping(value = "/leer/restringido0/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Concepto>> getConceptoIdByApeNomRestringidoCodigo(@PathVariable("codigo") String codigo) {
+		logger.info("> getConceptoIdByApeNomRestringido [Concepto]");
+
+		List<Concepto> list = null;
+
+		try {
+			list = service.getConceptoIdByApeNomRestringidoCodigo(codigo);
+			
+			if (list == null) {
+				list = new ArrayList<Concepto>();
+			}
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<Concepto>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+
+		logger.info("< getConceptoIdByApeNomRestringido [Concepto]");
+		return new ResponseEntity<List<Concepto>>(list, HttpStatus.OK);
+	}
+        
+        
+        @RequestMapping(value = "/leer/{nombres}/{apellidos}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Concepto>> getConceptoApellidosNombres(@PathVariable("nombres") String nombres,@PathVariable("apellidos") String apellidos) {
 		logger.info("> getConceptoApellidosNombres [Concepto]");
 

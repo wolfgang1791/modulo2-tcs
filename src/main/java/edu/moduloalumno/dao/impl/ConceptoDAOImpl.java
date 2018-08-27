@@ -43,6 +43,16 @@ public class ConceptoDAOImpl implements IConceptoDAO {
 		RowMapper<Concepto> rowMapper = new ConceptoRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, apeNom);
 	}
+        
+        @Override
+	public List<Concepto> getConceptoIdByApeNomRestringidoCodigo(String codigo) {
+		String sql = "select c.id_concepto, c.concepto, c.concep_a, c.concep_b, c.descripcion, c.id_clase_pagos from Recaudaciones r, Concepto c, alumno a where (a.codigo = ?) and (r.id_alum = a.id_alum) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) group by c.id_concepto";
+		// RowMapper<Concepto> rowMapper = new
+		// BeanPropertyRowMapper<Concepto>(Concepto.class);
+		RowMapper<Concepto> rowMapper = new ConceptoRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, codigo);
+	}
+        
 	
 	@Override
 	public List<Concepto> getConceptoIdByApeNomRestringido(String apeNom) {
