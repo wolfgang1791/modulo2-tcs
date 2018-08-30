@@ -87,7 +87,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 
 /*new*/@Override
 	public List<CodigosporNomApe> getCodigoByNombre(String nomApe) {
-		String sql = "select ap.cod_alumno, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as nombre_alumno, p.nom_programa from alumno_programa as ap,programa as p where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.nom_alumno,'') || ' ' ||coalesce(ap.ape_paterno,'') || ' ' ||coalesce(ap.ape_materno,'')) and (ap.id_programa = p.id_programa)";
+		String sql = "select ap.cod_alumno, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as nombre_alumno, p.nom_programa as nombre_programa from alumno_programa as ap,programa as p where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.nom_alumno,'') || ' ' ||coalesce(ap.ape_paterno,'') || ' ' ||coalesce(ap.ape_materno,'')) and (ap.id_programa = p.id_programa)";
 		// RowMapper<Recaudaciones> rowMapper = new
 		// BeanPropertyRowMapper<Recaudaciones>(Recaudaciones.class);
 		RowMapper<CodigosporNomApe> rowMapper = new CodigosporNomApeRowMapper();
