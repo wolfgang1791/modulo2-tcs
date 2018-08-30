@@ -93,7 +93,7 @@ public class ConceptoController {
 	}
 	
 	
-        @RequestMapping(value = "/leer/restringido0/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+        @RequestMapping(value = "/leer/restringido_cod/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Concepto>> getConceptoIdByApeNomRestringidoCodigo(@PathVariable("codigo") String codigo) {
 		logger.info("> getConceptoIdByApeNomRestringido [Concepto]");
 
