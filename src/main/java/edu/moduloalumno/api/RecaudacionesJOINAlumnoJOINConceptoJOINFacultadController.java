@@ -123,7 +123,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
         
 /**/    @RequestMapping(value = "/listar_codigos/{nomApe}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CodigosporNomApe>> getCodigosByNombre(@PathVariable("nomApe") String nomApe) {
-		logger.info("> getCodigoByNombre [CodigosporNomApe]");
+		logger.info("> getCodigoByNombre [Recaudaciones]");
 
 		List<CodigosporNomApe> list = null;
 
@@ -139,7 +139,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 			return new ResponseEntity<List<CodigosporNomApe>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
+		logger.info("< getCodigoByNombre [Recaudaciones]");
 		return new ResponseEntity<List<CodigosporNomApe>>(list, HttpStatus.OK);
 	}        
         
