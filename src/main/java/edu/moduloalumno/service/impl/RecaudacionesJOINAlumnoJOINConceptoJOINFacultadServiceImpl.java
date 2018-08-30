@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.moduloalumno.dao.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO;
+import edu.moduloalumno.entity.CodigosporNomApe;
 import edu.moduloalumno.entity.Recaudaciones;
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService;
@@ -66,6 +67,13 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 
 		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> recaudacionesList = recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(codigo);
 		return recaudacionesList;
+	}
+        
+        @Override
+	public List<CodigosporNomApe> getCodigoByNombre(String nomApe) {
+
+		List<CodigosporNomApe> codigosList = recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.getCodigoByNombre(nomApe);
+		return codigosList;
 	}
         
 	@Override

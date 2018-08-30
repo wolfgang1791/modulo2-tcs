@@ -10,8 +10,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.moduloalumno.dao.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO;
+import edu.moduloalumno.entity.CodigosporNomApe;
 
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
+import edu.moduloalumno.rowmapper.CodigosporNomApeRowMapper;
 import edu.moduloalumno.rowmapper.RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper;
 
 @Transactional
@@ -82,6 +84,16 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, codigo);
 	}
+
+/*new*/@Override
+	public List<CodigosporNomApe> getCodigoByNombre(String nomApe) {
+		String sql = "select ap.cod_alumno, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as nombre_alumno, p.nom_programa from alumno_programa as ap,programa as p where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.nom_alumno,'') || ' ' ||coalesce(ap.ape_paterno,'') || ' ' ||coalesce(ap.ape_materno,'')) and (ap.id_programa = p.id_programa)";
+		// RowMapper<Recaudaciones> rowMapper = new
+		// BeanPropertyRowMapper<Recaudaciones>(Recaudaciones.class);
+		RowMapper<CodigosporNomApe> rowMapper = new CodigosporNomApeRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, nomApe);
+	}        
+
 
 	@Override
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConcepto(String concepto, String nomApe) {

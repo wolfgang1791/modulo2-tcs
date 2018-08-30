@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
+import edu.moduloalumno.entity.CodigosporNomApe;
 import edu.moduloalumno.model.Filtro;
 import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService;
 import edu.moduloalumno.util.Operaciones;
+import org.springframework.util.MultiValueMap;
 
 @RestController
 @RequestMapping("recaudaciones/alumno/concepto")
@@ -118,6 +120,29 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
 		return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(list, HttpStatus.OK);
 	}
+        
+/**/    @RequestMapping(value = "/listar_codigos/{nomApe}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CodigosporNomApe>> getCodigosByNombre(@PathVariable("nomApe") String nomApe) {
+		logger.info("> getCodigoByNombre [CodigosporNomApe]");
+
+		List<CodigosporNomApe> list = null;
+
+		try {
+
+			list = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.getCodigoByNombre(nomApe);
+			if (list == null) {
+				list = new ArrayList<CodigosporNomApe>();
+			}
+
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<CodigosporNomApe>>((MultiValueMap<String, String>) list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
+		return new ResponseEntity<List<CodigosporNomApe>>((MultiValueMap<String, String>) list, HttpStatus.OK);
+	}        
+        
 
 	@RequestMapping(value = "/listar/{fechaInicial}/{fechaFinal}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByStartDateBetween(@PathVariable("fechaInicial") String fechaInicial,

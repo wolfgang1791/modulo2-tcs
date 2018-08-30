@@ -1,5 +1,6 @@
 package edu.moduloalumno.service;
 
+import edu.moduloalumno.entity.CodigosporNomApe;
 import java.util.Date;
 import java.util.List;
 
@@ -18,8 +19,10 @@ public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService {
 
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApe(String nomApe);
 	
-  /*Metodo*/  List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo);
-        
+/*Met*/ List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo);
+
+/*new*/ List<CodigosporNomApe> getCodigoByNombre(String nomApe);
+
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConcepto(String concepto, String nomApe);
 	
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeRecibo( String recibo, String nomApe);

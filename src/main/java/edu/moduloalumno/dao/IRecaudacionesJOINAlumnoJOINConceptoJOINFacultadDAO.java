@@ -1,5 +1,6 @@
 package edu.moduloalumno.dao;
 
+import edu.moduloalumno.entity.CodigosporNomApe;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,9 @@ public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO {
 	
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeRecibo( String recibo, String nomApe);
 	
-	
+	List<CodigosporNomApe> getCodigoByNombre(String nomApe); /* new*/
+        
+        
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByPosgrado();
 
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNombresApellidosStartDateBetween(String nombres,String apellidos,Date fechaInicial, Date fechaFinal);
