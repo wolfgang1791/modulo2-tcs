@@ -136,11 +136,11 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 		} catch (Exception e) {
 			logger.error("Unexpected Exception caught.", e);
-			return new ResponseEntity<List<CodigosporNomApe>>((MultiValueMap<String, String>) list, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<CodigosporNomApe>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
-		return new ResponseEntity<List<CodigosporNomApe>>((MultiValueMap<String, String>) list, HttpStatus.OK);
+		return new ResponseEntity<List<CodigosporNomApe>>(list, HttpStatus.OK);
 	}        
         
 
