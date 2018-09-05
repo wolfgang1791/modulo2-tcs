@@ -209,6 +209,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 	@RequestMapping(value = "/listar/filtrar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>> getRecaudacionesByFilter(@RequestBody Filtro filtro) {
 		logger.info("> filterByAlumno [RecaudacionesJOINAlumnoJOINConceptoJOINFacultad]");
+		logger.info("jajaj"+filtro);
 
 		String fechaFinal = filtro.getFechaFinal();
 
