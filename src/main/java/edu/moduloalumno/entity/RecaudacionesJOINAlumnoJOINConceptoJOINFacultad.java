@@ -14,7 +14,9 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
     
 	private String numero;
     
-    private String nombre;
+	private String dni;
+
+	private String nombre;
     
     private String moneda;
     
@@ -51,13 +53,22 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 	public void setApeNom(String apeNom) {
 		this.apeNom = apeNom;
 	}
-
+	
 	public String getConcepto() {
 		return concepto;
 	}
 
 	public void setConcepto(String concepto) {
 		this.concepto = concepto;
+	}
+	
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getNumero() {
