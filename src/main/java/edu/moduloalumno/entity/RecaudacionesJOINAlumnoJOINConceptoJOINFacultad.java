@@ -26,6 +26,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
     
     private Integer idPrograma;
     
+    private String nomPrograma;
+    
     private String codAlumno;
     
     private String observacion;
@@ -118,7 +120,15 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 	public void setIdPrograma(Integer idPrograma) {
 		this.idPrograma = idPrograma;
 	}
+	
+	public String getNomPrograma() {
+		return nomPrograma;
+	}
 
+	public void setNomPrograma(String nomPrograma) {
+		this.nomPrograma = nomPrograma;
+	}
+	
 	public String getCodAlumno() {
 		return codAlumno;
 	}
@@ -164,7 +174,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 	public String toString() {
 		return "RecaudacionesJOINAlumnoJOINConceptoJOINFacultad [idRec=" + idRec + ", idAlum=" + idAlum + ", apeNom="
 				+ apeNom + ", concepto=" + concepto + ", numero=" + numero + ", nombre=" + nombre + ", moneda=" + moneda
-				+ ", importe=" + importe + ", fecha=" + fecha + ", idPrograma=" + idPrograma + ", codAlumno="
+				+ ", importe=" + importe + ", fecha=" + fecha + ", idPrograma=" + idPrograma +",nomPrograma"+nomPrograma+ ", codAlumno="
 				+ codAlumno + ", observacion=" + observacion + "]";
 	}
 

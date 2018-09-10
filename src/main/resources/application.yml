@@ -15,3 +15,6 @@ eureka:
   instance:
     hostname: localhost
     nonSecurePort: 8080
+
+banner:
+  location: classpath:/example/banner.txt
