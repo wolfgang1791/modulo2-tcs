@@ -19,9 +19,13 @@ public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService {
 
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApe(String nomApe);
 	
-/*Met*/ List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo);
+	/*Met*/ 
+	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo);
 
-/*new*/ List<CodigosporNomApe> getCodigoByNombre(String nomApe);
+	/*new*/
+	List<CodigosporNomApe> getCodigoByNombre(String nomApe);
+	
+	boolean updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha,String obs,String idRec);
 
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConcepto(String concepto, String nomApe);
 	

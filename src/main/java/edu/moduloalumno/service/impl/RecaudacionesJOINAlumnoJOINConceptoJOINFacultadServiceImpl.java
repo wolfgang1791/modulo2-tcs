@@ -153,4 +153,11 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 	public void deleteRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(int idRecaudaciones) {
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.deleteRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(idRecaudaciones);
 	}
+	
+	@Override //nuevo
+	public boolean updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha,String obs,String idRec){
+		
+		recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(fecha,obs,idRec);
+		return false;
+	}
 }

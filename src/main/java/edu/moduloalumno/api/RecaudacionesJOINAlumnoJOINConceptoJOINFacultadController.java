@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.entity.CodigosporNomApe;
+import edu.moduloalumno.model.DataActualizar;
 import edu.moduloalumno.model.Filtro;
 import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService;
 import edu.moduloalumno.util.Operaciones;
@@ -209,8 +210,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 	@RequestMapping(value = "/listar/filtrar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>> getRecaudacionesByFilter(@RequestBody Filtro filtro) {
 		logger.info("> filterByAlumno [RecaudacionesJOINAlumnoJOINConceptoJOINFacultad]");
-		logger.info("jajaj"+filtro);
-
+		
 		String fechaFinal = filtro.getFechaFinal();
 
 		String nom_ape = filtro.getNom_ape();
@@ -271,6 +271,37 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 		logger.info("< filterByAlumno [Recaudaciones]");
 		return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(list03, HttpStatus.OK);
+	}
+	
+
+// edicion 	
+	@RequestMapping(value = "/actualizar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Boolean> doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar(@RequestBody DataActualizar dataactualizar) {
+		logger.info("> filterByAlumno [RecaudacionesJOINAlumnoJOINConceptoJOINFacultad]");
+		
+		String[] idRec = dataactualizar.getIdRec();//.;
+
+		String[] fecha = dataactualizar.getFecha();//.;
+
+		String[] obs = 	dataactualizar.getObs();
+
+		DateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+		boolean response = false; 
+
+		try {
+			
+			for(int idx=0; idx<fecha.length; idx++) {
+				response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha[idx]),obs[idx],idRec[idx]);
+			}
+
+			
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<Boolean>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< filterByAlumno [Recaudaciones]");
+		return new ResponseEntity<Boolean>(response, HttpStatus.OK);
 	}
 
 }

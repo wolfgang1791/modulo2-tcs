@@ -24,7 +24,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 
 	@Override
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getAllRecaudacionesJOINAlumnoJOINConceptoJOINFacultads() {
-		String sql = "select r.id_rec, r.id_alum, a.ape_nom, c.concepto, r.numero, f.nombre, r.moneda, r.importe, r.fecha, r.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c where (r.id_alum = a.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) order by c.concepto, r.fecha";
+		String sql = "select r.id_rec, r.id_alum, a.ape_nom, c.concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, r.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, programa p,alumno_programa ap, alumno_alumno_programa aap where (r.id_alum = a.id_alum) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
 		// RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new
 		// BeanPropertyRowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>(RecaudacionesJOINAlumnoJOINConceptoJOINFacultad.class);
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
@@ -172,5 +172,13 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		String sql = "DELETE FROM recaudaciones WHERE id_rec = ?";
 		jdbcTemplate.update(sql, idRecaudaciones);
 	}
+
+	@Override
+	public boolean updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha, String obs,String idRec) {
+		String sql = "UPDATE recaudaciones SET fecha = ?, observacion = ? WHERE id_rec = ?";
+		jdbcTemplate.update(sql,fecha,obs,idRec);
+		return true;
+	}
 	
 }
+	
