@@ -68,6 +68,29 @@ public class AlumnoProgramaController {
 		return new ResponseEntity<List<AlumnoPrograma>>(list, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AlumnoPrograma>> getAllAlumnoPrograma() {
+		logger.info("> getAlumnoProgramasIdByNombresApellidosRestringido [AlumnoPrograma]");
+
+		List<AlumnoPrograma> list = null;
+		try {
+			list = service.getAllAlumnoProgramas();
+
+			if (list == null) {
+				list = new ArrayList<AlumnoPrograma>();
+			}
+			
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<AlumnoPrograma>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< getAlumnoProgramasIdByNombresApellidosRestringido [AlumnoPrograma]");
+		return new ResponseEntity<List<AlumnoPrograma>>(list, HttpStatus.OK);
+	}
+	
+	
+	
 	@RequestMapping(value = "/buscar/{codAlumno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AlumnoPrograma> getAlumnoProgramaByCodAlumno(@PathVariable("codAlumno") String codAlumno) {
 		logger.info("> getAlumnoProgramaByCodAlumno [AlumnoPrograma]");
