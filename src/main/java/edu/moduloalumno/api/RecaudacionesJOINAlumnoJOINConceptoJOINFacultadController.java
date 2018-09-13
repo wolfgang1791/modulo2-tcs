@@ -1,6 +1,7 @@
 package edu.moduloalumno.api;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,6 +48,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 				list = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
 			}
 			
+			logger.info("list "+list);
 		} catch (Exception e) {
 			logger.error("Unexpected Exception caught.", e);
 			return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -249,7 +251,9 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 			fInicial = formateador.parse(fechaInicial);
 			fFinal = formateador.parse(fechaFinal);
-
+			
+			logger.info("LISTA DE RECAUDACIONES POR CONCEPTO: asas\n" + fInicial);
+			logger.info("LISTA DE RECAUDACIONES POR CONCEPTO: scsc\n" + fFinal);
 			list03 = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeStartDateBetween(nom_ape, fInicial, fFinal);
 
 			if (list03 == null) {
@@ -276,7 +280,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 // edicion 	
 	@RequestMapping(value = "/actualizar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Boolean> doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar(@RequestBody DataActualizar dataactualizar) {
+	public ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>> doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar(@RequestBody DataActualizar dataactualizar) throws ParseException {
 		logger.info("> doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar");
 		
 		String[] idRec = dataactualizar.getIdRec();//.;
@@ -285,26 +289,32 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 		//String[] obs = 	dataactualizar.getObs();
 		
+		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> listanueva = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
 		logger.info("> Commo00n: "+dataactualizar);
 
-		DateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat formateador = new SimpleDateFormat("y-m-d");
+		logger.info("> fecha:: "+formateador.parse(fecha[0]));
 		boolean response = false; 
 
 		try {
 			
 			for(int idx=0; idx<fecha.length; idx++) {
-				//logger.info("> Common: "+idRec[idx]+" shit: "+formateador.parse(fecha[idx]));
-				response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha[idx]),"0",Integer.parseInt(idRec[idx]));
+				response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha[idx]),"0",Integer.parseInt(idRec[idx]));		
 			}
-
 			
+			if(response) {
+				for(int idx=0; idx<idRec.length; idx++) {
+				listanueva.add(recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadById(Integer.parseInt(idRec[idx])));
+				}
+			}
+			logger.info("> Commo11n: "+listanueva);
 		} catch (Exception e) {
-			logger.error("Unexpected Exception caught.", e);
-			return new ResponseEntity<Boolean>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+			logger.error("Unexpected Exception caught.", e.getMessage());
+			return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		logger.info("< filterByAlumno [Recaudaciones]");
-		return new ResponseEntity<Boolean>(response, HttpStatus.OK);
+		return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva, HttpStatus.OK);
 	}
 
 }

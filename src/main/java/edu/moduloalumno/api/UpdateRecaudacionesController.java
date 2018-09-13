@@ -155,7 +155,9 @@ public class UpdateRecaudacionesController {
 
 			fInicial = formateador.parse(fechaInicial);
 			fFinal = formateador.parse(fechaFinal);
-
+			
+			logger.info("LISTA DE RECAUDACIONES POR CONCEPTO: asas\n" + fInicial);
+			logger.info("LISTA DE RECAUDACIONES POR CONCEPTO: scsc\n" + fFinal);
 			list03 = updaterecaudacionesService.getRecaudacionesByNombresApellidosStartDateBetween(nombres, apellidos,
 					fInicial, fFinal);
 
