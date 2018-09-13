@@ -277,13 +277,15 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 // edicion 	
 	@RequestMapping(value = "/actualizar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar(@RequestBody DataActualizar dataactualizar) {
-		logger.info("> filterByAlumno [RecaudacionesJOINAlumnoJOINConceptoJOINFacultad]");
+		logger.info("> doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar");
 		
 		String[] idRec = dataactualizar.getIdRec();//.;
 
 		String[] fecha = dataactualizar.getFecha();//.;
 
-		String[] obs = 	dataactualizar.getObs();
+		//String[] obs = 	dataactualizar.getObs();
+		
+		logger.info("> Commo00n: "+dataactualizar);
 
 		DateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
 		boolean response = false; 
@@ -291,7 +293,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		try {
 			
 			for(int idx=0; idx<fecha.length; idx++) {
-				response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha[idx]),obs[idx],idRec[idx]);
+				//logger.info("> Common: "+idRec[idx]+" shit: "+formateador.parse(fecha[idx]));
+				response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha[idx]),"0",Integer.parseInt(idRec[idx]));
 			}
 
 			

@@ -2,6 +2,9 @@ package edu.moduloalumno.service.impl;
 
 import java.util.Date;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,9 @@ import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultad
 
 @Service
 public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implements IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO;
 
@@ -155,9 +161,9 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 	}
 	
 	@Override //nuevo
-	public boolean updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha,String obs,String idRec){
-		
-		recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(fecha,obs,idRec);
-		return false;
+	public boolean updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha,String obs,int idRec){
+		logger.info("Facultad Service"+fecha+" "+" "+obs+" "+idRec);
+		return recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(fecha,obs,idRec);
+
 	}
 }

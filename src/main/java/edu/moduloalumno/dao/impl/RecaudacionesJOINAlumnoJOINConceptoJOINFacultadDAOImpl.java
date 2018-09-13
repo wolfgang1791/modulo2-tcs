@@ -2,6 +2,9 @@ package edu.moduloalumno.dao.impl;
 
 import java.util.Date;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +22,9 @@ import edu.moduloalumno.rowmapper.RecaudacionesJOINAlumnoJOINConceptoJOINFaculta
 @Transactional
 @Repository
 public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -174,10 +180,20 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 	}
 
 	@Override
-	public boolean updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha, String obs,String idRec) {
+	public boolean updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha, String obs,int idRec) {
+		
+		logger.info("Facultad DAO"+fecha+" "+" "+obs+" "+idRec);
+		
 		String sql = "UPDATE recaudaciones SET fecha = ?, observacion = ? WHERE id_rec = ?";
-		jdbcTemplate.update(sql,fecha,obs,idRec);
-		return true;
+		Integer resp = jdbcTemplate.update(sql,fecha,obs,idRec);
+		
+		if(resp.equals(1)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+
 	}
 	
 }
