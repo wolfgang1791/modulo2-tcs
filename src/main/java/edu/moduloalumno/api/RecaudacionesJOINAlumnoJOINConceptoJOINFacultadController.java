@@ -292,7 +292,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> listanueva = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
 		logger.info("> Commo00n: "+dataactualizar);
 
-		DateFormat formateador = new SimpleDateFormat("y-m-d");
+		DateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
 		logger.info("> fecha:: "+formateador.parse(fecha[0]));
 		boolean response = false; 
 
