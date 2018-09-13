@@ -90,6 +90,28 @@ public class AlumnoController {
 		return new ResponseEntity<List<Alumno>>(list, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Alumno>> getAllAlumno() {
+		logger.info("> getAlumnoIdByNombresApellidos [Alumno]");
+
+		List<Alumno> list = null;
+
+		try {
+			list = service.getAllAlumnos();
+			
+			if (list == null) {
+				list = new ArrayList<Alumno>();
+			}
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<Alumno>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+
+		logger.info("< getAlumnoIdByNombresApellidos [Alumno]");
+		return new ResponseEntity<List<Alumno>>(list, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/leer/restringido/{nombresApellidos}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Alumno>> getAlumnoIdByNombresApellidosRestringido(@PathVariable("nombresApellidos") String nombresApellidos) {
 		logger.info("> getAlumnoIdByNombresApellidosRestringido [Alumno]");
