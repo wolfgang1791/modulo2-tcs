@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import edu.moduloalumno.dao.IRecaudacionesDAO;
 import edu.moduloalumno.entity.Recaudaciones;
+import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.service.IRecaudacionesService;
 
 @Service
@@ -134,6 +135,13 @@ public class RecaudacionesServiceImpl implements IRecaudacionesService {
 	@Override
 	public void deleteRecaudaciones(int idRecaudaciones) {
 		recaudacionesDAO.deleteRecaudaciones(idRecaudaciones);
+	}
+
+	@Override
+	public List<Recaudaciones> getRecaudacionReci(String recibo) {
+		List<Recaudaciones> recaudacionesList = recaudacionesDAO.getRecaudacionReci(recibo);
+		
+		return recaudacionesList;
 	}
 
 }

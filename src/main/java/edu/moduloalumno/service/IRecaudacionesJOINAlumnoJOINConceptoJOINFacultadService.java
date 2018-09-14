@@ -26,7 +26,7 @@ public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService {
 	List<CodigosporNomApe> getCodigoByNombre(String nomApe);
 	
 	boolean updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha,String obs,int idRec);
-
+	
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConcepto(String concepto, String nomApe);
 	
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeRecibo( String recibo, String nomApe);

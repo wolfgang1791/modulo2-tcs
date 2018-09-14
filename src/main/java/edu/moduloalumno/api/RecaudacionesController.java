@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.Recaudaciones;
+import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.model.Filtro;
 import edu.moduloalumno.service.IRecaudacionesService;
 import edu.moduloalumno.util.Operaciones;
@@ -51,6 +52,33 @@ public class RecaudacionesController {
 		logger.info("< getAllRecaudaciones [Recaudaciones]");
 		return new ResponseEntity<List<Recaudaciones>>(list, HttpStatus.OK);
 	}
+	
+	
+	/* loco*/ 
+	@RequestMapping(value = "/rec/{recibo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Recaudaciones>> getRecaudacionReci(@PathVariable("recibo") String recibo) {
+		logger.info("> getAllRecaudaciones [Recaudaciones]");
+		
+		List<Recaudaciones> list = null;
+
+		try {
+
+			list = recaudacionesService.getRecaudacionReci(recibo);
+			if (list == null) {
+				list = new ArrayList<Recaudaciones>();
+			}
+
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<Recaudaciones>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
+		return new ResponseEntity<List<Recaudaciones>>(list, HttpStatus.OK);
+
+	}
+	
+	
 	
 	@RequestMapping(value = "/listar/{nomApe}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Recaudaciones>> getRecaudacionesByNomApe(@PathVariable("nomApe") String nomApe) {

@@ -12,23 +12,15 @@ public class RecaudacionesRowMapper implements RowMapper<Recaudaciones> {
 	public Recaudaciones mapRow(ResultSet row, int rowNum) throws SQLException {
 		Recaudaciones recaudaciones = new Recaudaciones();
 		recaudaciones.setIdRec(row.getInt("id_rec"));
+		recaudaciones.setIdAlum(row.getInt("id_alum"));
+		recaudaciones.setApeNom(row.getString("ape_nom"));
+		recaudaciones.setConcepto(row.getString("concepto"));
+		recaudaciones.setDni(row.getString("dni"));
+		recaudaciones.setNombre(row.getString("nombre"));
 		recaudaciones.setMoneda(row.getString("moneda"));
 		recaudaciones.setNumero(row.getString("numero"));
 		recaudaciones.setImporte(row.getInt("importe"));
-		recaudaciones.setCarnet(row.getString("carnet"));
-		recaudaciones.setAutoseguro(row.getString("autoseguro"));
-		recaudaciones.setAve(row.getString("ave"));
-		recaudaciones.setDevolTran(row.getString("devol_tran"));
-		recaudaciones.setObservacion(row.getString("observacion"));
 		recaudaciones.setFecha(row.getDate("fecha"));
-		recaudaciones.setValidado(row.getBoolean("validado"));
-		recaudaciones.setIdAlum(row.getInt("id_alum"));
-		recaudaciones.setIdConcepto(row.getInt("id_concepto"));
-		recaudaciones.setIdRegistro(row.getInt("id_registro"));
-		recaudaciones.setIdPrograma(row.getInt("id_programa"));
-		recaudaciones.setCodAlumno(row.getString("cod_alumno"));
-		recaudaciones.setIdUbicacion(row.getInt("id_ubicacion"));
-		recaudaciones.setIdTipo(row.getInt("id_tipo"));
 		return recaudaciones;
 	}
 }

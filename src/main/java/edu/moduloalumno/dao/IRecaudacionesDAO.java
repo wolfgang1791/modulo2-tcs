@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import edu.moduloalumno.entity.Recaudaciones;
+import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 
 public interface IRecaudacionesDAO {
 
@@ -19,6 +20,7 @@ public interface IRecaudacionesDAO {
 	
 	List<Recaudaciones> getRecaudacionesByNomApeRecibo( String recibo, String nomApe);
 	
+	List<Recaudaciones> getRecaudacionReci(String recibo);
 	
 	List<Recaudaciones> getRecaudacionesByPosgrado();
 

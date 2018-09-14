@@ -11,11 +11,33 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.moduloalumno.dao.IRecaudacionesDAO;
 import edu.moduloalumno.entity.Recaudaciones;
+import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
+import edu.moduloalumno.rowmapper.RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper;
 import edu.moduloalumno.rowmapper.RecaudacionesRowMapper;
 
 @Transactional
 @Repository
 public class RecaudacionesDAOImpl implements IRecaudacionesDAO {
+	@Override
+	public void addRecaudaciones(Recaudaciones reacaudaciones) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int updateRecaudaciones(Recaudaciones reacaudaciones) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void deleteRecaudaciones(int idRec) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -129,9 +151,20 @@ public class RecaudacionesDAOImpl implements IRecaudacionesDAO {
 		RowMapper<Recaudaciones> rowMapper = new RecaudacionesRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, recibo, nombres, apellidos);
 	}
+	
+	
 
 	@Override
-	public void addRecaudaciones(Recaudaciones recaudaciones) {
+	public List<Recaudaciones> getRecaudacionReci(String recibo) {
+		String sql = "select r.id_rec, r.id_alum, a.ape_nom, c.concepto,a.dni, r.numero, f.nombre, r.moneda,r.importe, r.fecha from recaudaciones r, alumno a, concepto c, facultad f where  (r.numero = (?)) and (r.id_alum = a.id_alum) and (r.id_concepto = c.id_concepto) and (a.id_facultad = f.id_facultad) "; 
+		// RowMapper<Recaudaciones> rowMapper = new
+		// BeanPropertyRowMapper<Recaudaciones>(Recaudaciones.class);
+		RowMapper<Recaudaciones> rowMapper = new RecaudacionesRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, recibo);
+	}
+
+	//@Override
+	/*public void addRecaudaciones(Recaudaciones recaudaciones) {
 		// Add recaudaciones
 		String sql = "INSERT INTO recaudaciones (id_rec, moneda, numero, importe, carnet, autoseguro, ave, devol_tran, observacion, fecha, validado, id_alum, id_concepto, id_registro, cod_alumno, id_ubicacion, id_programa, id_tipo) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, recaudaciones.getIdRec(), recaudaciones.getMoneda(), recaudaciones.getNumero(),
@@ -160,5 +193,5 @@ public class RecaudacionesDAOImpl implements IRecaudacionesDAO {
 		String sql = "DELETE FROM recaudaciones WHERE id_rec = ?";
 		jdbcTemplate.update(sql, idRecaudaciones);
 	}
-
+	*/
 }

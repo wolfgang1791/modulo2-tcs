@@ -3,6 +3,7 @@ package edu.moduloalumno.service;
 import java.util.Date;
 import java.util.List;
 import edu.moduloalumno.entity.Recaudaciones;
+import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 
 public interface IRecaudacionesService {
 	
@@ -18,6 +19,7 @@ public interface IRecaudacionesService {
 	
 	List<Recaudaciones> getRecaudacionesByNomApeRecibo( String recibo, String nomApe);
 	
+	List<Recaudaciones> getRecaudacionReci(String recibo);
 	
 	List<Recaudaciones> getRecaudacionesByPosgrado();
 
