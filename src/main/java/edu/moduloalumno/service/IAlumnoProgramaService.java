@@ -12,6 +12,8 @@ public interface IAlumnoProgramaService {
 	List<AlumnoPrograma> getAlumnoProgramasIdByNombresApellidosRestringido( String nombresApellidos);
 
 	AlumnoPrograma getAlumnoProgramaById(String codAlumno);
+	
+	List<AlumnoPrograma> getAlumnoProgramaByDni(String dni);
 
 	void addAlumnoPrograma(AlumnoPrograma alumnoPrograma);
 

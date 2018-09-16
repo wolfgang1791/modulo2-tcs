@@ -19,6 +19,14 @@ public class AlumnoProgramaServiceImpl implements IAlumnoProgramaService {
 		
 		return alumnoPrograma;
 	}
+	
+	@Override
+	public List<AlumnoPrograma> getAlumnoProgramaByDni(String dni) {
+		
+		List<AlumnoPrograma> alumnoPrograma = alumnoProgramaDAO.getAlumnoProgramaByDni(dni);
+		
+		return alumnoPrograma;
+	}
 
 	@Override
 	public List<AlumnoPrograma> getAllAlumnoProgramas() {

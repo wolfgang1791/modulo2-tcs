@@ -11,9 +11,9 @@ public class AlumnoProgramaRowMapper implements RowMapper<AlumnoPrograma> {
 	public AlumnoPrograma mapRow(ResultSet row, int rowNum) throws SQLException {
 		AlumnoPrograma alumnoPrograma = new AlumnoPrograma();
 		alumnoPrograma.setCodAlumno(row.getString("cod_alumno"));
-		alumnoPrograma.setApePaterno(row.getString("ape_paterno"));
-		alumnoPrograma.setApeMaterno(row.getString("ape_materno"));
-		alumnoPrograma.setNomAlumno(row.getString("nom_alumno"));
+		alumnoPrograma.setApePaterno(row.getString("ape_nom"));
+		//alumnoPrograma.setApeMaterno(row.getString("ape_materno"));
+		//alumnoPrograma.setNomAlumno(row.getString("nom_alumno"));
 		alumnoPrograma.setCodEspecialidad(row.getString("cod_especialidad"));
 		alumnoPrograma.setCodTipIngreso(row.getString("cod_tip_ingreso"));
 		alumnoPrograma.setCodSitu(row.getString("cod_situ"));

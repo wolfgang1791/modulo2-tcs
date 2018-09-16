@@ -13,6 +13,8 @@ public interface IAlumnoProgramaDAO {
 	List<AlumnoPrograma> getAlumnoProgramasIdByNombresApellidosRestringido( String nombresApellidos);
 
 	AlumnoPrograma getAlumnoProgramaById(String codAlumno);
+	
+	List<AlumnoPrograma> getAlumnoProgramaByDni(String codAlumno);
 
 	void addAlumnoPrograma(AlumnoPrograma alumnoPrograma);
 

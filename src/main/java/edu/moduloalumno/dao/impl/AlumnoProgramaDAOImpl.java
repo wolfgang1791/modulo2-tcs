@@ -25,6 +25,16 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 		AlumnoPrograma alumnoPrograma = jdbcTemplate.queryForObject(sql, rowMapper, codAlumno);
 		return alumnoPrograma;
 	}
+	
+	@Override
+	public List<AlumnoPrograma> getAlumnoProgramaByDni(String dni) {
+		String sql = "SELECT cod_alumno, ape_paterno, ape_materno, nom_alumno, cod_especialidad, cod_tip_ingreso, cod_situ, cod_perm, anio_ingreso, dni_m, id_programa FROM alumno_programa WHERE dni_m = ? ";
+		RowMapper<AlumnoPrograma> rowMapper = new BeanPropertyRowMapper<AlumnoPrograma>(AlumnoPrograma.class);
+		return this.jdbcTemplate.query(sql, rowMapper, dni);
+		
+	}
+	
+	
 
 	@Override
 	public List<AlumnoPrograma> getAllAlumnoProgramas() {
@@ -37,11 +47,12 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 	
 	@Override
 	public List<AlumnoPrograma> getAlumnoProgramasIdByNombresApellidos(String nombresApellidos) {
-		String sql = "SELECT ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, ap.id_programa FROM alumno_programa ap where ((ap.ape_paterno || ' ' || ap.ape_materno || ' ' || ap.nom_alumno) like '%' || ? || '%') or ((ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno) like '%' || ? || '%')";
+		String sql = "SELECT ap.cod_alumno, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, ap.id_programa FROM alumno_programa ap where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.nom_alumno,'') || ' ' ||coalesce(ap.ape_paterno,'') || ' ' ||coalesce(ap.ape_materno,''))"; 
 		// RowMapper<AlumnoPrograma> rowMapper = new
 		// BeanPropertyRowMapper<AlumnoPrograma>(AlumnoPrograma.class);
+		System.out.println(sql);
 		RowMapper<AlumnoPrograma> rowMapper = new AlumnoProgramaRowMapper();
-		return this.jdbcTemplate.query(sql, rowMapper, nombresApellidos, nombresApellidos);
+		return this.jdbcTemplate.query(sql, rowMapper, nombresApellidos);
 	}
 	
 	@Override
