@@ -21,6 +21,8 @@ import edu.moduloalumno.util.Operaciones;
 @RestController
 @RequestMapping("alumno/alumnoprograma/programa")
 public class AlumnoProgramaJOINProgramaJOINAlumnoController {
+	
+	//Aprendi por fin, gracias dios. comit numero 2
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
