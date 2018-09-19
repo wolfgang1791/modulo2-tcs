@@ -21,7 +21,7 @@ import edu.moduloalumno.rowmapper.AlumnoBeneficioRowMapper;
 public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;//i wanna be adored
 	
 	@Override
 	public List<AlumnoBeneficio> getAllAlumnoBeneficio(String codigo) {
