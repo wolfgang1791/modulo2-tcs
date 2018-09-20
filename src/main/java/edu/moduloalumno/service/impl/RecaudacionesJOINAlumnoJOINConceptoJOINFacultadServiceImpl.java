@@ -161,9 +161,9 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 	}
 	
 	@Override //nuevo
-	public boolean updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha,String obs,int idRec){
-		logger.info("Facultad Service"+fecha+" "+" "+obs+" "+idRec);
-		return recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(fecha,obs,idRec);
+	public boolean updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha,String recibo,int ciclo,int idRec){
+		logger.info("Facultad Service"+fecha+" "+" "+recibo+" "+ciclo +" "+idRec);
+		return recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(fecha,recibo,ciclo,idRec);
 
 	}
 }

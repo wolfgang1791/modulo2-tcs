@@ -184,13 +184,13 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 	}
 
 	@Override
-	public boolean updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha, String obs,int idRec) {
+	public boolean updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha, String numero,int ciclo,int idRec) {
 		
-		logger.info("Facultad DAO "+fecha+" "+" "+obs+" "+idRec);
+		logger.info("Facultad DAO "+fecha+" "+" "+numero+" "+idRec);
 		
-		String sql = "UPDATE recaudaciones SET fecha = ?, numero = ? WHERE id_rec = ?";
+		String sql = "UPDATE recaudaciones SET fecha = ?, numero = ?,ciclo=? WHERE id_rec = ?";
 		logger.info("Facultad DAO "+sql);
-		Integer resp = jdbcTemplate.update(sql,fecha,obs,idRec);
+		Integer resp = jdbcTemplate.update(sql,fecha,numero,ciclo,idRec);
 		logger.info("resp :"+resp);
 		if(resp.equals(1)) {
 			return true;

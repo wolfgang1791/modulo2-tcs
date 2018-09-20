@@ -310,7 +310,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		try {
 			
 		
-			response0 = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha),recibo,Integer.parseInt(idRec));		
+			response0 = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha),recibo,Integer.parseInt(ciclo),Integer.parseInt(idRec));		
 			response1 = conceptoservice.updateConcepto(concepto,Integer.parseInt(id_concepto));
 		
 			logger.info("> Commo11n: "+dataactualizar);
