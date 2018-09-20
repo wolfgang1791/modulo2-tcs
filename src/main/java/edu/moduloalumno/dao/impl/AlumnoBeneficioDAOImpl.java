@@ -29,7 +29,7 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	
 	@Override
 	public List<AlumnoBeneficio> getAllAlumnoBeneficio(String codigo) {
-		String sql = "select abp.cod_alumno,abp.id_programa,abp.id_beneficio,b.autorizacion,b.resolucion,b.condicion,b.fecha from alumno_programa_beneficio abp,beneficio b where abp.cod_alumno = (?) and abp.id_beneficio = b.id_beneficio;";
+		String sql = "select abp.cod_alumno,abp.id_programa,abp.id_beneficio,b.autorizacion,b.resolucion,b.condicion,b.fecha,b.beneficio from alumno_programa_beneficio abp,beneficio b where abp.cod_alumno = (?) and abp.id_beneficio = b.id_beneficio";
 		RowMapper<AlumnoBeneficio> rowMapper = new AlumnoBeneficioRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, codigo);
 	}
