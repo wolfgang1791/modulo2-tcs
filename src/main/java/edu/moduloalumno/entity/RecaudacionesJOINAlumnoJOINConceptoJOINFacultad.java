@@ -10,18 +10,12 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 	
 	private String apeNom;
 	
+	private Integer ciclo;
+	
 	private String concepto;
 	
 	private Integer idconcepto;
     
-	public Integer getIdconcepto() {
-		return idconcepto;
-	}
-
-	public void setIdconcepto(Integer idconcepto) {
-		this.idconcepto = idconcepto;
-	}
-
 	private String numero;
     
 	private String dni;
@@ -155,6 +149,15 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
 	}
+	
+	public Integer getIdconcepto() {
+		return idconcepto;
+	}
+
+	public void setIdconcepto(Integer idconcepto) {
+		this.idconcepto = idconcepto;
+	}
+
 
 	@Override
 	public int hashCode() {
