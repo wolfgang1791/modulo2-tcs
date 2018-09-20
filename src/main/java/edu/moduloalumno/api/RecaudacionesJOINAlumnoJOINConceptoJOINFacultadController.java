@@ -316,7 +316,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		}
 
 		logger.info("< filterByAlumno [Recaudaciones]");
-		return response;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva, HttpStatus.OK);
+		return response0;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva, HttpStatus.OK);
 	}
 
 }
