@@ -11,7 +11,7 @@ import edu.moduloalumno.entity.AlumnoBeneficio;
 
 public class AlumnoBeneficioRowMapper implements RowMapper<AlumnoBeneficio> {
 
-	@Override
+	@Override //beneficio
 	public AlumnoBeneficio mapRow(ResultSet rs, int rowNum) throws SQLException {
 		AlumnoBeneficio ab = new AlumnoBeneficio();
 		ab.setCod_alumno(rs.getString("cod_alumno"));
