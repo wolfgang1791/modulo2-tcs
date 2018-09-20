@@ -307,7 +307,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 			
 		
 			response0 = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha),recibo,Integer.parseInt(idRec));		
-			response1 = 
+			//response1 = 
 		
 			logger.info("> Commo11n: "+listanueva);
 		} catch (Exception e) {
