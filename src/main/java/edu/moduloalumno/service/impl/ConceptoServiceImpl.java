@@ -10,6 +10,8 @@ import edu.moduloalumno.service.IConceptoService;
 
 @Service
 public class ConceptoServiceImpl implements IConceptoService {
+	
+
 	@Autowired
 	private IConceptoDAO conceptoDAO;
 	@Override
@@ -75,6 +77,12 @@ public class ConceptoServiceImpl implements IConceptoService {
 	@Override
 	public void deleteConcepto(int idConcepto) {
 		conceptoDAO.deleteConcepto(idConcepto);
+	}
+	
+	@Override
+	public boolean updateConcepto(String concepto, Integer id_concepto) {
+		
+		return conceptoDAO.updateConcepto(concepto,id_concepto);
 	}
 
 }

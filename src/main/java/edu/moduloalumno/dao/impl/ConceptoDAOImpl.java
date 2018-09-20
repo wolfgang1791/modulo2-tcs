@@ -15,6 +15,8 @@ import edu.moduloalumno.rowmapper.ConceptoRowMapper;
 @Transactional
 @Repository
 public class ConceptoDAOImpl implements IConceptoDAO {
+	
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -100,4 +102,22 @@ public class ConceptoDAOImpl implements IConceptoDAO {
 		jdbcTemplate.update(sql, idConcepto);
 	}
 
+	@Override
+	public boolean updateConcepto(String concepto, Integer id_concepto) {
+		//logger.info("Facultad DAO "+fecha+" "+" "+obs+" "+idRec);
+		
+		String concep_a = concepto.substring(0, 3);
+		String concep_b = concepto.substring(3, 6);
+		String sql = "UPDATE concepto SET concepto = ?,concep_a = ?,concep_b= ? WHERE id_concepto = ?";
+		Integer resp = jdbcTemplate.update(sql,concepto,concep_a,concep_b,id_concepto);
+		//logger.info("resp :"+resp);
+		if(resp.equals(1)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+
+	}
+	
 }

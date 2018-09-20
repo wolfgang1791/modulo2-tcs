@@ -23,5 +23,7 @@ public interface IConceptoDAO {
 	void updateConcepto(Concepto concepto);
 
 	void deleteConcepto(int idConcepto);
+	
+	boolean updateConcepto(String concepto,Integer id_concepto);
 
 }

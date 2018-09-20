@@ -6,9 +6,17 @@ public class DataActualizar {
 	
 	private String idRec;
 	private String fecha;
+	private String id_concepto;
 	private String concepto;
 	private String recibo;
 	private String ciclo;
+	
+	public String getId_concepto() {
+		return id_concepto;
+	}
+	public void setId_concepto(String id_concepto) {
+		this.id_concepto = id_concepto;
+	}
 	
 	public String getIdRec() {
 		return idRec;

@@ -23,6 +23,7 @@ import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.entity.CodigosporNomApe;
 import edu.moduloalumno.model.DataActualizar;
 import edu.moduloalumno.model.Filtro;
+import edu.moduloalumno.service.IConceptoService;
 import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService;
 import edu.moduloalumno.util.Operaciones;
 
@@ -35,6 +36,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 	@Autowired
 	private IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice;
+	private IConceptoService conceptoservice;
 
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>> getAllRecaudacionesJOINAlumnoJOINConceptoJOINFacultads() {
@@ -287,6 +289,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 		String fecha = dataactualizar.getFecha();
 		
+		String id_concepto = dataactualizar.getId_concepto();
+		
 		String concepto = dataactualizar.getConcepto();
 		
 		String recibo = dataactualizar.getRecibo();
@@ -295,7 +299,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		
 		
 		
-		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> listanueva = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
+		//List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> listanueva = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
 		logger.info("> Commo00n: "+dataactualizar);
 
 		DateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
@@ -307,16 +311,16 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 			
 		
 			response0 = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha),recibo,Integer.parseInt(idRec));		
-			//response1 = 
+			response1 = conceptoservice.updateConcepto(concepto,Integer.parseInt(id_concepto));
 		
-			logger.info("> Commo11n: "+listanueva);
+			logger.info("> Commo11n: "+dataactualizar);
 		} catch (Exception e) {
 			logger.error("Unexpected Exception caught.", e.getMessage());
 			return false;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		logger.info("< filterByAlumno [Recaudaciones]");
-		return response0;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva, HttpStatus.OK);
+		return response0 && response1;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva, HttpStatus.OK);
 	}
 
 }

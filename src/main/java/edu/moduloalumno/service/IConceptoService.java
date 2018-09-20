@@ -20,6 +20,8 @@ public interface IConceptoService {
 	void addConcepto(Concepto concepto);
 
 	void updateConcepto(Concepto concepto);
-
+	
+	boolean updateConcepto(String concepto,Integer id_concepto);
+	
 	void deleteConcepto(int idConcepto);
 }
