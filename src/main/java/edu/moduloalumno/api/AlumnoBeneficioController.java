@@ -64,11 +64,11 @@ public class AlumnoBeneficioController {
 			resp = alumnobeneficioservice.insertBeneficio(beneficio);
 		}
 		catch(Exception e) {
-			logger.info("> insertBeneficio[ Beneficio: "+beneficio+" APBEneficio: ");
+			logger.info("> insertBeneficio[ Beneficio: "+beneficio+" APBEneficio: catch ");
 			return false;
 		}
 		
-		
+		logger.info(" "+resp);
 		return resp;
 	}
 	
@@ -78,8 +78,9 @@ public class AlumnoBeneficioController {
 		
 		boolean resp = false;
 		try {
-			
+			logger.info("respppp: "+alumnobeneficioservice.getIdBeneficio());
 			apbeneficio.setId_beneficio(alumnobeneficioservice.getIdBeneficio());
+			logger.info("respppp: afte"+apbeneficio.getId_beneficio()+" "+apbeneficio);
 			resp = alumnobeneficioservice.insertAlumnoProgramaBeneficio(apbeneficio);
 		}
 		catch(Exception e) {

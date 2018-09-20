@@ -20,6 +20,7 @@ public class AlumnoBeneficioRowMapper implements RowMapper<AlumnoBeneficio> {
 		ab.setAutorizacion(rs.getString("autorizacion"));
 		ab.setResolucion(rs.getString("resolucion"));
 		ab.setCondicion(rs.getString("condicion"));
+		ab.setBeneficio(rs.getInt("beneficio"));
 		ab.setFecha(rs.getDate("fecha"));
 		
 		return ab;

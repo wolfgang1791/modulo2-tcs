@@ -1,6 +1,8 @@
 package edu.moduloalumno.dao.impl;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -20,6 +22,8 @@ import edu.moduloalumno.rowmapper.AlumnoBeneficioRowMapper;
 @Repository
 public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;//i wanna be adored
 	
@@ -32,8 +36,13 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 
 	@Override
 	public boolean insertBeneficio(Beneficio beneficio) {
-		String sql = "INSERT INTO beneficio(id_beneficio, autorizacion, resolucion, condicion, fecha) values (?, ?, ?, ?, ?)";
-		Integer ret = jdbcTemplate.update(sql, beneficio.getId_beneficio(),beneficio.getAutorizacion(),beneficio.getResolucion(), beneficio.getCondicion(),beneficio.getFecha());
+		
+		logger.info("dao: "+beneficio);
+		
+		String sql = "INSERT INTO beneficio(autorizacion, resolucion, condicion, fecha,beneficio) values (?, ?, ?, ?,?)";
+		Integer ret = jdbcTemplate.update(sql,beneficio.getAutorizacion(),beneficio.getResolucion(), beneficio.getCondicion(),beneficio.getFecha(),beneficio.getBeneficio());
+		logger.info("dao: shit"+ret);
+		
 		if(ret.equals(1)) {
 			return true;
 		}

@@ -11,7 +11,18 @@ public class AlumnoBeneficio {
 	private String autorizacion;
 	private String resolucion;
 	private String condicion;
+	private Integer beneficio;
+	
+	
+	public Integer getBeneficio() {
+		return beneficio;
+	}
+	public void setBeneficio(Integer beneficio) {
+		this.beneficio = beneficio;
+	}
+
 	private Date fecha;
+	
 	public String getCod_alumno() {
 		return cod_alumno;
 	}

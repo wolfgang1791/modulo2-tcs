@@ -8,6 +8,15 @@ public class Beneficio {
 	private String autorizacion;
 	private String resolucion;
 	private String condicion;
+	private Integer beneficio;
+	
+	public Integer getBeneficio() {
+		return beneficio;
+	}
+	public void setBeneficio(Integer beneficio) {
+		this.beneficio = beneficio;
+	}
+
 	private Date fecha;
 	
 	public Integer getId_beneficio() {
