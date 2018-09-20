@@ -30,7 +30,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 
 	@Override
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getAllRecaudacionesJOINAlumnoJOINConceptoJOINFacultads() {
-		String sql = "select r.id_rec, r.id_alum, a.ape_nom, c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, r.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, programa p,alumno_programa ap, alumno_alumno_programa aap where (r.id_alum = a.id_alum) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
+		String sql = "select r.id_rec, r.id_alum, a.ape_nom, c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, p.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, programa p,alumno_programa ap, alumno_alumno_programa aap where (r.id_alum = a.id_alum) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
 		// RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new
 		// BeanPropertyRowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>(RecaudacionesJOINAlumnoJOINConceptoJOINFacultad.class);
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
@@ -50,7 +50,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 	public RecaudacionesJOINAlumnoJOINConceptoJOINFacultad getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadById(int idRecaudaciones) {
 		logger.info("Facultadupdate id"+ idRecaudaciones);
 		
-		String sql = "select r.id_rec, r.id_alum, a.ape_nom, c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa ,r.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c,programa p,alumno_programa ap,alumno_alumno_programa aap where (r.id_rec = ? ) and (r.id_alum = a.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and  (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha limit 1";
+		String sql = "select r.id_rec, r.id_alum, a.ape_nom, c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa ,p.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c,programa p,alumno_programa ap,alumno_alumno_programa aap where (r.id_rec = ? ) and (r.id_alum = a.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and  (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha limit 1";
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new BeanPropertyRowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>(RecaudacionesJOINAlumnoJOINConceptoJOINFacultad.class);
 		RecaudacionesJOINAlumnoJOINConceptoJOINFacultad recaudaciones = jdbcTemplate.queryForObject(sql, rowMapper, idRecaudaciones);
 		logger.info("Facultadupdate idREC"+ recaudaciones);
@@ -60,7 +60,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 
 	@Override
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByStartDateBetween(Date fechaInicial, Date fechaFinal) {
-		String sql = "select r.id_rec, r.id_alum, a.ape_nom, c.concepto, r.numero, f.nombre, r.moneda, r.importe, r.fecha, r.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c where (r.fecha between ? and ?) and (r.id_alum = a.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) order by c.concepto, r.fecha";
+		String sql = "select r.id_rec, r.id_alum, a.ape_nom, c.concepto, r.numero, f.nombre, r.moneda, r.importe, r.fecha, p.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c where (r.fecha between ? and ?) and (r.id_alum = a.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) order by c.concepto, r.fecha";
 		// RowMapper<Recaudaciones> rowMapper = new
 		// BeanPropertyRowMapper<Recaudaciones>(Recaudaciones.class);
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
@@ -70,7 +70,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 	@Override
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeStartDateBetween(String nomApe, Date fechaInicial,
 			Date fechaFinal) {
-		String sql = "select r.id_rec, r.id_alum, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, r.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap,programa p where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'') ) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and ((r.fecha between ? and ?) or r.fecha = null) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
+		String sql = "select r.id_rec, r.id_alum, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, p.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap,programa p where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'') ) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and ((r.fecha between ? and ?) or r.fecha = null) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
 		// RowMapper<Recaudaciones> rowMapper = new
 		// BeanPropertyRowMapper<Recaudaciones>(Recaudaciones.class);
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
@@ -107,7 +107,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 
 	@Override
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConcepto(String concepto, String nomApe) {
-		String sql = "select r.id_rec, r.id_alum, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom,c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, r.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap,programa p where (c.concepto = ?) and to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'')) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
+		String sql = "select r.id_rec, r.id_alum, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom,c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, p.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap,programa p where (c.concepto = ?) and to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'')) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
 		// RowMapper<Recaudaciones> rowMapper = new
 		// BeanPropertyRowMapper<Recaudaciones>(Recaudaciones.class);
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
@@ -116,7 +116,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 
 	@Override
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeRecibo(String recibo, String nomApe) {
-		String sql = "select r.id_rec, r.id_alum, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, c.concepto,c.id_concepto,a.dni,r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, r.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap,programa p where (r.numero = ?) and to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'')) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
+		String sql = "select r.id_rec, r.id_alum, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, c.concepto,c.id_concepto,a.dni,r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, p.id_programa, r.cod_alumno, r.observacion from recaudaciones r, alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap,programa p where (r.numero = ?) and to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'')) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
 		// RowMapper<Recaudaciones> rowMapper = new
 		// BeanPropertyRowMapper<Recaudaciones>(Recaudaciones.class);
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
@@ -189,6 +189,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		logger.info("Facultad DAO "+fecha+" "+" "+obs+" "+idRec);
 		
 		String sql = "UPDATE recaudaciones SET fecha = ?, numero = ? WHERE id_rec = ?";
+		logger.info("Facultad DAO "+sql);
 		Integer resp = jdbcTemplate.update(sql,fecha,obs,idRec);
 		logger.info("resp :"+resp);
 		if(resp.equals(1)) {

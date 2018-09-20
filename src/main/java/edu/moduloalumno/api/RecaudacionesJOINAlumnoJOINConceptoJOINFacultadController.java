@@ -283,7 +283,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 // edicion 	
 	@RequestMapping(value = "/actualizar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar(@RequestBody DataActualizar dataactualizar) throws ParseException {
-		logger.info("> doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar");
+		logger.info("> doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar " +dataactualizar );
 		
 		String idRec = dataactualizar.getIdRec();
 

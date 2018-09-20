@@ -60,13 +60,8 @@ public class AlumnoBeneficioController {
 		logger.info("> insertBeneficio[ "+beneficio);
 		
 		boolean resp = false;
-		try {
-			
-		//	boolean resp = alumnobeneficioservice.insertBeneficio(beneficio);
-	/*		if(resp0) {
-				
-			}
-		*/	
+		try {	
+			resp = alumnobeneficioservice.insertBeneficio(beneficio);
 		}
 		catch(Exception e) {
 			logger.info("> insertBeneficio[ Beneficio: "+beneficio+" APBEneficio: ");
