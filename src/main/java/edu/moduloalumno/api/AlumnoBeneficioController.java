@@ -24,7 +24,7 @@ import edu.moduloalumno.service.IAlumnoBeneficioService;
 
 
 @RestController
-@RequestMapping("/beneficio")
+@RequestMapping("/beneficio")//beneficio
 public class AlumnoBeneficioController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
