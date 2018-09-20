@@ -25,7 +25,7 @@ import edu.moduloalumno.model.DataActualizar;
 import edu.moduloalumno.model.Filtro;
 import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService;
 import edu.moduloalumno.util.Operaciones;
-import org.springframework.util.MultiValueMap;
+
 
 @RestController
 @RequestMapping("recaudaciones/alumno/concepto")
@@ -280,41 +280,43 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 // edicion 	
 	@RequestMapping(value = "/actualizar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>> doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar(@RequestBody DataActualizar dataactualizar) throws ParseException {
+	public boolean doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar(@RequestBody DataActualizar dataactualizar) throws ParseException {
 		logger.info("> doRecaudacionesJOINAlumnoJOINConceptoJOINFacultadActualizar");
 		
-		String[] idRec = dataactualizar.getIdRec();//.;
+		String idRec = dataactualizar.getIdRec();
 
-		String[] fecha = dataactualizar.getFecha();//.;
-
-		//String[] obs = 	dataactualizar.getObs();
+		String fecha = dataactualizar.getFecha();
+		
+		String concepto = dataactualizar.getConcepto();
+		
+		String recibo = dataactualizar.getRecibo();
+		
+		String ciclo = dataactualizar.getCiclo();
+		
+		
 		
 		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> listanueva = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
 		logger.info("> Commo00n: "+dataactualizar);
 
 		DateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-		logger.info("> fecha:: "+formateador.parse(fecha[0]));
-		boolean response = false; 
-
+		
+		boolean response0 = false; 
+		boolean response1 = false;
+		
 		try {
 			
-			for(int idx=0; idx<fecha.length; idx++) {
-				response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha[idx]),"0",Integer.parseInt(idRec[idx]));		
-			}
-			
-			if(response) {
-				for(int idx=0; idx<idRec.length; idx++) {
-				listanueva.add(recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadById(Integer.parseInt(idRec[idx])));
-				}
-			}
+		
+			response0 = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha),recibo,Integer.parseInt(idRec));		
+			response1 = 
+		
 			logger.info("> Commo11n: "+listanueva);
 		} catch (Exception e) {
 			logger.error("Unexpected Exception caught.", e.getMessage());
-			return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva,HttpStatus.INTERNAL_SERVER_ERROR);
+			return false;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		logger.info("< filterByAlumno [Recaudaciones]");
-		return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva, HttpStatus.OK);
+		return response;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva, HttpStatus.OK);
 	}
 
 }

@@ -18,7 +18,7 @@ public class CodigosporNomApeRowMapper implements RowMapper<CodigosporNomApe> {
     @Override
 	public CodigosporNomApe mapRow(ResultSet row, int rowNum) throws SQLException {
 		CodigosporNomApe codigosporNomApe = new CodigosporNomApe();
-		codigosporNomApe.setCod_alumno(row.getString("cod_alumno"));
+				codigosporNomApe.setCod_alumno(row.getString("cod_alumno"));
                 codigosporNomApe.setNombre_alumno(row.getString("nombre_alumno"));
                 codigosporNomApe.setNombre_programa(row.getString("nombre_programa"));
 		return codigosporNomApe;

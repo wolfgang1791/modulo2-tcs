@@ -12,5 +12,7 @@ public interface IAlumnoBeneficioDAO {
 	public boolean insertBeneficio(Beneficio beneficio);
 	
 	public boolean insertAlumnoProgramaBeneficio(AlumnoProgramaBeneficio apbeneficio);
+	
+	public Integer getIdBeneficio();
 }
 

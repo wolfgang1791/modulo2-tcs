@@ -49,9 +49,20 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 		if(ret.equals(1)) {
 			return true;
 		}
-		else {
+		else 
+		{
 			return false;
 		}
+	}
+
+	@Override
+	public Integer getIdBeneficio() {
+		
+		String sql = "select max(id_beneficio) from beneficio";
+		
+		String id = jdbcTemplate.queryForObject(sql, String.class);
+			
+		return Integer.parseInt(id) ;
 	}
 
 }

@@ -30,6 +30,11 @@ public class AlumnoBeneficioServiceImpl implements IAlumnoBeneficioService{
 	public List<AlumnoBeneficio> getAllAlumnoBeneficio(String codigo) {
 		return alumnobeneficiodao.getAllAlumnoBeneficio(codigo);
 	}
+
+	@Override
+	public Integer getIdBeneficio() {
+		return alumnobeneficiodao.getIdBeneficio();
+	}
 	
 	
 	

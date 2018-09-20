@@ -19,6 +19,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper implements
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setNombre(row.getString("nombre"));
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setMoneda(row.getString("moneda"));
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setImporte(row.getDouble("importe"));
+		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setIdconcepto(row.getInt("id_concepto"));
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setFecha(row.getDate("fecha"));
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setIdPrograma(row.getInt("id_programa"));
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setNomPrograma(row.getString("nom_programa")); //

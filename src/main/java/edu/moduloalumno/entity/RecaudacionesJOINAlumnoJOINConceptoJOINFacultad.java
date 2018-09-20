@@ -11,7 +11,17 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 	private String apeNom;
 	
 	private String concepto;
+	
+	private Integer idconcepto;
     
+	public Integer getIdconcepto() {
+		return idconcepto;
+	}
+
+	public void setIdconcepto(Integer idconcepto) {
+		this.idconcepto = idconcepto;
+	}
+
 	private String numero;
     
 	private String dni;
@@ -31,6 +41,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
     private String codAlumno;
     
     private String observacion;
+    
 
 	public Integer getIdRec() {
 		return idRec;
@@ -173,9 +184,10 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 	@Override
 	public String toString() {
 		return "RecaudacionesJOINAlumnoJOINConceptoJOINFacultad [idRec=" + idRec + ", idAlum=" + idAlum + ", apeNom="
-				+ apeNom + ", concepto=" + concepto + ", numero=" + numero + ", nombre=" + nombre + ", moneda=" + moneda
-				+ ", importe=" + importe + ", fecha=" + fecha + ", idPrograma=" + idPrograma +",nomPrograma"+nomPrograma+ ", codAlumno="
-				+ codAlumno + ", observacion=" + observacion + "]";
+				+ apeNom + ", concepto=" + concepto + ", idconcepto=" + idconcepto + ", numero=" + numero + ", dni="
+				+ dni + ", nombre=" + nombre + ", moneda=" + moneda + ", importe=" + importe + ", fecha=" + fecha
+				+ ", idPrograma=" + idPrograma + ", nomPrograma=" + nomPrograma + ", codAlumno=" + codAlumno
+				+ ", observacion=" + observacion + "]";
 	}
 
 	

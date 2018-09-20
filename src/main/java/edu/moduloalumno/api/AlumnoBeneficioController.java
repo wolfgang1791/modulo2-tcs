@@ -1,5 +1,7 @@
 package edu.moduloalumno.api;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,22 +54,41 @@ public class AlumnoBeneficioController {
 		return new ResponseEntity<List<AlumnoBeneficio>>(list, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/insertar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean insertBeneficio(@RequestBody Beneficio beneficio,@RequestBody AlumnoProgramaBeneficio apbeneficio) {
-		logger.info("> insertBeneficio[ Benficio: "+beneficio+" APBEneficio: "+apbeneficio);
+	
+	@RequestMapping(value = "/insertar_b", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean insertBeneficio(@RequestBody Beneficio beneficio) {
+		logger.info("> insertBeneficio[ "+beneficio);
 		
 		boolean resp = false;
 		try {
 			
-			boolean resp0 = alumnobeneficioservice.insertBeneficio(beneficio);
-			
-			if(resp0) {
-				resp = alumnobeneficioservice.insertAlumnoProgramaBeneficio(apbeneficio);
+		//	boolean resp = alumnobeneficioservice.insertBeneficio(beneficio);
+	/*		if(resp0) {
+				
 			}
-			
+		*/	
 		}
 		catch(Exception e) {
-			logger.info("> insertBeneficio[ Benficio: "+beneficio+" APBEneficio: "+apbeneficio);
+			logger.info("> insertBeneficio[ Beneficio: "+beneficio+" APBEneficio: ");
+			return false;
+		}
+		
+		
+		return resp;
+	}
+	
+	@RequestMapping(value = "/insertar_ab", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean insertAlumnoBeneficio(@RequestBody AlumnoProgramaBeneficio apbeneficio) {
+		logger.info("> insertAlumnoProgramaBeneficio[ "+apbeneficio);
+		
+		boolean resp = false;
+		try {
+			
+			apbeneficio.setId_beneficio(alumnobeneficioservice.getIdBeneficio());
+			resp = alumnobeneficioservice.insertAlumnoProgramaBeneficio(apbeneficio);
+		}
+		catch(Exception e) {
+			logger.info("> insertBeneficio[  APBEneficio: "+apbeneficio);
 			return false;
 		}
 		

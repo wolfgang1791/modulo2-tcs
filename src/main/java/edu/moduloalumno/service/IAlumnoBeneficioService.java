@@ -13,5 +13,7 @@ public interface IAlumnoBeneficioService {
 	public boolean insertBeneficio(Beneficio beneficio);
 	
 	public boolean insertAlumnoProgramaBeneficio(AlumnoProgramaBeneficio apbeneficio);
+	
+	public Integer getIdBeneficio();
 
 }
