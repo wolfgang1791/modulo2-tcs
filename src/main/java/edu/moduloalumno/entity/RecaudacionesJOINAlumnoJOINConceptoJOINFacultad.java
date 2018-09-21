@@ -45,6 +45,14 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 		this.idRec = idRec;
 	}
 
+	public Integer getCiclo() {
+		return ciclo;
+	}
+
+	public void setCiclo(Integer ciclo) {
+		this.ciclo = ciclo;
+	}
+
 	public Integer getIdAlum() {
 		return idAlum;
 	}
