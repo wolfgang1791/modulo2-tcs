@@ -104,13 +104,18 @@ public class ConceptoDAOImpl implements IConceptoDAO {
 
 	@Override
 	public boolean updateConcepto(String concepto, Integer id_concepto) {
+		
 		//logger.info("Facultad DAO "+fecha+" "+" "+obs+" "+idRec);
 		
 		String concep_a = concepto.substring(0, 3);
 		String concep_b = concepto.substring(3, 6);
+		System.out.println("ca :"+concep_a);
+		System.out.println("cb :"+concep_b);
 		String sql = "UPDATE concepto SET concepto = ?,concep_a = ?,concep_b= ? WHERE id_concepto = ?";
 		Integer resp = jdbcTemplate.update(sql,concepto,concep_a,concep_b,id_concepto);
 		//logger.info("resp :"+resp);
+		
+		System.out.println("resp :"+resp);
 		if(resp.equals(1)) {
 			return true;
 		}

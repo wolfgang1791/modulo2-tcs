@@ -36,6 +36,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 	@Autowired
 	private IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice;
+	@Autowired
 	private IConceptoService conceptoservice;
 
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -297,7 +298,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		
 		String ciclo = dataactualizar.getCiclo();
 		
-		
+		logger.info("id:concepto: "+id_concepto);
 		
 		//List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> listanueva = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
 		logger.info("> Commo00n: "+dataactualizar);
@@ -309,13 +310,14 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		
 		try {
 			
-		
+			logger.info(">>>>>>>: "+Integer.parseInt(id_concepto)+" <<<< "+concepto);
 			response0 = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha),recibo,Integer.parseInt(ciclo),Integer.parseInt(idRec));		
+			logger.info("> resp0: "+response0);
 			response1 = conceptoservice.updateConcepto(concepto,Integer.parseInt(id_concepto));
-		
+			logger.info("> resp0: "+response1);
 			logger.info("> Commo11n: "+dataactualizar);
 		} catch (Exception e) {
-			logger.error("Unexpected Exception caught.", e.getMessage());
+			logger.error("Unexpected Exception caught. "+ e.getMessage()+response1);
 			return false;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 

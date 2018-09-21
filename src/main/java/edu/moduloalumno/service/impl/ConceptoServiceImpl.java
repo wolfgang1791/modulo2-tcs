@@ -81,7 +81,7 @@ public class ConceptoServiceImpl implements IConceptoService {
 	
 	@Override
 	public boolean updateConcepto(String concepto, Integer id_concepto) {
-		
+		System.out.println(concepto+" "+id_concepto);
 		return conceptoDAO.updateConcepto(concepto,id_concepto);
 	}
 

@@ -8,9 +8,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.moduloalumno.dao.IAlumnoProgramaJOINProgramaJOINAlumnoDAO;
+import edu.moduloalumno.entity.Alumno;
 import edu.moduloalumno.entity.AlumnoProgramaJOINProgramaJOINAlumno;
+import edu.moduloalumno.entity.Programa;
 import edu.moduloalumno.rowmapper.AlumnoProgramaJOINProgramaJOINAlumnoRowMapper;
 import edu.moduloalumno.rowmapper.AlumnoProgramaJOINProgramaRowMapper;
+import edu.moduloalumno.rowmapper.ProgramaRowMapper;
 
 @Transactional
 @Repository
@@ -35,5 +38,15 @@ public class AlumnoProgramaJOINProgramaJOINAlumnoDAOImpl implements IAlumnoProgr
 		RowMapper<AlumnoProgramaJOINProgramaJOINAlumno> rowMapper = new AlumnoProgramaJOINProgramaRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, nombresApellidos);
 	}
+
+	@Override
+	public Programa getProgramabyId(Integer id_programa) {
+		String sql = "select id_programa,nom_programa,sigla_programa,vigencia_programa,id_tip_grado from programa where id_programa = ?";
+		RowMapper<Programa> rowMapper = new ProgramaRowMapper();
+		Programa programa = jdbcTemplate.queryForObject(sql, rowMapper, id_programa);
+		return programa;
+	}
+	
+	
 	
 }

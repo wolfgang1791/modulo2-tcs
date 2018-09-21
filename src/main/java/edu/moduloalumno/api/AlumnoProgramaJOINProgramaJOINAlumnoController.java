@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.AlumnoProgramaJOINProgramaJOINAlumno;
+import edu.moduloalumno.entity.Programa;
 import edu.moduloalumno.service.IAlumnoProgramaJOINProgramaJOINAlumnoService;
 import edu.moduloalumno.util.Operaciones;
 
@@ -70,6 +71,30 @@ public class AlumnoProgramaJOINProgramaJOINAlumnoController {
 		logger.info("< getAlumnoProgramasIdByNombresApellidosRestringido [AlumnoPrograma]");
 		return new ResponseEntity<List<AlumnoProgramaJOINProgramaJOINAlumno>>(list, HttpStatus.OK);
 	}
+	
+	// /// / // / / /
+	
+	@RequestMapping(value = "/{id_programa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Programa> getProgramabyId(@PathVariable("id_programa") int id_programa) {
+		logger.info("> getAlumnoProgramas [Programa]");
+
+		Programa programa = null;
+		try {
+			programa = service.getProgramabyId(id_programa);
+
+			if (programa == null) {	logger.info("q buena");
+				programa = new Programa();
+			}
+			
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<Programa>(programa, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< getAlumnoProgramasIdByNombresApellidosRestringido [AlumnoPrograma]");
+		return new ResponseEntity<Programa>(programa, HttpStatus.OK);
+	}
+	
 	
 	@RequestMapping(value = "/listar/restringido/{nombresApellidos}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AlumnoProgramaJOINProgramaJOINAlumno>> getAlumnoProgramaJOINProgramaJOINAlumnoIdByNombresApellidosListarRestringido(@PathVariable("nombresApellidos") String nombresApellidos) {
