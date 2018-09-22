@@ -82,7 +82,7 @@ public class AlumnoProgramaJOINProgramaJOINAlumnoController {
 		try {
 			programa = service.getProgramabyId(id_programa);
 
-			if (programa == null) {	logger.info("q buena");
+			if (programa == null) {	
 				programa = new Programa();
 			}
 			

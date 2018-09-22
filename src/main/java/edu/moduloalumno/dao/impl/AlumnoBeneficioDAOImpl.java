@@ -1,6 +1,4 @@
 package edu.moduloalumno.dao.impl;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +26,11 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	private JdbcTemplate jdbcTemplate;//i wanna be adored
 	
 	@Override
-	public List<AlumnoBeneficio> getAllAlumnoBeneficio(String codigo) {
+	public AlumnoBeneficio getAllAlumnoBeneficio(String codigo) {
 		String sql = "select abp.cod_alumno,abp.id_programa,abp.id_beneficio,b.autorizacion,b.resolucion,b.condicion,b.fecha,b.beneficio from alumno_programa_beneficio abp,beneficio b where abp.cod_alumno = (?) and abp.id_beneficio = b.id_beneficio";
 		RowMapper<AlumnoBeneficio> rowMapper = new AlumnoBeneficioRowMapper();
-		return this.jdbcTemplate.query(sql, rowMapper, codigo);
+		AlumnoBeneficio alumnobeneficio = jdbcTemplate.queryForObject(sql, rowMapper, codigo);
+		return alumnobeneficio;
 	}
 
 	@Override

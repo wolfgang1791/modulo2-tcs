@@ -32,7 +32,7 @@ public class AlumnoBeneficioServiceImpl implements IAlumnoBeneficioService{
 	}
 
 	@Override
-	public List<AlumnoBeneficio> getAllAlumnoBeneficio(String codigo) {
+	public AlumnoBeneficio getAllAlumnoBeneficio(String codigo) {
 		return alumnobeneficiodao.getAllAlumnoBeneficio(codigo);
 	}
 

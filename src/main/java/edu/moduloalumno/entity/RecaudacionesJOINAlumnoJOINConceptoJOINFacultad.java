@@ -34,7 +34,17 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
     
     private String codAlumno;
     
-    private String observacion;
+    private String estado;
+    
+    public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	private String observacion;
     
 
 	public Integer getIdRec() {

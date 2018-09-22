@@ -33,25 +33,25 @@ public class AlumnoBeneficioController {
 	private IAlumnoBeneficioService alumnobeneficioservice;
 
 	@RequestMapping(value = "/listar/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AlumnoBeneficio>> getAllAlumnoBeneficio(@PathVariable("codigo") String codigo) {
+	public ResponseEntity<AlumnoBeneficio> getAllAlumnoBeneficio(@PathVariable("codigo") String codigo) {
 		logger.info("> AlumnoBeneficio");
 
-		List<AlumnoBeneficio> list = null;
+		AlumnoBeneficio alubeneficio = null;
 		try {
-			list = alumnobeneficioservice.getAllAlumnoBeneficio(codigo);
+			alubeneficio = alumnobeneficioservice.getAllAlumnoBeneficio(codigo);
 
-			if (list == null) {
-				list = new ArrayList<AlumnoBeneficio>();
+			if (alubeneficio == null) {
+				alubeneficio = new AlumnoBeneficio();
 			}
 			
-			logger.info("list "+list);
+			logger.info("list "+alubeneficio);
 		} catch (Exception e) {
 			logger.error("Unexpected Exception caught.", e);
-			return new ResponseEntity<List<AlumnoBeneficio>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<AlumnoBeneficio>(alubeneficio, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		logger.info("< alumnobeneficio");
-		return new ResponseEntity<List<AlumnoBeneficio>>(list, HttpStatus.OK);
+		return new ResponseEntity<AlumnoBeneficio>(alubeneficio, HttpStatus.OK);
 	}
 	
 	

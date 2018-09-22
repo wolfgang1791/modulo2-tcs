@@ -7,7 +7,7 @@ import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.Beneficio;
 
 public interface IAlumnoBeneficioDAO {
-	public List<AlumnoBeneficio> getAllAlumnoBeneficio(String codigo);
+	public AlumnoBeneficio getAllAlumnoBeneficio(String codigo);
 	
 	public boolean insertBeneficio(Beneficio beneficio);
 	
