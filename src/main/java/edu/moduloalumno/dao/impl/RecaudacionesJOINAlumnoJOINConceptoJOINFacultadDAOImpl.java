@@ -84,7 +84,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		// BeanPropertyRowMapper<Recaudaciones>(Recaudaciones.class);
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, nomApe);
-	}
+	}// under claass
         
         @Override
 /**/	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo) {
