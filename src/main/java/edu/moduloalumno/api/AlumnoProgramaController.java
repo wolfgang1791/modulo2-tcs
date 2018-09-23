@@ -53,7 +53,7 @@ public class AlumnoProgramaController {
 
 		List<AlumnoPrograma> list = null;
 		try {
-			list = service.getAlumnoProgramasIdByNombresApellidosRestringido(nombresApellidos);
+			list = service.getAlumnoProgramasIdByNombresApellidosRestringido(nombresApellidos);//
 
 			if (list == null) {
 				list = new ArrayList<AlumnoPrograma>();
