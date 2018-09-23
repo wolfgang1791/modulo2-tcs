@@ -28,7 +28,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	@Override
+	@Override //aqui
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getAllRecaudacionesJOINAlumnoJOINConceptoJOINFacultads() {
 		String sql = "select r.id_rec, r.id_alum, rc.estado , a.ape_nom,r.ciclo ,c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, p.id_programa, r.cod_alumno, r.observacion from recaudaciones r, registro_carga rc, alumno a, facultad f, concepto c, programa p,alumno_programa ap, alumno_alumno_programa aap where (r.id_alum = a.id_alum) and (rc.id_registro = r.id_registro) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
 		// RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new
@@ -67,7 +67,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		return this.jdbcTemplate.query(sql, rowMapper, fechaInicial, fechaFinal);
 	}
 
-	@Override
+	@Override // aqui
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeStartDateBetween(String nomApe, Date fechaInicial,
 			Date fechaFinal) {
 		String sql = "select r.id_rec, r.id_alum, rc.estado , ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom,r.ciclo ,c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, p.id_programa, r.cod_alumno, r.observacion from recaudaciones r, registro_carga rc,alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap,programa p where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'') ) and (rc.id_registro = r.id_registro) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and ((r.fecha between ? and ?) or r.fecha = null) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
@@ -105,7 +105,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 	}        
 
 
-	@Override
+	@Override // aqui
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConcepto(String concepto, String nomApe) {
 		String sql = "select r.id_rec, r.id_alum, rc.estado, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom,r.ciclo,c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, p.id_programa, r.cod_alumno, r.observacion from recaudaciones r, registro_carga rc, alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap,programa p where (c.concepto = ?) and to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'')) and (rc.id_registro = r.id_registro) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
 		// RowMapper<Recaudaciones> rowMapper = new
@@ -114,7 +114,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		return this.jdbcTemplate.query(sql, rowMapper, concepto, nomApe);
 	}
 
-	@Override
+	@Override // aqui
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeRecibo(String recibo, String nomApe) {
 		String sql = "select r.id_rec, r.id_alum,rc.estado, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom,r.ciclo ,c.concepto,c.id_concepto,a.dni,r.numero, f.nombre, r.moneda, r.importe, r.fecha,p.nom_programa, p.id_programa, r.cod_alumno, r.observacion from recaudaciones r, registro_carga rc,alumno a, facultad f, concepto c, alumno_programa ap, alumno_alumno_programa aap,programa p where (r.numero = ?) and to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,''))and (rc.id_registro = r.id_registro) and (ap.id_programa = aap.id_programa) and (ap.cod_alumno = aap.cod_alumno) and (aap.id_alum = a.id_alum) and (a.id_alum = r.id_alum) and (a.id_facultad = f.id_facultad) and (r.id_concepto = c.id_concepto) and (c.id_clase_pagos = 2) and (ap.id_programa = p.id_programa) order by c.concepto, r.fecha";
 		// RowMapper<Recaudaciones> rowMapper = new

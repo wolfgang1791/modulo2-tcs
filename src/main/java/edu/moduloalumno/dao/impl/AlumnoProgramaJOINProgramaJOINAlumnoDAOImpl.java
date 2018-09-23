@@ -2,6 +2,7 @@ package edu.moduloalumno.dao.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -41,10 +42,15 @@ public class AlumnoProgramaJOINProgramaJOINAlumnoDAOImpl implements IAlumnoProgr
 
 	@Override
 	public Programa getProgramabyId(Integer id_programa) {
+		try {
 		String sql = "select id_programa,nom_programa,sigla_programa,vigencia_programa,id_tip_grado from programa where id_programa = ?";
 		RowMapper<Programa> rowMapper = new ProgramaRowMapper();
 		Programa programa = jdbcTemplate.queryForObject(sql, rowMapper, id_programa);
 		return programa;
+		}
+		catch (EmptyResultDataAccessException e) {
+			return null;
+		}	
 	}
 	
 	

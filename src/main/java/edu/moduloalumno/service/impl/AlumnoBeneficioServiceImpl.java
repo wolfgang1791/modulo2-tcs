@@ -1,30 +1,23 @@
 package edu.moduloalumno.service.impl;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.moduloalumno.dao.IAlumnoBeneficioDAO;
-import edu.moduloalumno.entity.AlumnoBeneficio;
+import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
-import edu.moduloalumno.entity.Beneficio;
+import edu.moduloalumno.entity.CondicionBeneficio;
+import edu.moduloalumno.entity.TipoBeneficio;
 import edu.moduloalumno.service.IAlumnoBeneficioService;
 
 @Service
 public class AlumnoBeneficioServiceImpl implements IAlumnoBeneficioService{
 	
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	//private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	IAlumnoBeneficioDAO alumnobeneficiodao;
-
-	@Override
-	public boolean insertBeneficio(Beneficio beneficio) {
-		logger.info("service: "+beneficio);
-		return alumnobeneficiodao.insertBeneficio(beneficio);
-	}
 
 	@Override
 	public boolean insertAlumnoProgramaBeneficio(AlumnoProgramaBeneficio apbeneficio) {
@@ -32,13 +25,23 @@ public class AlumnoBeneficioServiceImpl implements IAlumnoBeneficioService{
 	}
 
 	@Override
-	public AlumnoBeneficio getAllAlumnoBeneficio(String codigo) {
+	public AlumnoProgramaBeneficioCon getAllAlumnoBeneficio(String codigo) {
 		return alumnobeneficiodao.getAllAlumnoBeneficio(codigo);
 	}
 
 	@Override
-	public Integer getIdBeneficio() {
-		return alumnobeneficiodao.getIdBeneficio();
+	public boolean getIdBeneficio(String cod) {
+		return alumnobeneficiodao.getIdBeneficio(cod);
+	}
+
+	@Override
+	public List<CondicionBeneficio> getAllCondicionB() {
+		return alumnobeneficiodao.getAllCondicionB();
+	}
+
+	@Override
+	public List<TipoBeneficio> getAllTipo() {
+		return alumnobeneficiodao.getAllTipo();
 	}
 	
 	

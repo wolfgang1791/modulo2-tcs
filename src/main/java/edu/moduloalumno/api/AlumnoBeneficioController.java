@@ -1,7 +1,8 @@
 package edu.moduloalumno.api;
-
+/*
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+*/
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.moduloalumno.entity.AlumnoBeneficio;
+import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
-import edu.moduloalumno.entity.Beneficio;
+import edu.moduloalumno.entity.CondicionBeneficio;
+import edu.moduloalumno.entity.TipoBeneficio;
 import edu.moduloalumno.service.IAlumnoBeneficioService;
 
 
@@ -33,34 +35,80 @@ public class AlumnoBeneficioController {
 	private IAlumnoBeneficioService alumnobeneficioservice;
 
 	@RequestMapping(value = "/listar/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AlumnoBeneficio> getAllAlumnoBeneficio(@PathVariable("codigo") String codigo) {
-		logger.info("> AlumnoBeneficio");
+	public ResponseEntity<AlumnoProgramaBeneficioCon> getAllAlumnoBeneficio(@PathVariable("codigo") String codigo) {
+		logger.info(">> AlumnoBeneficio <<");
 
-		AlumnoBeneficio alubeneficio = null;
+		AlumnoProgramaBeneficioCon alubeneficio = null;
 		try {
 			alubeneficio = alumnobeneficioservice.getAllAlumnoBeneficio(codigo);
 
 			if (alubeneficio == null) {
-				alubeneficio = new AlumnoBeneficio();
+				alubeneficio = new AlumnoProgramaBeneficioCon();
 			}
 			
 			logger.info("list "+alubeneficio);
 		} catch (Exception e) {
-			logger.error("Unexpected Exception caught.", e);
-			return new ResponseEntity<AlumnoBeneficio>(alubeneficio, HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			logger.error("Unexpected Exception caught." + e.getMessage()+alubeneficio);
+			return new ResponseEntity<AlumnoProgramaBeneficioCon>(alubeneficio, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		logger.info("< alumnobeneficio");
-		return new ResponseEntity<AlumnoBeneficio>(alubeneficio, HttpStatus.OK);
+		return new ResponseEntity<AlumnoProgramaBeneficioCon>(alubeneficio, HttpStatus.OK);
+	}
+	
+	/* retorna condicion */ 
+	@RequestMapping(value = "/condicion", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CondicionBeneficio>> getAllCondicion() {
+		logger.info(">> AlumnoBeneficio <<");
+
+		List<CondicionBeneficio> condicionbeneficio = null;
+		try {
+			condicionbeneficio = alumnobeneficioservice.getAllCondicionB();
+
+			if (condicionbeneficio == null) {
+				condicionbeneficio = new ArrayList<CondicionBeneficio>();
+			}
+			
+			logger.info("list "+condicionbeneficio);
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught. "+ e.getMessage());
+			return new ResponseEntity<List<CondicionBeneficio>>(condicionbeneficio, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< alumnobeneficio");
+		return new ResponseEntity<List<CondicionBeneficio>>(condicionbeneficio, HttpStatus.OK);
 	}
 	
 	
+	@RequestMapping(value = "/tipo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<TipoBeneficio>> getAllTipo() {
+		logger.info(">> TipoBeneficio <<");
+
+		List<TipoBeneficio> tipobeneficio = null;
+		try {
+			tipobeneficio = alumnobeneficioservice.getAllTipo();
+
+			if (tipobeneficio == null) {
+				tipobeneficio = new ArrayList<TipoBeneficio>();
+			}
+			
+			logger.info("list "+tipobeneficio);
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<TipoBeneficio>>(tipobeneficio, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< alumnobeneficio");
+		return new ResponseEntity<List<TipoBeneficio>>(tipobeneficio, HttpStatus.OK);
+	}
+	/*
 	@RequestMapping(value = "/insertar_b", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean insertBeneficio(@RequestBody Beneficio beneficio) {
 		logger.info("> insertBeneficio[ "+beneficio);
 		
 		boolean resp = false;
-		try {	
+		try {
 			resp = alumnobeneficioservice.insertBeneficio(beneficio);
 		}
 		catch(Exception e) {
@@ -70,16 +118,24 @@ public class AlumnoBeneficioController {
 		
 		logger.info(" "+resp);
 		return resp;
-	}
+	}*/
 	
-	@RequestMapping(value = "/insertar_ab", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/insertar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean insertAlumnoBeneficio(@RequestBody AlumnoProgramaBeneficio apbeneficio) {
-		logger.info("> insertAlumnoProgramaBeneficio[ "+apbeneficio);
+		logger.info("> insertAlumnoProgramaBeneficio[ "+apbeneficio+"]");
 		
 		boolean resp = false;
 		try {
-			logger.info("respppp: "+alumnobeneficioservice.getIdBeneficio());
-			apbeneficio.setId_beneficio(alumnobeneficioservice.getIdBeneficio());
+			
+			logger.info("respppp: "+alumnobeneficioservice.getIdBeneficio(apbeneficio.getCod_alumno()));
+			if(alumnobeneficioservice.getIdBeneficio(apbeneficio.getCod_alumno()))
+			{
+				apbeneficio.setToQuery(true);
+			}
+			else {
+				apbeneficio.setToQuery(false);
+			}
+			
 			logger.info("respppp: afte"+apbeneficio.getId_beneficio()+" "+apbeneficio);
 			resp = alumnobeneficioservice.insertAlumnoProgramaBeneficio(apbeneficio);
 		}

@@ -3,26 +3,52 @@ package edu.moduloalumno.entity;
 
 import java.util.Date;
 
-public class AlumnoBeneficio {
+public class AlumnoProgramaBeneficioCon {
 	
 	private String cod_alumno;
 	private Integer id_programa;
 	private Integer id_beneficio;
+	private String benef_otrogado;
+	private String benef_max;
+	private String tipo;
 	private String autorizacion;
 	private String resolucion;
+	private Integer id_bc;
 	private String condicion;
-	private Integer beneficio;
-	
-	
-	public Integer getBeneficio() {
-		return beneficio;
-	}
-	public void setBeneficio(Integer beneficio) {
-		this.beneficio = beneficio;
-	}
-
 	private Date fecha;
+	private String observacion;
 	
+	
+	public String getBenef_otrogado() {
+		return benef_otrogado;
+	}
+	public void setBenef_otrogado(String benef_otrogado) {
+		this.benef_otrogado = benef_otrogado;
+	}
+	public String getBenef_max() {
+		return benef_max;
+	}
+	public void setBenef_max(String benef_max) {
+		this.benef_max = benef_max;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	public Integer getId_bc() {
+		return id_bc;
+	}
+	public void setId_bc(Integer id_bc) {
+		this.id_bc = id_bc;
+	}
+	public String getObservacion() {
+		return observacion;
+	}
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
 	public String getCod_alumno() {
 		return cod_alumno;
 	}

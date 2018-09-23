@@ -1,17 +1,24 @@
 package edu.moduloalumno.service;
 
-import edu.moduloalumno.entity.AlumnoBeneficio;
+import java.util.List;
+
+import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
-import edu.moduloalumno.entity.Beneficio;
+import edu.moduloalumno.entity.CondicionBeneficio;
+import edu.moduloalumno.entity.TipoBeneficio;
 
 public interface IAlumnoBeneficioService {
 	
-	public AlumnoBeneficio getAllAlumnoBeneficio(String codigo);
+	public AlumnoProgramaBeneficioCon getAllAlumnoBeneficio(String codigo);
 	
-	public boolean insertBeneficio(Beneficio beneficio);
+	//public boolean insertBeneficio(Beneficio beneficio);
 	
 	public boolean insertAlumnoProgramaBeneficio(AlumnoProgramaBeneficio apbeneficio);
 	
-	public Integer getIdBeneficio();
+	public boolean getIdBeneficio(String cod);
+	
+	public List<CondicionBeneficio> getAllCondicionB();
+	
+	public List<TipoBeneficio> getAllTipo();
 
 }

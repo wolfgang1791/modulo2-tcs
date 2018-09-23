@@ -7,18 +7,16 @@ public class Beneficio {
 	private Integer id_beneficio;
 	private String autorizacion;
 	private String resolucion;
-	private String condicion;
-	private Integer beneficio;
+	private String tipo;
 	
-	public Integer getBeneficio() {
-		return beneficio;
-	}
-	public void setBeneficio(Integer beneficio) {
-		this.beneficio = beneficio;
+	public String getTipo() {
+		return tipo;
 	}
 
-	private Date fecha;
-	
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	public Integer getId_beneficio() {
 		return id_beneficio;
 	}
@@ -37,22 +35,9 @@ public class Beneficio {
 	public void setResolucion(String resolucion) {
 		this.resolucion = resolucion;
 	}
-	public String getCondicion() {
-		return condicion;
-	}
-	public void setCondicion(String condicion) {
-		this.condicion = condicion;
-	}
-	public Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
 	
 	@Override
 	public String toString() {
-		return "Beneficio [id_beneficio=" + id_beneficio + ", autorizacion=" + autorizacion + ", resolucion="
-				+ resolucion + ", condicion=" + condicion + ", fecha=" + fecha + "]";
+		return "Beneficio [id_beneficio=" + id_beneficio + ", autorizacion=" + autorizacion + ", resolucion="+ resolucion+"]";
 	}
 }

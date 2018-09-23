@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.Recaudaciones;
-import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.model.Filtro;
 import edu.moduloalumno.service.IRecaudacionesService;
 import edu.moduloalumno.util.Operaciones;
