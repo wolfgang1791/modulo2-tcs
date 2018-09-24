@@ -113,7 +113,6 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		boolean response = false;
 
 		try {
-
 			response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.insertObservacion(observacion,idrec);
 
 		} catch (Exception e) {
@@ -121,7 +120,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 			return false;
 		}
 
-		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
+		logger.info("observacion");
 		return response;
 	}
         
