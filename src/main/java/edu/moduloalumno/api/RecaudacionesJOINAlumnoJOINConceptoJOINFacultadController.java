@@ -122,7 +122,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		}
 		logger.info("response: "+response);
 		logger.info("observacion");
-		return response;
+		return response; // q cha pasa
 	}
         
   /**/  @RequestMapping(value = "/listar_cod/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
