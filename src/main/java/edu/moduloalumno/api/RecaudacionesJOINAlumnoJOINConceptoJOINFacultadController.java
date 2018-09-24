@@ -109,17 +109,18 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 	@RequestMapping(value = "/obs/{observacion}/{idrec}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean insertObesrvacion(@PathVariable("observacion") String observacion,@PathVariable("idrec") String idrec) {
 		logger.info(">>>> observacion <<<<");
-
+		logger.info(">>>>>!!! "+observacion+" "+idrec);
+		
 		boolean response = false;
 
 		try {
-			response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.insertObservacion(observacion,idrec);
+			response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.insertObservacion(observacion,Integer.parseInt(idrec));
 
 		} catch (Exception e) {
 			logger.error("Unexpected Exception caught.", e);
 			return false;
 		}
-
+		logger.info("response: "+response);
 		logger.info("observacion");
 		return response;
 	}

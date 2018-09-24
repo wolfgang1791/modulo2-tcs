@@ -168,7 +168,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 	}
 
 	@Override
-	public boolean insertObservacion(String observacion, String idrec) {
+	public boolean insertObservacion(String observacion, Integer idrec) {
 		return recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.insertObservacion(observacion,idrec);
 	}
 	

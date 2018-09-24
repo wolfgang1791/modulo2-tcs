@@ -28,7 +28,7 @@ public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO {
     
 	boolean updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Date fecha, String recibo,int ciclo,int idRec);
 	
-	boolean insertObservacion(String observacion,String idrec);
+	boolean insertObservacion(String observacion,Integer idrec);
         
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByPosgrado();
 
