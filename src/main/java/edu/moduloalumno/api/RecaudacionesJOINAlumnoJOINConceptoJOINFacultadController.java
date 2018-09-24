@@ -103,7 +103,27 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
 		return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(list, HttpStatus.OK);
 	}
-        
+       
+	// microservicio especail para abel
+	
+	@RequestMapping(value = "/obs/{observacion}/{idrec}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean insertObesrvacion(@PathVariable("observacion") String observacion,@PathVariable("idrec") String idrec) {
+		logger.info(">>>> observacion <<<<");
+
+		boolean response = false;
+
+		try {
+
+			response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.insertObservacion(observacion,idrec);
+
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return false;
+		}
+
+		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
+		return response;
+	}
         
   /**/  @RequestMapping(value = "/listar_cod/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(@PathVariable("codigo") String codigo) {

@@ -200,6 +200,21 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		}
 
 	}
+
+	@Override
+	public boolean insertObservacion(String observacion,String idrec) {
+		String sql = "update recaudaciones set observacion = ? where idRec = ?";
+		Integer resp = jdbcTemplate.update(sql,observacion,idrec);
+		logger.info("resp :"+resp);
+		if(resp.equals(1)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
 	
 }
 	
