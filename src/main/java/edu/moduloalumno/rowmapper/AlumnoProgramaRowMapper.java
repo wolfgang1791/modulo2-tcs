@@ -21,6 +21,7 @@ public class AlumnoProgramaRowMapper implements RowMapper<AlumnoPrograma> {
 		alumnoPrograma.setAnioIngreso(row.getString("anio_ingreso"));
 		alumnoPrograma.setDniM(row.getString("dni_m"));
 		alumnoPrograma.setIdPrograma(row.getInt("id_programa"));
+		alumnoPrograma.setNom_programa(row.getString("nom_programa"));
 		return alumnoPrograma;
 	}
 }

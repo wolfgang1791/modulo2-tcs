@@ -27,6 +27,8 @@ public class AlumnoPrograma implements Serializable {
     private String dniM;
     
     private Integer idPrograma;
+    
+    private String nom_programa;
 
 	public String getCodAlumno() {
 		return codAlumno;
@@ -114,6 +116,15 @@ public class AlumnoPrograma implements Serializable {
 
 	public void setIdPrograma(Integer idPrograma) {
 		this.idPrograma = idPrograma;
+	}
+
+	
+	public String getNom_programa() {
+		return nom_programa;
+	}
+
+	public void setNom_programa(String nom_programa) {
+		this.nom_programa = nom_programa;
 	}
 
 	@Override
