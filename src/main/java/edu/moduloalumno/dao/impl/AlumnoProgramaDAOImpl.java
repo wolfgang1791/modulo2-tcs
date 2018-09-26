@@ -47,7 +47,7 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 	
 	@Override
 	public List<AlumnoPrograma> getAlumnoProgramasIdByNombresApellidos(String nombresApellidos) {
-		String sql = "SELECT ap.cod_alumno, ap.nom_alumno, ap.ape_paterno,ap.ape_materno, ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, ap.id_programa, p.programa FROM alumno_programa ap,programa p where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.nom_alumno,'') || ' ' ||coalesce(ap.ape_paterno,'') || ' ' ||coalesce(ap.ape_materno,'')) and (ap.id_programa = p.id_programa)"; 
+		String sql = "SELECT ap.cod_alumno, ap.nom_alumno, ap.ape_paterno,ap.ape_materno, ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, ap.id_programa, p.nom_programa FROM alumno_programa ap,programa p where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.nom_alumno,'') || ' ' ||coalesce(ap.ape_paterno,'') || ' ' ||coalesce(ap.ape_materno,'')) and (ap.id_programa = p.id_programa)"; 
 		//SELECT ap.cod_alumno, ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, ap.id_programa FROM alumno_programa ap where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.nom_alumno,'') || ' ' ||coalesce(ap.ape_paterno,'') || ' ' ||coalesce(ap.ape_materno,''))
 		// RowMapper<AlumnoPrograma> rowMapper = new
 		// BeanPropertyRowMapper<AlumnoPrograma>(AlumnoPrograma.class);
