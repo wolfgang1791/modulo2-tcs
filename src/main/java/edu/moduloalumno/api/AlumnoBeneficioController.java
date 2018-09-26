@@ -122,7 +122,7 @@ public class AlumnoBeneficioController {
 	
 	@RequestMapping(value = "/insertar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean insertAlumnoBeneficio(@RequestBody AlumnoProgramaBeneficio apbeneficio) {
-		logger.info("> insertAlumnoProgramaBeneficio[ "+apbeneficio+"]");
+		logger.info("> insertAlumnoProgramaBeneficio[ "+apbeneficio+"]"+" "+apbeneficio.getId_bcondicion());
 		
 		boolean resp = false;
 		try {

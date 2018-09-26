@@ -52,7 +52,7 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	
 	@Override
 	public List<TipoBeneficio> getAllTipo() {
-		String sql = "select * from beneficio";
+		String sql = "select * from beneficio order by id_beneficio";
 		RowMapper<TipoBeneficio> rowMapper = new TipoBeneficioRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
 	}
@@ -68,8 +68,8 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 		 	ret = jdbcTemplate.update(sql, apbeneficio.getCod_alumno(),apbeneficio.getId_programa(),apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion());
 		}
 		else {System.out.println("update");
-			sql = "UPDATE alumno_programa_beneficio SET id_beneficio = ?,observacion = ?,beneficio_otorgado = ?,id_benef_condicion = ?,fecha = ?,autorizacion = ?";
-			ret = jdbcTemplate.update(sql,apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion());
+			sql = "UPDATE alumno_programa_beneficio SET id_beneficio = ?,observacion = ?,beneficio_otorgado = ?,id_benef_condicion = ?,fecha = ?,autorizacion = ? where cod_alumno = ?";
+			ret = jdbcTemplate.update(sql,apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion(),apbeneficio.getCod_alumno());
 		}
 		System.out.println("impla "+ret);	
 		
