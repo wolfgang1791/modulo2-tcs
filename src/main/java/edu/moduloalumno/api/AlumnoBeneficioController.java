@@ -127,17 +127,20 @@ public class AlumnoBeneficioController {
 		boolean resp = false;
 		try {
 			
-			logger.info("respppp: "+alumnobeneficioservice.getIdBeneficio(apbeneficio.getCod_alumno()));
-			if(alumnobeneficioservice.getIdBeneficio(apbeneficio.getCod_alumno()))
+			logger.info("respppp: "+alumnobeneficioservice.getIdBeneficio(apbeneficio.getCod_alumno())+" "+apbeneficio.getObservacion());
+			if(!alumnobeneficioservice.getIdBeneficio(apbeneficio.getCod_alumno()))
 			{
 				apbeneficio.setToQuery(true);
+				logger.info("existe");
 			}
 			else {
 				apbeneficio.setToQuery(false);
+				logger.info("no existe");
 			}
 			
-			logger.info("respppp: afte"+apbeneficio.getId_beneficio()+" "+apbeneficio);
+			logger.info("respppp: afte "+apbeneficio.getId_beneficio()+" "+apbeneficio);
 			resp = alumnobeneficioservice.insertAlumnoProgramaBeneficio(apbeneficio);
+			logger.info(">>>>><<<<"+resp);
 		}
 		catch(Exception e) {
 			logger.info("> insertBeneficio[  APBEneficio: "+apbeneficio);

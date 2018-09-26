@@ -63,15 +63,15 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 		String sql="";
 		Integer ret = 0;
 		
-		if(apbeneficio.getToQuery()) {
+		if(apbeneficio.getToQuery()) {System.out.println("insert");
 			sql = "INSERT INTO alumno_programa_beneficio(cod_alumno,id_programa,id_beneficio,observacion,beneficio_otorgado,id_benef_condicion,fecha,autorizacion) values (?,?,?,?,?,?,?,?)";
 		 	ret = jdbcTemplate.update(sql, apbeneficio.getCod_alumno(),apbeneficio.getId_programa(),apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion());
 		}
-		else {
+		else {System.out.println("update");
 			sql = "UPDATE alumno_programa_beneficio SET id_beneficio = ?,observacion = ?,beneficio_otorgado = ?,id_benef_condicion = ?,fecha = ?,autorizacion = ?";
 			ret = jdbcTemplate.update(sql,apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion());
 		}
-			
+		System.out.println("impla "+ret);	
 		
 		if(ret.equals(1)) {
 			return true;
@@ -88,18 +88,20 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 		try {
 			String sql = "select cod_alumno from alumno_programa_beneficio where cod_alumno = ?";
 			String cod_alumno = jdbcTemplate.queryForObject(sql, new Object[] { cod }, String.class);
-			
+			System.out.println("cod_alumno "+cod_alumno);
 			if(cod_alumno.length() == 8)
-			{
+			{	System.out.println("return true");
 				return true;
 			}
 			else 
-			{
+			{	
+				System.out.println("return false");
 				return false;
 			}
 			
 		}
 		catch(EmptyResultDataAccessException e) {
+			System.out.println("cod_alumno FUCKKKKK");
 			return false;
 		}
 		
