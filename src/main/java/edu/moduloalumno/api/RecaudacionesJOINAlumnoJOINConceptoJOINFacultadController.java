@@ -345,7 +345,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		return response0 && response1;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/actualizar_cod/{id_rec}/{cod_alumno}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/actualizar_cod/{id_rec}/{cod_alumno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Integer actualizarCod_Alumno(@PathVariable("id_rec") Integer id_rec,@PathVariable("cod_alumno") String cod_alumno){
 		logger.info("> actualir cod_alumno ");
 		
