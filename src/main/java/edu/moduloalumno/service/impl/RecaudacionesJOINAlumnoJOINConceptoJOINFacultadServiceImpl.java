@@ -171,6 +171,13 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 	public boolean insertObservacion(String observacion, Integer idrec) {
 		return recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.insertObservacion(observacion,idrec);
 	}
+
+	@Override
+	public int updateRecaudacionesCodAlumni(Integer id_rec, String cod_alumno) {
+		return recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.updateRecaudacionesCodAlumno(id_rec, cod_alumno);
+	}
+	
+	
 	
 	
 }

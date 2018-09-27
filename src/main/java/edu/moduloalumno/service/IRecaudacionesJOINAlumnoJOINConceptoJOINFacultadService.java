@@ -50,5 +50,7 @@ public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService {
 	
 	int updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> reacaudacionesList);
 	
+	public int updateRecaudacionesCodAlumni(Integer id_rec,String cod_alumno);
+	
 	void deleteRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(int idRec);
 }

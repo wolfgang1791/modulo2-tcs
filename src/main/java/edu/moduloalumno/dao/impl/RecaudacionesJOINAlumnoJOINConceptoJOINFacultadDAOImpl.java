@@ -176,7 +176,15 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		String sql = "UPDATE recaudaciones SET id_programa = ?, cod_alumno = ? WHERE id_rec = ?";
 		return jdbcTemplate.update(sql, recaudaciones.getIdPrograma(), recaudaciones.getCodAlumno(), recaudaciones.getIdRec());
 	}
+	
+	@Override
+	public int updateRecaudacionesCodAlumno(Integer id_rec,String cod_alumno) {
+		String sql = "UPDATE recaudaciones SET cod_alumno = ? WHERE id_rec = ?";
+		return jdbcTemplate.update(sql, cod_alumno, id_rec);
+	}
 
+	
+	
 	@Override
 	public void deleteRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(int idRecaudaciones) {
 		String sql = "DELETE FROM recaudaciones WHERE id_rec = ?";
