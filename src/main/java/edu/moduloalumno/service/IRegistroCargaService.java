@@ -1,6 +1,7 @@
 package edu.moduloalumno.service;
 
 import java.util.List;
+
 import edu.moduloalumno.entity.RegistroCarga;
 
 public interface IRegistroCargaService {

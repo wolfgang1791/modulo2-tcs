@@ -2,6 +2,7 @@ package edu.moduloalumno.dao.impl;
 
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.moduloalumno.dao.IRecaudacionesDAO;
 import edu.moduloalumno.entity.Recaudaciones;
-import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
-import edu.moduloalumno.rowmapper.RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper;
 import edu.moduloalumno.rowmapper.RecaudacionesRowMapper;
 
 @Transactional

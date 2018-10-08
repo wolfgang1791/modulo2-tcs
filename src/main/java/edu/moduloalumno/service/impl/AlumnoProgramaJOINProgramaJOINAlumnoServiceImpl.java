@@ -1,11 +1,11 @@
 package edu.moduloalumno.service.impl;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.moduloalumno.dao.IAlumnoProgramaJOINProgramaJOINAlumnoDAO;
-import edu.moduloalumno.entity.AlumnoPrograma;
 import edu.moduloalumno.entity.AlumnoProgramaJOINProgramaJOINAlumno;
 import edu.moduloalumno.entity.Programa;
 import edu.moduloalumno.service.IAlumnoProgramaJOINProgramaJOINAlumnoService;

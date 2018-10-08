@@ -1,7 +1,5 @@
 package edu.moduloalumno.entity;
 
-import java.util.Date;
-
 public class Beneficio {
 	
 	private Integer id_beneficio;

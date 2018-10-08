@@ -5,7 +5,12 @@ import java.io.Serializable;
 public class UsuarioModuloPK implements Serializable {
 
     
-    private int idUsuario;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private int idUsuario;
     
     private int idMod;
 

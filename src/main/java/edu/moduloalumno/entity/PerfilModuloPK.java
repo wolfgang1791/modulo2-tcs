@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 public class PerfilModuloPK implements Serializable {
     
-    private int idPerfil;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private int idPerfil;
     
     private int idMod;
 

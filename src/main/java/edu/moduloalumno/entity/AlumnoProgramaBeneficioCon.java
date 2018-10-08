@@ -91,13 +91,12 @@ public class AlumnoProgramaBeneficioCon {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	
 	@Override
 	public String toString() {
-		return "AlumnoBeneficio [cod_alumno=" + cod_alumno + ", id_programa=" + id_programa + ", id_beneficio="
-				+ id_beneficio + ", autorizacion=" + autorizacion + ", resolucion=" + resolucion + ", condicion="
-				+ condicion + ", fecha=" + fecha + "]";
+		return "AlumnoProgramaBeneficioCon [cod_alumno=" + cod_alumno + ", id_programa=" + id_programa
+				+ ", id_beneficio=" + id_beneficio + ", benef_otrogado=" + benef_otrogado + ", benef_max=" + benef_max
+				+ ", tipo=" + tipo + ", autorizacion=" + autorizacion + ", resolucion=" + resolucion + ", id_bc="
+				+ id_bc + ", condicion=" + condicion + ", fecha=" + fecha + ", observacion=" + observacion + "]";
 	}
-	
 	
 }

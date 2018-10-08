@@ -3,8 +3,6 @@ package edu.moduloalumno.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlTransient;
-
 public class Curso implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -2,8 +2,8 @@ package edu.moduloalumno.service;
 
 import java.util.List;
 
-import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
+import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
 import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoBeneficio;
 

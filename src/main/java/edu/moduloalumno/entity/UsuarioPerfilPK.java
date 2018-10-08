@@ -5,7 +5,11 @@ import java.io.Serializable;
 public class UsuarioPerfilPK implements Serializable {
 
     
-    private int idUsuario;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int idUsuario;
     private int idPerfil;
 
     public UsuarioPerfilPK() {

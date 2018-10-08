@@ -2,12 +2,12 @@ package edu.moduloalumno.service.impl;
 
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.moduloalumno.dao.IRecaudacionesDAO;
 import edu.moduloalumno.entity.Recaudaciones;
-import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.service.IRecaudacionesService;
 
 @Service

@@ -1,6 +1,7 @@
 package edu.moduloalumno.dao.impl;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.moduloalumno.dao.IAlumnoProgramaJOINProgramaJOINAlumnoDAO;
-import edu.moduloalumno.entity.Alumno;
 import edu.moduloalumno.entity.AlumnoProgramaJOINProgramaJOINAlumno;
 import edu.moduloalumno.entity.Programa;
 import edu.moduloalumno.rowmapper.AlumnoProgramaJOINProgramaJOINAlumnoRowMapper;

@@ -1,7 +1,5 @@
 package edu.moduloalumno.model;
 
-import java.util.Arrays;
-
 public class DataActualizar {
 	
 	private String idRec;

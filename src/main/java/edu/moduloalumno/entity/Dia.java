@@ -2,7 +2,6 @@ package edu.moduloalumno.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 public class Dia implements Serializable {
 

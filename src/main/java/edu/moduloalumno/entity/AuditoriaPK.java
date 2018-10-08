@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 public class AuditoriaPK implements Serializable {
 
-    private int idAdmin;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private int idAdmin;
     
     private int idRec;
 

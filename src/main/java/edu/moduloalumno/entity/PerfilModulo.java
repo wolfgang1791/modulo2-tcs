@@ -1,7 +1,6 @@
 package edu.moduloalumno.entity;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class PerfilModulo implements Serializable {
 

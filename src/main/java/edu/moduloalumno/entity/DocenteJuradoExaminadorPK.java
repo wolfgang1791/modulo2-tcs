@@ -5,7 +5,12 @@ import java.io.Serializable;
 public class DocenteJuradoExaminadorPK implements Serializable {
 
     
-    private int iddocente;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private int iddocente;
     
     private int iddesignacion;
 

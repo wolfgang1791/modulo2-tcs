@@ -1,10 +1,9 @@
 package edu.moduloalumno.service;
 
-import edu.moduloalumno.entity.CodigosporNomApe;
 import java.util.Date;
 import java.util.List;
 
-import edu.moduloalumno.entity.Recaudaciones;
+import edu.moduloalumno.entity.CodigosporNomApe;
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 
 public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService {
