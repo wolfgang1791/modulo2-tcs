@@ -22,8 +22,7 @@ public class AlumnoAlumnoProgramaDAOImpl implements IAlumnoAlumnoProgramaDAO {
 	@Override
 	public AlumnoAlumnoPrograma getAlumnoAlumnoProgramaById(int idAlum) {
 		String sql = "SELECT * FROM alumno_alumno_programa WHERE id_alum = ?";
-		RowMapper<AlumnoAlumnoPrograma> rowMapper = new BeanPropertyRowMapper<AlumnoAlumnoPrograma>(
-				AlumnoAlumnoPrograma.class);
+		RowMapper<AlumnoAlumnoPrograma> rowMapper = new AlumnoAlumnoProgramaRowMapper();
 		AlumnoAlumnoPrograma alumnoAlumnoPrograma = jdbcTemplate.queryForObject(sql, rowMapper, idAlum);
 		return alumnoAlumnoPrograma;
 	}
