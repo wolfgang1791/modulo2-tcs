@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.CondicionBeneficio;
+import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.entity.TipoBeneficio;
 import edu.moduloalumno.service.IAlumnoBeneficioService;
 
@@ -35,26 +36,26 @@ public class AlumnoBeneficioController {
 	private IAlumnoBeneficioService alumnobeneficioservice;
 
 	@RequestMapping(value = "/listar/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AlumnoProgramaBeneficioCon> getAllAlumnoBeneficio(@PathVariable("codigo") String codigo) {
+	public ResponseEntity<List<AlumnoProgramaBeneficioCon>> getAllAlumnoBeneficio(@PathVariable("codigo") String codigo) {
 		logger.info(">> AlumnoBeneficio <<");
 
-		AlumnoProgramaBeneficioCon alubeneficio = null;
+		List<AlumnoProgramaBeneficioCon> list = null;
 		try {
-			alubeneficio = alumnobeneficioservice.getAllAlumnoBeneficio(codigo);
+			list = alumnobeneficioservice.getAllAlumnoBeneficio(codigo);
 
-			if (alubeneficio == null) {
-				alubeneficio = new AlumnoProgramaBeneficioCon();
+			if (list == null) {
+				list = new ArrayList<AlumnoProgramaBeneficioCon>();
 			}
 			
-			logger.info("list "+alubeneficio);
+			//logger.info("list "+alubeneficio);
 		} catch (Exception e) {
 			
-			logger.error("Unexpected Exception caught." + e.getMessage()+alubeneficio);
-			return new ResponseEntity<AlumnoProgramaBeneficioCon>(alubeneficio, HttpStatus.INTERNAL_SERVER_ERROR);
+			logger.error("Unexpected Exception caught." + e.getMessage());
+			return new ResponseEntity<List<AlumnoProgramaBeneficioCon>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		logger.info("< alumnobeneficio");
-		return new ResponseEntity<AlumnoProgramaBeneficioCon>(alubeneficio, HttpStatus.OK);
+		return new ResponseEntity<List<AlumnoProgramaBeneficioCon>>(list, HttpStatus.OK);
 	}
 	
 	/* retorna condicion */ 
@@ -127,8 +128,8 @@ public class AlumnoBeneficioController {
 		boolean resp = false;
 		try {
 			
-			logger.info("respppp: "+alumnobeneficioservice.getIdBeneficio(apbeneficio.getCod_alumno())+" "+apbeneficio.getObservacion());
-			if(!alumnobeneficioservice.getIdBeneficio(apbeneficio.getCod_alumno()))
+			logger.info("respppp: "+alumnobeneficioservice.getIdBeneficio(apbeneficio.getId_abp())+" "+apbeneficio.getObservacion());
+			if(!alumnobeneficioservice.getIdBeneficio(apbeneficio.getId_abp()))
 			{
 				apbeneficio.setToQuery(true);
 				logger.info("existe");

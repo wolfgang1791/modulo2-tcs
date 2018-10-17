@@ -16,6 +16,7 @@ public class AlumnoProgramaBeneficioCon {
 	private Integer id_bc;
 	private String condicion;
 	private Date fecha;
+	private Integer id_abp;
 	private String observacion;
 	
 	
@@ -90,6 +91,12 @@ public class AlumnoProgramaBeneficioCon {
 	}
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+	public Integer getId_abp() {
+		return id_abp;
+	}
+	public void setId_abp(Integer id_abp) {
+		this.id_abp = id_abp;
 	}
 	@Override
 	public String toString() {

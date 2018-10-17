@@ -30,17 +30,11 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	private JdbcTemplate jdbcTemplate;//i wanna be adored
 	
 	@Override
-	public AlumnoProgramaBeneficioCon getAllAlumnoBeneficio(String codigo) {
-		try {
-		String sql = "select abp.cod_alumno,abp.id_programa,abp.id_beneficio,abp.beneficio_otorgado,b.beneficio_max,abp.autorizacion,b.resolucion,b.tipo,abp.id_benef_condicion,bc.condicion,abp.fecha,abp.observacion from alumno_programa_beneficio abp,beneficio b, beneficio_condicion bc where abp.cod_alumno = (?) and (abp.id_beneficio = b.id_beneficio) and (abp.id_benef_condicion =  bc.id_benef_condicion)";
+	public List<AlumnoProgramaBeneficioCon> getAllAlumnoBeneficio(String codigo) {
+		
+		String sql = "select abp.cod_alumno,abp.id_programa,abp.id_beneficio,abp.beneficio_otorgado,b.beneficio_max,abp.autorizacion,b.resolucion,b.tipo,abp.id_benef_condicion,bc.condicion,abp.fecha,abp.observacion,abp.id_apb from alumno_programa_beneficio abp,beneficio b, beneficio_condicion bc where abp.cod_alumno = (?) and (abp.id_beneficio = b.id_beneficio) and (abp.id_benef_condicion =  bc.id_benef_condicion)";
 		RowMapper<AlumnoProgramaBeneficioCon> rowMapper = new AlumnoBeneficioRowMapper();
-		System.out.println(jdbcTemplate.queryForObject(sql, rowMapper, codigo));
-		AlumnoProgramaBeneficioCon alumnobeneficio = jdbcTemplate.queryForObject(sql, rowMapper, codigo);		
-		return alumnobeneficio;
-		}
-		catch (EmptyResultDataAccessException e) {
-			return null;
-		}	
+		return this.jdbcTemplate.query(sql, rowMapper, codigo);
 	}
 
 	@Override
@@ -68,8 +62,8 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 		 	ret = jdbcTemplate.update(sql, apbeneficio.getCod_alumno(),apbeneficio.getId_programa(),apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion());
 		}
 		else {System.out.println("update");
-			sql = "UPDATE alumno_programa_beneficio SET id_beneficio = ?,observacion = ?,beneficio_otorgado = ?,id_benef_condicion = ?,fecha = ?,autorizacion = ? where cod_alumno = ?";
-			ret = jdbcTemplate.update(sql,apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion(),apbeneficio.getCod_alumno());
+			sql = "UPDATE alumno_programa_beneficio SET id_beneficio = ?,observacion = ?,beneficio_otorgado = ?,id_benef_condicion = ?,fecha = ?,autorizacion = ? where id_apb = ?";
+			ret = jdbcTemplate.update(sql,apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion(),apbeneficio.getId_abp());
 		}
 		System.out.println("impla "+ret);	
 		
@@ -83,13 +77,13 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	}
 
 	@Override
-	public boolean getIdBeneficio(String cod) {
+	public boolean getIdBeneficio(Integer id_abp) {
 		
 		try {
-			String sql = "select cod_alumno from alumno_programa_beneficio where cod_alumno = ?";
-			String cod_alumno = jdbcTemplate.queryForObject(sql, new Object[] { cod }, String.class);
-			System.out.println("cod_alumno "+cod_alumno);
-			if(cod_alumno.length() == 8)
+			String sql = "select id_apb from alumno_programa_beneficio where id_apb = ?";
+			String id_apb = jdbcTemplate.queryForObject(sql, new Object[] { id_abp }, String.class);
+			System.out.println("cod_alumno "+id_apb);
+			if(Integer.parseInt(id_apb) > 0)
 			{	System.out.println("return true");
 				return true;
 			}

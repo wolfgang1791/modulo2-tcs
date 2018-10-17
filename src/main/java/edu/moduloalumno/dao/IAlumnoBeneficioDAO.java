@@ -8,13 +8,13 @@ import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoBeneficio;
 
 public interface IAlumnoBeneficioDAO {
-	public AlumnoProgramaBeneficioCon getAllAlumnoBeneficio(String codigo);
+	public List<AlumnoProgramaBeneficioCon> getAllAlumnoBeneficio(String codigo);
 	
 	// public boolean insertBeneficio(Beneficio beneficio);
 	
 	public boolean insertAlumnoProgramaBeneficio(AlumnoProgramaBeneficio apbeneficio);
 	
-	public boolean getIdBeneficio(String cod);
+	public boolean getIdBeneficio(Integer id_abp);
 
 	public List<CondicionBeneficio> getAllCondicionB();
 	

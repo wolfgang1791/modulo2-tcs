@@ -25,13 +25,13 @@ public class AlumnoBeneficioServiceImpl implements IAlumnoBeneficioService{
 	}
 
 	@Override
-	public AlumnoProgramaBeneficioCon getAllAlumnoBeneficio(String codigo) {
+	public List<AlumnoProgramaBeneficioCon> getAllAlumnoBeneficio(String codigo) {
 		return alumnobeneficiodao.getAllAlumnoBeneficio(codigo);
 	}
 
 	@Override
-	public boolean getIdBeneficio(String cod) {
-		return alumnobeneficiodao.getIdBeneficio(cod);
+	public boolean getIdBeneficio(Integer id_apb) {
+		return alumnobeneficiodao.getIdBeneficio(id_apb);
 	}
 
 	@Override

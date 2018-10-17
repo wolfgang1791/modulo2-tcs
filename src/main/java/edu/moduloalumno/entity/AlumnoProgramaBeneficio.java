@@ -11,7 +11,7 @@ public class AlumnoProgramaBeneficio {
 	private Integer id_bcondicion;
 	private String autorizacion;
 	private Date fecha;
-	
+	private Integer id_abp;
 	private boolean toQuery;
 	
 	
@@ -68,6 +68,13 @@ public class AlumnoProgramaBeneficio {
 	}
 	public void setId_beneficio(Integer id_beneficio) {
 		this.id_beneficio = id_beneficio;
+	}
+	
+	public Integer getId_abp() {
+		return id_abp;
+	}
+	public void setId_abp(Integer id_abp) {
+		this.id_abp = id_abp;
 	}
 	@Override
 	public String toString() {
