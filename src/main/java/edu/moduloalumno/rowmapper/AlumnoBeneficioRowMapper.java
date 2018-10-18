@@ -15,7 +15,7 @@ public class AlumnoBeneficioRowMapper implements RowMapper<AlumnoProgramaBenefic
 	public AlumnoProgramaBeneficioCon mapRow(ResultSet rs, int rowNum) throws SQLException {
 		AlumnoProgramaBeneficioCon ab = new AlumnoProgramaBeneficioCon();
 		ab.setCod_alumno(rs.getString("cod_alumno"));
-		ab.setId_programa(rs.getInt("id_programa"));
+		//ab.setId_programa(rs.getInt("id_programa"));
 		ab.setId_beneficio(rs.getInt("id_beneficio"));
 		ab.setAutorizacion(rs.getString("autorizacion"));
 		ab.setResolucion(rs.getString("resolucion"));

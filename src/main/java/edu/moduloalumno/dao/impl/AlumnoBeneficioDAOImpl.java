@@ -34,7 +34,7 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	@Override
 	public List<AlumnoProgramaBeneficioCon> getAllAlumnoBeneficio(String codigo) {
 		
-		String sql = "select abp.cod_alumno,abp.id_programa,abp.id_beneficio,abp.beneficio_otorgado,b.beneficio_max,abp.autorizacion,b.resolucion,b.tipo,abp.id_benef_condicion,bc.condicion,abp.fecha,abp.observacion,abp.id_apb,bcc.tipo as criterio from alumno_programa_beneficio abp,beneficio b, beneficio_condicion bc,beneficio_ciclo_credito bcc where abp.cod_alumno = (?) and (abp.id_beneficio = b.id_beneficio) and (abp.id_benef_condicion =  bc.id_benef_condicion) and (abp.criterio =  bcc.id_bcc)";
+		String sql = "select abp.cod_alumno,abp.id_beneficio,abp.beneficio_otorgado,b.beneficio_max,abp.autorizacion,b.resolucion,b.tipo,abp.id_benef_condicion,bc.condicion,abp.fecha,abp.observacion,abp.id_apb,bcc.tipo as criterio from alumno_programa_beneficio abp,beneficio b, beneficio_condicion bc,beneficio_ciclo_credito bcc where abp.cod_alumno = (?) and (abp.id_beneficio = b.id_beneficio) and (abp.id_benef_condicion =  bc.id_benef_condicion) and (abp.criterio =  bcc.id_bcc)";
 		RowMapper<AlumnoProgramaBeneficioCon> rowMapper = new AlumnoBeneficioRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, codigo);
 	}
@@ -60,8 +60,8 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 		Integer ret = 0;
 		
 		if(apbeneficio.getToQuery()) {System.out.println("insert");
-			sql = "INSERT INTO alumno_programa_beneficio(cod_alumno,id_programa,id_beneficio,observacion,beneficio_otorgado,id_benef_condicion,fecha,autorizacion,criterio) values (?,?,?,?,?,?,?,?,?)";
-		 	ret = jdbcTemplate.update(sql, apbeneficio.getCod_alumno(),apbeneficio.getId_programa(),apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion(),apbeneficio.getId_bcc());
+			sql = "INSERT INTO alumno_programa_beneficio(cod_alumno,id_beneficio,observacion,beneficio_otorgado,id_benef_condicion,fecha,autorizacion,criterio) values (?,?,?,?,?,?,?,?)";
+		 	ret = jdbcTemplate.update(sql, apbeneficio.getCod_alumno(),apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion(),apbeneficio.getId_bcc());
 		}
 		else {System.out.println("update");
 			sql = "UPDATE alumno_programa_beneficio SET id_beneficio = ?,observacion = ?,beneficio_otorgado = ?,id_benef_condicion = ?,fecha = ?,autorizacion = ?,criterio=? where id_apb = ?";

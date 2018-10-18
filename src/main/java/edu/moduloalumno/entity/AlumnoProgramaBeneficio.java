@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class AlumnoProgramaBeneficio {
 	private String cod_alumno;
-	private Integer id_programa;
+	//private Integer id_programa;
 	private Integer id_beneficio;
 	private String beneficio_otorgado;
 	private String observacion;
@@ -58,12 +58,12 @@ public class AlumnoProgramaBeneficio {
 	public void setCod_alumno(String cod_alumno) {
 		this.cod_alumno = cod_alumno;
 	}
-	public Integer getId_programa() {
+/*	public Integer getId_programa() {
 		return id_programa;
 	}
 	public void setId_programa(Integer id_programa) {
 		this.id_programa = id_programa;
-	}
+	}*/
 	public Integer getId_beneficio() {
 		return id_beneficio;
 	}
@@ -86,9 +86,12 @@ public class AlumnoProgramaBeneficio {
 	}
 	@Override
 	public String toString() {
-		return "AlumnoProgramaBeneficio [cod_alumno=" + cod_alumno + ", id_programa=" + id_programa + ", id_beneficio="
-				+ id_beneficio + "]";
+		return "AlumnoProgramaBeneficio [cod_alumno=" + cod_alumno + ", id_beneficio=" + id_beneficio
+				+ ", beneficio_otorgado=" + beneficio_otorgado + ", observacion=" + observacion + ", id_bcondicion="
+				+ id_bcondicion + ", autorizacion=" + autorizacion + ", fecha=" + fecha + ", id_abp=" + id_abp
+				+ ", id_bcc=" + id_bcc + ", toQuery=" + toQuery + "]";
 	}
+	
 	
 	
 }
