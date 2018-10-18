@@ -27,6 +27,7 @@ public class AlumnoBeneficioRowMapper implements RowMapper<AlumnoProgramaBenefic
 		ab.setTipo(rs.getString("tipo"));
 		ab.setObservacion(rs.getString("observacion"));
 		ab.setId_abp(rs.getInt("id_apb"));
+		ab.setCriterio(rs.getString("criterio"));
 		return ab;
 		
 		
