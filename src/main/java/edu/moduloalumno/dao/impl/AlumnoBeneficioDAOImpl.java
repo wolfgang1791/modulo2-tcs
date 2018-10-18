@@ -67,7 +67,7 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 			sql = "UPDATE alumno_programa_beneficio SET id_beneficio = ?,observacion = ?,beneficio_otorgado = ?,id_benef_condicion = ?,fecha = ?,autorizacion = ?,criterio=? where id_apb = ?";
 			ret = jdbcTemplate.update(sql,apbeneficio.getId_beneficio(),apbeneficio.getObservacion(),apbeneficio.getBeneficio_otorgado(),apbeneficio.getId_bcondicion(),apbeneficio.getFecha(),apbeneficio.getAutorizacion(),apbeneficio.getId_bcc(),apbeneficio.getId_abp());
 		}
-		System.out.println("impla "+ret);	
+		System.out.println("respuesta sql "+ret);	
 		
 		if(ret.equals(1)) {
 			return true;
