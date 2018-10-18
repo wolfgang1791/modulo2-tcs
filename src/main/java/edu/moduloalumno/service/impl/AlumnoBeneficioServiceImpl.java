@@ -8,6 +8,7 @@ import edu.moduloalumno.dao.IAlumnoBeneficioDAO;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
 import edu.moduloalumno.entity.CondicionBeneficio;
+import edu.moduloalumno.entity.TipoAplicaBeneficio;
 import edu.moduloalumno.entity.TipoBeneficio;
 import edu.moduloalumno.service.IAlumnoBeneficioService;
 
@@ -42,6 +43,11 @@ public class AlumnoBeneficioServiceImpl implements IAlumnoBeneficioService{
 	@Override
 	public List<TipoBeneficio> getAllTipo() {
 		return alumnobeneficiodao.getAllTipo();
+	}
+
+	@Override
+	public List<TipoAplicaBeneficio> getTipoAplicaBeneficio() {
+		return alumnobeneficiodao.getTipoAplicaBeneficio();
 	}
 	
 	

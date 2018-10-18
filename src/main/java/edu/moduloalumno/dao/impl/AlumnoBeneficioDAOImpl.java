@@ -13,9 +13,11 @@ import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.TipoBeneficio;
 import edu.moduloalumno.entity.CondicionBeneficio;
+import edu.moduloalumno.entity.TipoAplicaBeneficio;
 import edu.moduloalumno.rowmapper.AlumnoBeneficioRowMapper;
 import edu.moduloalumno.rowmapper.TipoBeneficioRowMapper;
 import edu.moduloalumno.rowmapper.CondicionBeneficioRowMapper;
+import edu.moduloalumno.rowmapper.TipoAplicaBeneficioRowMapper;
 
 
 
@@ -99,6 +101,13 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 			return false;
 		}
 		
+	}
+
+	@Override
+	public List<TipoAplicaBeneficio> getTipoAplicaBeneficio() {
+		String sql = "select * from beneficio_ciclo_credito;";
+		RowMapper<TipoAplicaBeneficio> rowMapper = new TipoAplicaBeneficioRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper);
 	}
 
 }

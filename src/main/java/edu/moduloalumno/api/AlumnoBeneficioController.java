@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.CondicionBeneficio;
-import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
+import edu.moduloalumno.entity.TipoAplicaBeneficio;
 import edu.moduloalumno.entity.TipoBeneficio;
 import edu.moduloalumno.service.IAlumnoBeneficioService;
 
@@ -103,23 +103,7 @@ public class AlumnoBeneficioController {
 		logger.info("< alumnobeneficio");
 		return new ResponseEntity<List<TipoBeneficio>>(tipobeneficio, HttpStatus.OK);
 	}
-	/*
-	@RequestMapping(value = "/insertar_b", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean insertBeneficio(@RequestBody Beneficio beneficio) {
-		logger.info("> insertBeneficio[ "+beneficio);
-		
-		boolean resp = false;
-		try {
-			resp = alumnobeneficioservice.insertBeneficio(beneficio);
-		}
-		catch(Exception e) {
-			logger.info("> insertBeneficio[ Beneficio: "+beneficio+" APBEneficio: catch ");
-			return false;
-		}
-		
-		logger.info(" "+resp);
-		return resp;
-	}*/
+	
 	
 	@RequestMapping(value = "/insertar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean insertAlumnoBeneficio(@RequestBody AlumnoProgramaBeneficio apbeneficio) {
@@ -150,6 +134,29 @@ public class AlumnoBeneficioController {
 		
 		
 		return resp;
+	}
+	
+	@RequestMapping(value = "/tipo_aplica", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<TipoAplicaBeneficio>> getTipoAplicaBeneficio() {
+		logger.info(">> AlumnoBeneficio <<");
+
+		List<TipoAplicaBeneficio> list = null;
+		try {
+			list = alumnobeneficioservice.getTipoAplicaBeneficio();
+
+			if (list == null) {
+				list = new ArrayList<TipoAplicaBeneficio>();
+			}
+			
+			//logger.info("list "+alubeneficio);
+		} catch (Exception e) {
+			
+			logger.error("Unexpected Exception caught." + e.getMessage());
+			return new ResponseEntity<List<TipoAplicaBeneficio>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< alumnobeneficio");
+		return new ResponseEntity<List<TipoAplicaBeneficio>>(list, HttpStatus.OK);
 	}
 	
 	
