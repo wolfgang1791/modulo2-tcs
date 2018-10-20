@@ -34,7 +34,7 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	@Override
 	public List<AlumnoProgramaBeneficioCon> getAllAlumnoBeneficio(String codigo) {
 		
-		String sql = "select abp.cod_alumno,abp.id_beneficio,abp.beneficio_otorgado,b.beneficio_max,abp.autorizacion,b.resolucion,b.tipo,abp.id_benef_condicion,bc.condicion,abp.fecha,abp.observacion,abp.id_apb,bcc.tipo as criterio from alumno_programa_beneficio abp,beneficio b, beneficio_condicion bc,beneficio_ciclo_credito bcc where abp.cod_alumno = (?) and (abp.id_beneficio = b.id_beneficio) and (abp.id_benef_condicion =  bc.id_benef_condicion) and (abp.criterio =  bcc.id_bcc)";
+		String sql = "select abp.cod_alumno,abp.id_beneficio,abp.beneficio_otorgado,b.beneficio_max,abp.autorizacion,b.resolucion,b.tipo,abp.id_benef_condicion,bc.condicion,abp.fecha,abp.observacion,abp.id_apb,bcc.tipo as criterio from alumno_programa_beneficio abp,beneficio b, beneficio_condicion bc,beneficio_ciclo_credito bcc where abp.cod_alumno = (?) and (abp.id_beneficio = b.id_beneficio) and (abp.id_benef_condicion =  bc.id_benef_condicion) and (abp.criterio =  bcc.id_bcc) order by abp.id_apb";
 		RowMapper<AlumnoProgramaBeneficioCon> rowMapper = new AlumnoBeneficioRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, codigo);
 	}
