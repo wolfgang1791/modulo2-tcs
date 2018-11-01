@@ -1,4 +1,6 @@
 package edu.moduloalumno.api;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 /*
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
+import edu.moduloalumno.entity.BeneficioReporte;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoAplicaBeneficio;
@@ -160,7 +163,48 @@ public class AlumnoBeneficioController {
 		return new ResponseEntity<List<TipoAplicaBeneficio>>(list, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/breporte/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BeneficioReporte> getBeneficioReporte(@PathVariable("codigo") String codigo) {
+		logger.info(">> getBeneficio Reporte <<");
+		
+		List<AlumnoProgramaBeneficioCon> list = null;
+		BeneficioReporte breporte = null;
+		
+		float descuento = 1;
+		
+		try {
+			list = alumnobeneficioservice.getAllAlumnoBeneficio(codigo);
+			logger.error("lista: " + list);
+			if (!(list == null)) {
+				for(AlumnoProgramaBeneficioCon alumno:list) {
+					
+					descuento *= Float.parseFloat(alumno.getBenef_otrogado()); 
+					logger.error("doubke: " + Float.parseFloat(alumno.getBenef_otrogado()));
+				}
+				descuento = (float) (descuento/(Math.pow(100,list.size()-1)));
+				System.out.println("descuento: "+descuento);
+			
+				breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento);
+				
+				breporte.setD_total(round(breporte.getD_total(), 2));
+				breporte.setD_upg(round(breporte.getD_upg(), 2));
+				logger.error("Breporte: " + breporte);
+			}
+		
+		} catch (Exception e) {
+			
+			logger.error("Unexpected Exception caught." + e.getMessage());
+			return new ResponseEntity<BeneficioReporte>(breporte, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< alumnobeneficio");
+		return new ResponseEntity<BeneficioReporte>(breporte, HttpStatus.OK);
+	}
 	
-	
+	public static float round(float number, int decimalPlace) {
+		BigDecimal bd = new BigDecimal(number);
+		bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+		return bd.floatValue();
+	}
 	
 }

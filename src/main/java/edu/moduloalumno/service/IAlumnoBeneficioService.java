@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
+import edu.moduloalumno.entity.BeneficioReporte;
 import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoAplicaBeneficio;
 import edu.moduloalumno.entity.TipoBeneficio;
@@ -12,7 +13,7 @@ public interface IAlumnoBeneficioService {
 	
 	public List<AlumnoProgramaBeneficioCon> getAllAlumnoBeneficio(String codigo);
 	
-	//public boolean insertBeneficio(Beneficio beneficio);
+	public BeneficioReporte funcionDescuento(String codigo, float descuento);
 	
 	public boolean insertAlumnoProgramaBeneficio(AlumnoProgramaBeneficio apbeneficio);
 	
