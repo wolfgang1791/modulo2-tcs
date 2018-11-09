@@ -32,6 +32,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
     
     private String nomPrograma;
     
+    private String sigla_programa;
+    
     private String codAlumno;
     
     private String estado;
@@ -152,6 +154,14 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 		this.nomPrograma = nomPrograma;
 	}
 	
+	public String getSigla_programa() {
+		return sigla_programa;
+	}
+
+	public void setSigla_programa(String sigla_programa) {
+		this.sigla_programa = sigla_programa;
+	}
+
 	public String getCodAlumno() {
 		return codAlumno;
 	}

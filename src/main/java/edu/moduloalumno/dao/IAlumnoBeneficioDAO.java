@@ -22,6 +22,6 @@ public interface IAlumnoBeneficioDAO {
 
 	public List<TipoAplicaBeneficio> getTipoAplicaBeneficio();
 
-	public BeneficioReporte funcionDescuento(String codigo, float descuento);
+	public BeneficioReporte funcionDescuento(String codigo, float descuento,Integer id_programa);
 }
 

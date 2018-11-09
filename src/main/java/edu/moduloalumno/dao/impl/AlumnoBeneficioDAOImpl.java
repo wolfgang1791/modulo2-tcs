@@ -113,11 +113,11 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	}
 
 	@Override
-	public BeneficioReporte funcionDescuento(String codigo, float descuento) {
+	public BeneficioReporte funcionDescuento(String codigo, float descuento,Integer id_programa) {
 		try {
-			String sql = "select * from fn_presupuesto_ciclo(?,?);";
+			String sql = "select * from fn_presupuesto_ciclo(?,?,?);";
 			RowMapper<BeneficioReporte> rowMapper = new BeneficioReporteRowMapper();
-			BeneficioReporte br = jdbcTemplate.queryForObject(sql, rowMapper, codigo,descuento);
+			BeneficioReporte br = jdbcTemplate.queryForObject(sql, rowMapper, codigo,descuento,id_programa);
 			return br;
 			}
 			catch (EmptyResultDataAccessException e) {

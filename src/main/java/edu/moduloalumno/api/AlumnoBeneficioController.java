@@ -162,8 +162,8 @@ public class AlumnoBeneficioController {
 		return new ResponseEntity<List<TipoAplicaBeneficio>>(list, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/breporte/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<BeneficioReporte> getBeneficioReporte(@PathVariable("codigo") String codigo) {
+	@RequestMapping(value = "/breporte/{codigo}/{id_programa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BeneficioReporte> getBeneficioReporte(@PathVariable("codigo") String codigo,@PathVariable("id_programa") Integer id_programa) {
 		logger.info(">> getBeneficio Reporte <<");
 		
 		List<AlumnoProgramaBeneficioCon> list = null;
@@ -183,7 +183,7 @@ public class AlumnoBeneficioController {
 				descuento = (float) (descuento/(Math.pow(100,list.size()-1)));
 				System.out.println("descuento: "+descuento);
 			
-				breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento);
+				breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento,id_programa);
 				
 				breporte.setD_total(round(breporte.getD_total(), 2));
 				breporte.setD_upg(round(breporte.getD_upg(), 2));
