@@ -8,6 +8,17 @@ public class BeneficioReporte {
 	private Float d_total;
 	private Integer d_epg;
 	private Float d_upg;
+	private String tipo;
+	
+	private Integer _Total;
+	public Integer get_Total() {
+		return _Total;
+	}
+	public void set_Total(Integer _Total) {
+		this._Total = _Total;
+	}
+	private Float D_Total;
+	
 	public Integer getTotal() {
 		return total;
 	}
@@ -33,8 +44,6 @@ public class BeneficioReporte {
 	public void setD_epg(Integer d_epg) {
 		this.d_epg = d_epg;
 	}
-	
-	
 	public Float getD_total() {
 		return d_total;
 	}
@@ -48,12 +57,24 @@ public class BeneficioReporte {
 		this.d_upg = d_upg;
 	}
 	
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
+	public Float getD_Total() {
+		return D_Total;
+	}
+	public void setD_Total(Float d_Total) {
+		D_Total = d_Total;
+	}
 	@Override
 	public String toString() {
 		return "BeneficioReporte [total=" + total + ", epg=" + epg + ", upg=" + upg + ", d_total=" + d_total
-				+ ", d_epg=" + d_epg + ", d_upg=" + d_upg + "]";
+				+ ", d_epg=" + d_epg + ", d_upg=" + d_upg + ", tipo=" + tipo + ", _Total=" + _Total + ", D_Total="
+				+ D_Total + "]";
 	}
-	
-	
 
 }

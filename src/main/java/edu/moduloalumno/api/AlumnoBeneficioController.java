@@ -188,6 +188,10 @@ public class AlumnoBeneficioController {
 				
 				breporte.setD_total(round(breporte.getD_total(), 2));
 				breporte.setD_upg(round(breporte.getD_upg(), 2));
+				
+				breporte.setD_Total(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total());
+				breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
+				
 				logger.error("Breporte: " + breporte);
 			}
 		

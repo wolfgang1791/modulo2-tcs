@@ -18,6 +18,7 @@ public class BeneficioReporteRowMapper implements RowMapper<BeneficioReporte> {
 		br.setD_total(rs.getFloat("d_total"));
 		br.setD_epg(rs.getInt("d_epg"));
 		br.setD_upg(rs.getFloat("d_upg"));
+		br.setTipo(rs.getString("tipo"));
 		return br;
 	}
 
