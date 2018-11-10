@@ -28,6 +28,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
     
     private Date fecha;
     
+    private String anio_ingreso;
+    
     private Integer idPrograma;
     
     private String nomPrograma;
@@ -193,6 +195,14 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 		int result = 1;
 		result = prime * result + ((idRec == null) ? 0 : idRec.hashCode());
 		return result;
+	}
+
+	public String getAnio_ingreso() {
+		return anio_ingreso;
+	}
+
+	public void setAnio_ingreso(String anio_ingreso) {
+		this.anio_ingreso = anio_ingreso;
 	}
 
 	@Override
