@@ -244,7 +244,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 		String[] conceptos = filtro.getConceptos();
 
-		String[] recibos = filtro.getRecibos();
+		String[] recibos = filtro.getRecibos(); 
 
 		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> list01 = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
 		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> list02 = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
@@ -267,7 +267,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 			logger.info("LISTA DE RECAUDACIONES POR CONCEPTO: \n" + list01);
 
 			for (String recibo : recibos) {
-				list02 = operacion.union(list02, recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeRecibo(recibo, nom_ape));
+				list02 = operacion.union(list02, recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeRecibo(recibo.trim(), nom_ape));
+				logger.info("L \n" + recibo);
 			}
 
 			logger.info("LISTA DE RECAUDACIONES POR RECIBOS: \n" + list02);
