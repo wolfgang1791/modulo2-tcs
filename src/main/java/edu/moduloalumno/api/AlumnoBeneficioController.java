@@ -177,8 +177,8 @@ public class AlumnoBeneficioController {
 			if (!(list == null)) {
 				for(AlumnoProgramaBeneficioCon alumno:list) {
 					
-					descuento *= (100 - Float.parseFloat(alumno.getBenef_otrogado())); 
-					logger.error("doubke: " + Float.parseFloat(alumno.getBenef_otrogado()));
+					descuento *= (100 - alumno.getBenef_otrogado()); 
+					logger.error("double: " + alumno.getBenef_otrogado());
 				}
 				descuento = (float) (descuento/(Math.pow(100,list.size())))*100;
 				descuento = (100 -descuento)/100;

@@ -23,7 +23,7 @@ public class AlumnoBeneficioRowMapper implements RowMapper<AlumnoProgramaBenefic
 		ab.setFecha(rs.getDate("fecha"));
 		ab.setBenef_max(rs.getString("beneficio_max"));
 		ab.setId_bc(rs.getInt("id_benef_condicion"));
-		ab.setBenef_otrogado(rs.getString("beneficio_otorgado"));
+		ab.setBenef_otrogado(rs.getInt("beneficio_otorgado"));
 		ab.setTipo(rs.getString("tipo"));
 		ab.setObservacion(rs.getString("observacion"));
 		ab.setId_abp(rs.getInt("id_apb"));

@@ -6,7 +6,7 @@ public class AlumnoProgramaBeneficio {
 	private String cod_alumno;
 	//private Integer id_programa;
 	private Integer id_beneficio;
-	private String beneficio_otorgado;
+	private Integer beneficio_otorgado;
 	private String observacion;
 	private Integer id_bcondicion;
 	private String autorizacion;
@@ -40,10 +40,10 @@ public class AlumnoProgramaBeneficio {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public String getBeneficio_otorgado() {
+	public Integer getBeneficio_otorgado() {
 		return beneficio_otorgado;
 	}
-	public void setBeneficio_otorgado(String beneficio_otorgado) {
+	public void setBeneficio_otorgado(Integer beneficio_otorgado) {
 		this.beneficio_otorgado = beneficio_otorgado;
 	}
 	public String getObservacion() {

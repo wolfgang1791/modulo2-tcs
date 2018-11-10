@@ -8,7 +8,7 @@ public class AlumnoProgramaBeneficioCon {
 	private String cod_alumno;
 //	private Integer id_programa;
 	private Integer id_beneficio;
-	private String benef_otrogado;
+	private Integer benef_otrogado;
 	private String benef_max;
 	private String tipo;
 	private String autorizacion;
@@ -21,10 +21,10 @@ public class AlumnoProgramaBeneficioCon {
 	private String observacion;
 	
 	
-	public String getBenef_otrogado() {
+	public Integer getBenef_otrogado() {
 		return benef_otrogado;
 	}
-	public void setBenef_otrogado(String benef_otrogado) {
+	public void setBenef_otrogado(Integer benef_otrogado) {
 		this.benef_otrogado = benef_otrogado;
 	}
 	public String getBenef_max() {
