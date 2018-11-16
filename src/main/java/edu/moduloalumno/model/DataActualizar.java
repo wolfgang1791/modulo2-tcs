@@ -5,7 +5,7 @@ public class DataActualizar {
 	private String idRec;
 	private String fecha;
 	private String id_concepto;
-	private String concepto;
+	private String id_moneda;
 	private String recibo;
 	private String ciclo;
 	
@@ -28,11 +28,11 @@ public class DataActualizar {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-	public String getConcepto() {
-		return concepto;
+	public String getId_moneda() {
+		return id_moneda;
 	}
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
+	public void setId_moneda(String id_moneda) {
+		this.id_moneda = id_moneda;
 	}
 	public String getRecibo() {
 		return recibo;
@@ -49,7 +49,7 @@ public class DataActualizar {
 	
 	@Override
 	public String toString() {
-		return "DataActualizar [idRec=" + idRec + ", fecha=" + fecha + ", concepto=" + concepto + ", recibo=" + recibo
+		return "DataActualizar [idRec=" + idRec + ", fecha=" + fecha + ", concepto=" + id_moneda + ", recibo=" + recibo
 				+ ", ciclo=" + ciclo + "]";
 	}
 	

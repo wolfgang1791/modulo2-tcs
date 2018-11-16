@@ -19,11 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.entity.CodigosporNomApe;
+import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.model.DataActualizar;
 import edu.moduloalumno.model.Filtro;
-import edu.moduloalumno.service.IConceptoService;
 import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService;
 import edu.moduloalumno.util.Operaciones;
 
@@ -36,8 +35,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 	@Autowired
 	private IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice;
-	@Autowired
-	private IConceptoService conceptoservice;
+	
 
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>> getAllRecaudacionesJOINAlumnoJOINConceptoJOINFacultads() {
@@ -313,7 +311,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		
 		String id_concepto = dataactualizar.getId_concepto();
 		
-		String concepto = dataactualizar.getConcepto();
+		String concepto = dataactualizar.getId_moneda();
 		
 		String recibo = dataactualizar.getRecibo();
 		
@@ -326,24 +324,22 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 		DateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
 		
-		boolean response0 = false; 
-		boolean response1 = false;
-		
+		boolean response = false; 
 		try {
 			
 			logger.info(">>>>>>>: "+Integer.parseInt(id_concepto)+" <<<< "+concepto);
-			response0 = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(formateador.parse(fecha),recibo,Integer.parseInt(ciclo),Integer.parseInt(idRec));		
-			logger.info("> resp0: "+response0);
-			response1 = conceptoservice.updateConcepto(concepto,Integer.parseInt(id_concepto));
-			logger.info("> resp0: "+response1);
+			response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Integer.parseInt(id_concepto),formateador.parse(fecha),recibo,Integer.parseInt(ciclo),Integer.parseInt(idRec));		
+			logger.info("> resp0: "+response);
+			
+			
 			logger.info("> Commo11n: "+dataactualizar);
 		} catch (Exception e) {
-			logger.error("Unexpected Exception caught. "+ e.getMessage()+response1);
+			logger.error("Unexpected Exception caught. "+ e.getMessage()+response);
 			return false;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		logger.info("< filterByAlumno [Recaudaciones]");
-		return response0 && response1;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva, HttpStatus.OK);
+		return response;//new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(listanueva, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/actualizar_cod/{id_rec}/{cod_alumno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
