@@ -1,5 +1,7 @@
 package edu.moduloalumno.api;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 /*
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -209,6 +211,15 @@ public class AlumnoBeneficioController {
 		BigDecimal bd = new BigDecimal(number);
 		bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
 		return bd.floatValue();
+		/*NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+		System.out.println(formatoNumero.format(number));
+		return Float.parseFloat(formatoNumero.format(number));*/
+		/*
+		DecimalFormat df = new DecimalFormat("#,###.00");
+	    System.out.println(df.format(new BigDecimal(number)));
+	    float res = Float.parseFloat(df.format(new BigDecimal(number)));
+	    System.out.println(res);
+	    return  res;*/
 	}
 	
 }
