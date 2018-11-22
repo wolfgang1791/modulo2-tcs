@@ -57,7 +57,7 @@ public class ConceptoController {
 
 		try {
 			conceptos = service.getAllConceptos();
-			
+			logger.info("conceptos "+conceptos);
 			if (conceptos == null) {
 				conceptos = new ArrayList<Concepto>();
 			}
