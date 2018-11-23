@@ -1,5 +1,7 @@
 package edu.moduloalumno.api;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -96,13 +98,14 @@ public class ConceptoController {
 	}
 	
 	@RequestMapping(value = "/tcambio/{fecha}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Float> getTipodecambio(@PathVariable("fecha") Date fecha) {
+	public ResponseEntity<Float> getTipodecambio(@PathVariable("fecha") String fecha) {
 		logger.info("> getConceptoIdByApeNom [Concepto]");
 
 		Float tcambio = null;
+		DateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
 
 		try {
-			tcambio = service.getTipodecambio(fecha);
+			tcambio = service.getTipodecambio(formateador.parse(fecha));
 			
 			if (tcambio == null) {
 				tcambio = (float) 0.0;
