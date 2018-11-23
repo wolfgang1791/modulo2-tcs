@@ -205,15 +205,15 @@ public class ConceptoController {
     	public ResponseEntity<PruebaTCambio> tipocambio(@PathVariable("fecha") String fecha) throws IOException {
     		logger.info("> getConceptoApellidosNombres [Concepto]");
 
-    		 String list= null;
+    //		 String list= null;
     		 PruebaTCambio p= null;
     			//recogiendo datos del SUM FAKE
     				URL url = new URL("https://api.sunat.cloud/cambio/"+fecha);
-    				Gson gson = new Gson();
+    		//		Gson gson = new Gson();
     				ObjectMapper mapper = new ObjectMapper();
-    				TypeReference<String> typeReference = new TypeReference<String>(){};
+    			//	TypeReference<String> typeReference = new TypeReference<String>(){};
     		
-    				InputStream inputStream = url.openStream();
+    				//InputStream inputStream = url.openStream();
     				try {
     					/*Reader reader = new StringReader(inputStream);
 
