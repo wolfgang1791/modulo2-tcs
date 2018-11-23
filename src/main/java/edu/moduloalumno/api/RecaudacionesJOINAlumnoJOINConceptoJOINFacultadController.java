@@ -165,7 +165,11 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 
 		logger.info("< getCodigoByNombre [Recaudaciones]");
 		return new ResponseEntity<List<CodigosporNomApe>>(list, HttpStatus.OK);
-	}        
+	}       
+
+	// abel tipo de cambio
+	
+	
         
 
 	@RequestMapping(value = "/listar/{fechaInicial}/{fechaFinal}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
