@@ -1,7 +1,9 @@
 package edu.moduloalumno.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -30,7 +32,7 @@ public class ConceptoDAOImpl implements IConceptoDAO {
 
 	@Override
 	public List<Concepto> getAllConceptos() {
-		String sql = "SELECT id_concepto, concepto, concep_a, concep_b, descripcion, id_clase_pagos FROM concepto where concep_a= '210' and id_clase_pagos=2";
+		String sql = "SELECT id_concepto, concepto, concep_a, concep_b, descripcion, id_clase_pagos FROM concepto where concep_a='210' and id_clase_pagos=2";
 		// RowMapper<Concepto> rowMapper = new
 		// BeanPropertyRowMapper<Concepto>(Concepto.class);
 		RowMapper<Concepto> rowMapper = new ConceptoRowMapper();
@@ -123,6 +125,23 @@ public class ConceptoDAOImpl implements IConceptoDAO {
 			return false;
 		}
 
+	}
+
+	@Override
+	public Float getTipodecambio(Date fecha) {
+		try {
+			String sql = "select compra from tipo_cambio where fecha = ?";
+			String compra = jdbcTemplate.queryForObject(sql, new Object[] { fecha }, String.class);
+			System.out.println(" "+compra);
+			Float tcambio = Float.parseFloat(compra);
+			
+			return tcambio;
+			
+		}
+		catch(EmptyResultDataAccessException e) {
+			System.out.println("tcambio fuckkkkk");
+			return null;
+		}
 	}
 	
 }

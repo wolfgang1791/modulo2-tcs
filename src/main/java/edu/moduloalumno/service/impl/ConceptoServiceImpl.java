@@ -1,5 +1,6 @@
 package edu.moduloalumno.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +85,11 @@ public class ConceptoServiceImpl implements IConceptoService {
 	public boolean updateConcepto(String concepto, Integer id_concepto) {
 		System.out.println(concepto+" "+id_concepto);
 		return conceptoDAO.updateConcepto(concepto,id_concepto);
+	}
+
+	@Override
+	public Float getTipodecambio(Date fecha) {
+		return conceptoDAO.getTipodecambio(fecha);
 	}
 
 }

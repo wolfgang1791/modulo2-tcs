@@ -1,5 +1,6 @@
 package edu.moduloalumno.service;
 
+import java.util.Date;
 import java.util.List;
 
 import edu.moduloalumno.entity.Concepto;
@@ -17,6 +18,8 @@ public interface IConceptoService {
 	List<Concepto> getConceptoIdByNombresApellidos(String nombres,String apellidos);
 
 	Concepto getConceptoById(int idConcepto);
+	
+	Float getTipodecambio(Date fecha);
 
 	void addConcepto(Concepto concepto);
 

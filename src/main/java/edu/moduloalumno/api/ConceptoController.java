@@ -1,6 +1,7 @@
 package edu.moduloalumno.api;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -93,6 +94,29 @@ public class ConceptoController {
 		logger.info("< getConceptoIdByApeNom [Concepto]");
 		return new ResponseEntity<List<Concepto>>(list, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/tcambio/{fecha}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Float> getTipodecambio(@PathVariable("fecha") Date fecha) {
+		logger.info("> getConceptoIdByApeNom [Concepto]");
+
+		Float tcambio = null;
+
+		try {
+			tcambio = service.getTipodecambio(fecha);
+			
+			if (tcambio == null) {
+				tcambio = (float) 0.0;
+			}
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<Float>(tcambio, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+
+		logger.info("< getConceptoIdByApeNom [Concepto]");
+		return new ResponseEntity<Float>(tcambio, HttpStatus.OK);
+	}
+	
          
 	@RequestMapping(value = "/leer/restringido/{apeNom}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Concepto>> getConceptoIdByApeNomRestringido(@PathVariable("apeNom") String apeNom) {
