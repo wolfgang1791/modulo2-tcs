@@ -108,7 +108,7 @@ public class ConceptoController {
 			tcambio = service.getTipodecambio(formateador.parse(fecha));
 			
 			if (tcambio == null) {
-				tcambio = (float) 0.0;
+				tcambio = (float) 1.0;
 			}
 		} catch (Exception e) {
 			logger.error("Unexpected Exception caught.", e);
