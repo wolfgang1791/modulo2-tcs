@@ -17,6 +17,7 @@ import edu.moduloalumno.entity.TipoAplicaBeneficio;
 import edu.moduloalumno.entity.TipoBeneficio;
 import edu.moduloalumno.rowmapper.AlumnoBeneficioRowMapper;
 import edu.moduloalumno.rowmapper.BeneficioReporteRowMapper;
+import edu.moduloalumno.rowmapper.BeneficioReporte_RowMapper;
 import edu.moduloalumno.rowmapper.CondicionBeneficioRowMapper;
 import edu.moduloalumno.rowmapper.TipoAplicaBeneficioRowMapper;
 import edu.moduloalumno.rowmapper.TipoBeneficioRowMapper;
@@ -117,6 +118,19 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 		try {
 			String sql = "select * from fn_beneficio_1(?,?,?);";
 			RowMapper<BeneficioReporteCredito> rowMapper = new BeneficioReporteRowMapper();
+			BeneficioReporteCredito br = jdbcTemplate.queryForObject(sql, rowMapper, codigo,descuento,id_programa);
+			return br;
+			}
+			catch (EmptyResultDataAccessException e) {
+				return null;
+			}	
+	}
+
+	@Override
+	public BeneficioReporteCredito funcionDescuento_(String codigo, float descuento, Integer id_programa) {
+		try {
+			String sql = "select * from fn_beneficio_2(?,?,?);";
+			RowMapper<BeneficioReporteCredito> rowMapper = new BeneficioReporte_RowMapper();
 			BeneficioReporteCredito br = jdbcTemplate.queryForObject(sql, rowMapper, codigo,descuento,id_programa);
 			return br;
 			}

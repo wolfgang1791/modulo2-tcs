@@ -3,18 +3,23 @@ package edu.moduloalumno.entity;
 public class BeneficioReporteCredito {
 	
 	
-	private Integer costo_credito;
+	private Integer costo_credito; // ya que chucha en estas alturas del ciclo .l.
 	private float costo_credito_d;
 	private Integer creditos;
-	private Integer total;
-	private Integer epg;
-	private Integer upg;
+	private float total;
+	private float epg;
+	private float upg;
 	private Float d_total;
-	private Integer d_epg;
+	private float d_epg;
 	private Float d_upg;
 	private String tipo;
-	private Integer _Total;
+	private Float _Total;
+	private Float D_Total;
 	
+	
+	
+	private float ciclo; //antipatron
+	private float d_ciclo;
 	
 	public Integer getCosto_credito() {
 		return costo_credito;
@@ -22,7 +27,6 @@ public class BeneficioReporteCredito {
 	public void setCosto_credito(Integer costo_credito) {
 		this.costo_credito = costo_credito;
 	}
-	
 	public float getCosto_credito_d() {
 		return costo_credito_d;
 	}
@@ -35,38 +39,23 @@ public class BeneficioReporteCredito {
 	public void setCreditos(Integer creditos) {
 		this.creditos = creditos;
 	}
-	public Integer get_Total() {
-		return _Total;
-	}
-	public void set_Total(Integer _Total) {
-		this._Total = _Total;
-	}
-	private Float D_Total;
-	
-	public Integer getTotal() {
+	public float getTotal() {
 		return total;
 	}
-	public void setTotal(Integer total) {
+	public void setTotal(float total) {
 		this.total = total;
 	}
-	public Integer getEpg() {
+	public float getEpg() {
 		return epg;
 	}
-	public void setEpg(Integer epg) {
+	public void setEpg(float epg) {
 		this.epg = epg;
 	}
-	public Integer getUpg() {
+	public float getUpg() {
 		return upg;
 	}
-	public void setUpg(Integer upg) {
+	public void setUpg(float upg) {
 		this.upg = upg;
-	}
-	
-	public Integer getD_epg() {
-		return d_epg;
-	}
-	public void setD_epg(Integer d_epg) {
-		this.d_epg = d_epg;
 	}
 	public Float getD_total() {
 		return d_total;
@@ -74,18 +63,41 @@ public class BeneficioReporteCredito {
 	public void setD_total(Float d_total) {
 		this.d_total = d_total;
 	}
+	public float getD_epg() {
+		return d_epg;
+	}
+	public void setD_epg(float d_epg) {
+		this.d_epg = d_epg;
+	}
 	public Float getD_upg() {
 		return d_upg;
 	}
 	public void setD_upg(Float d_upg) {
 		this.d_upg = d_upg;
 	}
-	
 	public String getTipo() {
 		return tipo;
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	public Float get_Total() {
+		return _Total;
+	}
+	public void set_Total(Float _Total) {
+		this._Total = _Total;
+	}
+	public float getCiclo() {
+		return ciclo;
+	}
+	public void setCiclo(float ciclo) {
+		this.ciclo = ciclo;
+	}
+	public float getD_ciclo() {
+		return d_ciclo;
+	}
+	public void setD_ciclo(float d_ciclo) {
+		this.d_ciclo = d_ciclo;
 	}
 	
 	public Float getD_Total() {
@@ -99,7 +111,10 @@ public class BeneficioReporteCredito {
 		return "BeneficioReporteCredito [costo_credito=" + costo_credito + ", costo_credito_d=" + costo_credito_d
 				+ ", creditos=" + creditos + ", total=" + total + ", epg=" + epg + ", upg=" + upg + ", d_total="
 				+ d_total + ", d_epg=" + d_epg + ", d_upg=" + d_upg + ", tipo=" + tipo + ", _Total=" + _Total
-				+ ", D_Total=" + D_Total + "]";
+				+ ", ciclo=" + ciclo + ", d_ciclo=" + d_ciclo + "]";
 	}
 	
+	
+	
+
 }

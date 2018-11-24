@@ -175,6 +175,7 @@ public class AlumnoBeneficioController {
 		List<AlumnoProgramaBeneficioCon> list = null;
 		BeneficioReporteCredito breporte = null;
 		
+		
 		float descuento = 1;
 		
 		try {
@@ -192,22 +193,38 @@ public class AlumnoBeneficioController {
 				descuento = (float) (descuento/(Math.pow(100,list.size())))*100;
 				descuento = (100 -descuento)/100;
 				
-				System.out.println("descuento: "+descuento);
+				System.out.println("descuento: "+descuento+" "+list.get(0).getCriterio());
 			
-				breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento,id_programa);
 				
-				breporte.setD_total(floatformat.round(breporte.getD_total(), 2));
-				breporte.setD_upg(floatformat.round(breporte.getD_upg(), 2));
+				if(list.get(0).getCriterio().equals("Credito")) {
+					
+					breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento,id_programa);
+					
+					breporte.setD_total(floatformat.round(breporte.getD_total(), 2));
+					breporte.setD_upg(floatformat.round(breporte.getD_upg(), 2));
+					
+					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
+					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
+					
+					breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*descuento),2));
+					
+					breporte.setCiclo(0);
+					breporte.setD_ciclo(0);
+					
+					logger.error("Breporte: " + breporte);
+				}
+				else {
+					breporte = alumnobeneficioservice.funcionDescuento_(codigo,descuento,id_programa);
+					breporte.setCreditos(0);
+					breporte.setCosto_credito(0);
+					breporte.setCosto_credito_d(0);
+					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_ciclo(), 2));
+					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getCiclo());
+
+					
+					logger.error("Breporte: " + breporte);
+				}
 				
-				breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
-				breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
-				
-				
-				
-				breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*descuento),2));
-				
-				
-				logger.error("Breporte: " + breporte);
 			}
 			else {
 				breporte = alumnobeneficioservice.funcionDescuento(codigo,0,id_programa);

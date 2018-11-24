@@ -14,6 +14,7 @@ public interface IAlumnoBeneficioService {
 	public List<AlumnoProgramaBeneficioCon> getAllAlumnoBeneficio(String codigo);
 	
 	public BeneficioReporteCredito funcionDescuento(String codigo, float descuento,Integer id_programa);
+	public BeneficioReporteCredito funcionDescuento_(String codigo, float descuento,Integer id_programa);
 	
 	public boolean insertAlumnoProgramaBeneficio(AlumnoProgramaBeneficio apbeneficio);
 	

@@ -55,6 +55,11 @@ public class AlumnoBeneficioServiceImpl implements IAlumnoBeneficioService{
 	public BeneficioReporteCredito funcionDescuento(String codigo, float descuento,Integer id_programa) {
 		return alumnobeneficiodao.funcionDescuento(codigo,descuento,id_programa);
 	}
+
+	@Override
+	public BeneficioReporteCredito funcionDescuento_(String codigo, float descuento, Integer id_programa) {
+		return alumnobeneficiodao.funcionDescuento_(codigo,descuento,id_programa);
+	}
 	
 	
 	
