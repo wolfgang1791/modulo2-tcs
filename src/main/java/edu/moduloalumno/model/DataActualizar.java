@@ -49,8 +49,8 @@ public class DataActualizar {
 	
 	@Override
 	public String toString() {
-		return "DataActualizar [idRec=" + idRec + ", fecha=" + fecha + ", concepto=" + id_moneda + ", recibo=" + recibo
-				+ ", ciclo=" + ciclo + "]";
+		return "DataActualizar [idRec=" + idRec + ", fecha=" + fecha + ", id_concepto=" + id_concepto + ", id_moneda="
+				+ id_moneda + ", recibo=" + recibo + ", ciclo=" + ciclo + "]";
 	}
 	
 	

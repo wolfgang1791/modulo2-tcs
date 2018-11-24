@@ -204,6 +204,9 @@ public class AlumnoBeneficioController {
 				
 				logger.error("Breporte: " + breporte);
 			}
+			else {
+				breporte = alumnobeneficioservice.funcionDescuento(codigo,0,id_programa);
+			}
 		
 		} catch (Exception e) {
 			

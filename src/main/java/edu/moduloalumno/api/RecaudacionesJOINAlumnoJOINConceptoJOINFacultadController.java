@@ -381,7 +381,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		
 		String id_concepto = dataactualizar.getId_concepto();
 		
-		String moneda = dataactualizar.getId_moneda();
+		String id_moneda = dataactualizar.getId_moneda();
 		
 		String recibo = dataactualizar.getRecibo();
 		
@@ -397,8 +397,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		boolean response = false; 
 		try {
 			
-			logger.info(">>>>>>>: "+Integer.parseInt(id_concepto)+" <<<< "+moneda);
-			response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Integer.parseInt(id_concepto),moneda,formateador.parse(fecha),recibo,Integer.parseInt(ciclo),Integer.parseInt(idRec));		
+			logger.info(">>>>>>>: "+Integer.parseInt(id_concepto)+" <<<< "+id_moneda);
+			response = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Integer.parseInt(id_concepto),id_moneda,formateador.parse(fecha),recibo,Integer.parseInt(ciclo),Integer.parseInt(idRec));		
 			logger.info("> resp0: "+response);
 			
 			
