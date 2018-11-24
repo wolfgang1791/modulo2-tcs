@@ -1,5 +1,12 @@
 package edu.moduloalumno.api;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +17,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +27,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import edu.moduloalumno.component.FloatFormat;
 import edu.moduloalumno.entity.CodigosporNomApe;
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.model.DataActualizar;
 import edu.moduloalumno.model.Filtro;
+import edu.moduloalumno.model.PruebaTCambio;
 import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService;
 import edu.moduloalumno.util.Operaciones;
 
@@ -36,6 +48,9 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 	@Autowired
 	private IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice;
 	
+	@Autowired
+	@Qualifier("floatformat")
+	private FloatFormat floatformat;
 
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>> getAllRecaudacionesJOINAlumnoJOINConceptoJOINFacultads() {
@@ -135,6 +150,18 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 			if (list == null) {
 				list = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
 			}
+			else {
+				for(RecaudacionesJOINAlumnoJOINConceptoJOINFacultad r:list) {
+					if(r.getMoneda().equals("113")) {
+						r.setImporte_tc(( (float) r.getImporte() )*dolares_a_soles(r.getFecha()).getCompra());
+					}
+					else {
+						r.setImporte_tc(( (float) r.getImporte() )*1);
+					}
+					
+					r.setImporte_tc(floatformat.round(r.getImporte_tc(), 2));
+				}
+			}
 
 		} catch (Exception e) {
 			logger.error("Unexpected Exception caught.", e);
@@ -144,6 +171,45 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
 		return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(list, HttpStatus.OK);
 	}
+  
+  	public PruebaTCambio dolares_a_soles(Date fecha) throws MalformedURLException {
+  		PruebaTCambio p= null;
+		URL url = new URL("https://api.sunat.cloud/cambio/"+fecha);
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			
+	        BufferedReader in = new BufferedReader(
+	        new InputStreamReader(url.openStream()));
+
+	        String inputLine="",lineafinal="";
+	        int campos=0;
+	        while ((inputLine = in.readLine()) != null) {
+	        	if(campos == 2 || campos == 3)
+	        			lineafinal+=inputLine;
+	         campos++;
+	        }
+	        
+	        lineafinal="{"+lineafinal+"}";
+	        
+	        logger.info("cuerpo "+lineafinal.trim());
+	        
+	        Reader reader = new StringReader(lineafinal.trim());
+	        p = mapper.readValue(reader, PruebaTCambio.class);
+			
+			logger.info("> objeto "+p);
+			if(p.getCompra() == 0.0) {
+				p.setCompra(1);
+			}
+			logger.info("> objeto "+p);
+			in.close();
+		
+		} catch (IOException e){
+			System.out.println("ERROR! USUARIOS NO GUARDADOS : " + e.getMessage());
+		}
+	
+		return p; 
+  	}
         
 /**/    @RequestMapping(value = "/listar_codigos/{nomApe}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CodigosporNomApe>> getCodigosByNombre(@PathVariable("nomApe") String nomApe) {

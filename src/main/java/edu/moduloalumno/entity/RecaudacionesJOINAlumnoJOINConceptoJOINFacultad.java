@@ -26,6 +26,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
     
     private double importe;
     
+    private float importe_tc;
+    
     private Date fecha;
     
     private String anio_ingreso;
@@ -203,6 +205,14 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 
 	public void setAnio_ingreso(String anio_ingreso) {
 		this.anio_ingreso = anio_ingreso;
+	}
+
+	public float getImporte_tc() {
+		return importe_tc;
+	}
+
+	public void setImporte_tc(float importe_tc) {
+		this.importe_tc = importe_tc;
 	}
 
 	@Override

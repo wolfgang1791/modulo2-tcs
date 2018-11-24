@@ -1,5 +1,4 @@
 package edu.moduloalumno.api;
-import java.math.BigDecimal;
 /*
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -10,6 +9,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.moduloalumno.component.FloatFormat;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
 import edu.moduloalumno.entity.BeneficioReporte;
@@ -36,6 +37,11 @@ public class AlumnoBeneficioController {
 
 	@Autowired
 	private IAlumnoBeneficioService alumnobeneficioservice;
+	
+	
+	@Autowired
+	@Qualifier("floatformat")
+	private FloatFormat floatformat;
 
 	@RequestMapping(value = "/listar/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AlumnoProgramaBeneficioCon>> getAllAlumnoBeneficio(@PathVariable("codigo") String codigo) {
@@ -186,8 +192,8 @@ public class AlumnoBeneficioController {
 			
 				breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento,id_programa);
 				
-				breporte.setD_total(round(breporte.getD_total(), 2));
-				breporte.setD_upg(round(breporte.getD_upg(), 2));
+				breporte.setD_total(floatformat.round(breporte.getD_total(), 2));
+				breporte.setD_upg(floatformat.round(breporte.getD_upg(), 2));
 				
 				breporte.setD_Total(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total());
 				breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
@@ -205,19 +211,6 @@ public class AlumnoBeneficioController {
 		return new ResponseEntity<BeneficioReporte>(breporte, HttpStatus.OK);
 	}
 	
-	public static float round(float number, int decimalPlace) {
-		BigDecimal bd = new BigDecimal(number);
-		bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
-		return bd.floatValue();
-		/*NumberFormat formatoNumero = NumberFormat.getNumberInstance();
-		System.out.println(formatoNumero.format(number));
-		return Float.parseFloat(formatoNumero.format(number));*/
-		/*
-		DecimalFormat df = new DecimalFormat("#,###.00");
-	    System.out.println(df.format(new BigDecimal(number)));
-	    float res = Float.parseFloat(df.format(new BigDecimal(number)));
-	    System.out.println(res);
-	    return  res;*/
-	}
+	
 	
 }

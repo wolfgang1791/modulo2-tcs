@@ -4,6 +4,8 @@ public class PruebaTCambio {
 	
 	private float compra;
 	private float venta;
+	
+	
 	public float getCompra() {
 		return compra;
 	}
@@ -16,7 +18,9 @@ public class PruebaTCambio {
 	public void setVenta(float venta) {
 		this.venta = venta;
 	}
+	@Override
+	public String toString() {
+		return "PruebaTCambio [compra=" + compra + ", venta=" + venta + "]";
+	}
 	
-	
-
 }

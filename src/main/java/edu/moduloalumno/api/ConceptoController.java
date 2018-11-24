@@ -1,11 +1,5 @@
 package edu.moduloalumno.api;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import edu.moduloalumno.entity.Concepto;
-import edu.moduloalumno.model.PruebaTCambio;
 import edu.moduloalumno.service.IConceptoService;
 
 @RestController
@@ -195,60 +186,5 @@ public class ConceptoController {
 
 		logger.info("< getConceptoApellidosNombres [Concepto]");
 		return new ResponseEntity<List<Concepto>>(list, HttpStatus.OK);
-	}
-        
-    // prueba tipo_cambio
-        @RequestMapping(value = "/prueba/{fecha}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    	public ResponseEntity<PruebaTCambio> tipocambio(@PathVariable("fecha") String fecha) throws IOException {
-    		logger.info("> getConceptoApellidosNombres [Concepto]");
-
-    //		 String list= null;
-    		 PruebaTCambio p= null;
-    			//recogiendo datos del SUM FAKE
-    				URL url = new URL("https://api.sunat.cloud/cambio/"+fecha);
-    		//		Gson gson = new Gson();
-    				ObjectMapper mapper = new ObjectMapper();
-    			//	TypeReference<String> typeReference = new TypeReference<String>(){};
-    		
-    				//InputStream inputStream = url.openStream();
-    				try {
-    					/*Reader reader = new StringReader(inputStream);
-
-    					Car car = objectMapper.readValue(reader, Car.class);
-    					
-    					list = mapper.readValue(inputStream,typeReference);
-    					p = gson.fromJson(list, PruebaTCambio.class);*/
-    					//URL oracle = new URL("http://www.oracle.com/");
-    			        BufferedReader in = new BufferedReader(
-    			        new InputStreamReader(url.openStream()));
-
-    			        String inputLine="",lineafinal="";
-    			        int campos=0;
-    			        while ((inputLine = in.readLine()) != null) {
-    			        	if(campos == 2 || campos == 3)
-    			        			lineafinal+=inputLine;
-    			         campos++;
-    			        }
-    			        
-    			        lineafinal="{"+lineafinal+"}";
-    			        logger.info("> aberrr 1 "+lineafinal.trim());
-    			        Reader reader = new StringReader(lineafinal.trim());
-
-    			        p = mapper.readValue(reader, PruebaTCambio.class);
-    					
-    					logger.info("> aberrr 2"+p);
-    					in.close();
-    				} catch (IOException e){
-    					System.out.println("ERROR! USUARIOS NO GUARDADOS : " + e.getMessage());
-    				}
-    			
-    			//Agregando la lista a la base de datos
-    			
-    				//boolean xd=service.agregarListaCursos(cursos);
-    			
-    			
-    			
-    			return new ResponseEntity<PruebaTCambio>(p, HttpStatus.OK); 
-    	}
-        
+	}    
 }
