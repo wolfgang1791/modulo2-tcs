@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.Concepto;
+import edu.moduloalumno.entity.Moneda;
 import edu.moduloalumno.service.IConceptoService;
 
 @RestController
@@ -166,7 +167,7 @@ public class ConceptoController {
 	}
         
         
-        @RequestMapping(value = "/leer/{nombres}/{apellidos}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/leer/{nombres}/{apellidos}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Concepto>> getConceptoApellidosNombres(@PathVariable("nombres") String nombres,@PathVariable("apellidos") String apellidos) {
 		logger.info("> getConceptoApellidosNombres [Concepto]");
 
@@ -186,5 +187,27 @@ public class ConceptoController {
 
 		logger.info("< getConceptoApellidosNombres [Concepto]");
 		return new ResponseEntity<List<Concepto>>(list, HttpStatus.OK);
+	}    
+    
+    @RequestMapping(value = "/monedas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Moneda>> getAllMoneda(){
+		logger.info("> getConceptoApellidosNombres [Concepto]");
+
+		List<Moneda> list = null;
+
+		try {
+			list = service.getAllMoneda();
+			
+			if (list == null) {
+				list = new ArrayList<Moneda>();
+			}
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<Moneda>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+
+		logger.info("< getConceptoApellidosNombres [Concepto]");
+		return new ResponseEntity<List<Moneda>>(list, HttpStatus.OK);
 	}    
 }

@@ -1,7 +1,10 @@
 package edu.moduloalumno.entity;
 
-public class BeneficioReporte {
+public class BeneficioReporteCredito {
 	
+	
+	private Integer costo_credito;
+	private Integer creditos;
 	private Integer total;
 	private Integer epg;
 	private Integer upg;
@@ -9,8 +12,23 @@ public class BeneficioReporte {
 	private Integer d_epg;
 	private Float d_upg;
 	private String tipo;
-	
 	private Integer _Total;
+	
+	
+	
+	
+	public Integer getCosto_credito() {
+		return costo_credito;
+	}
+	public void setCosto_credito(Integer costo_credito) {
+		this.costo_credito = costo_credito;
+	}
+	public Integer getCreditos() {
+		return creditos;
+	}
+	public void setCreditos(Integer creditos) {
+		this.creditos = creditos;
+	}
 	public Integer get_Total() {
 		return _Total;
 	}

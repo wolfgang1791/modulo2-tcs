@@ -5,13 +5,15 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import edu.moduloalumno.entity.BeneficioReporte;
+import edu.moduloalumno.entity.BeneficioReporteCredito;
 
-public class BeneficioReporteRowMapper implements RowMapper<BeneficioReporte> {
+public class BeneficioReporteRowMapper implements RowMapper<BeneficioReporteCredito> {
 
 	@Override
-	public BeneficioReporte mapRow(ResultSet rs, int rowNum) throws SQLException {
-		BeneficioReporte br = new BeneficioReporte();
+	public BeneficioReporteCredito mapRow(ResultSet rs, int rowNum) throws SQLException {
+		BeneficioReporteCredito br = new BeneficioReporteCredito();
+		br.setCosto_credito(rs.getInt("costo_credito"));
+		br.setCreditos(rs.getInt("creditos"));
 		br.setTotal(rs.getInt("total"));
 		br.setEpg(rs.getInt("epg"));
 		br.setUpg(rs.getInt("upg"));

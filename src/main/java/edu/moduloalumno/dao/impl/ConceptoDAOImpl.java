@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.moduloalumno.dao.IConceptoDAO;
 import edu.moduloalumno.entity.Concepto;
+import edu.moduloalumno.entity.Moneda;
 import edu.moduloalumno.rowmapper.ConceptoRowMapper;
+import edu.moduloalumno.rowmapper.MonedaRowMapper;
 
 @Transactional
 @Repository
@@ -74,6 +76,13 @@ public class ConceptoDAOImpl implements IConceptoDAO {
 		// BeanPropertyRowMapper<Concepto>(Concepto.class);
 		RowMapper<Concepto> rowMapper = new ConceptoRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, nombres, apellidos);
+	}
+	
+	@Override
+	public List<Moneda> getAllMoneda() {
+		String sql = "select * from moneda;";
+		RowMapper<Moneda> rowMapper = new MonedaRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper);
 	}
 	
 	@Override

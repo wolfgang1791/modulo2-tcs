@@ -3,7 +3,7 @@ package edu.moduloalumno.dao;
 import java.util.List;
 
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
-import edu.moduloalumno.entity.BeneficioReporte;
+import edu.moduloalumno.entity.BeneficioReporteCredito;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoAplicaBeneficio;
@@ -22,6 +22,6 @@ public interface IAlumnoBeneficioDAO {
 
 	public List<TipoAplicaBeneficio> getTipoAplicaBeneficio();
 
-	public BeneficioReporte funcionDescuento(String codigo, float descuento,Integer id_programa);
+	public BeneficioReporteCredito funcionDescuento(String codigo, float descuento,Integer id_programa);
 }
 

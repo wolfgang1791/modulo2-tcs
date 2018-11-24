@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.moduloalumno.component.FloatFormat;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
-import edu.moduloalumno.entity.BeneficioReporte;
+import edu.moduloalumno.entity.BeneficioReporteCredito;
 import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoAplicaBeneficio;
 import edu.moduloalumno.entity.TipoBeneficio;
@@ -169,25 +169,29 @@ public class AlumnoBeneficioController {
 	}
 	
 	@RequestMapping(value = "/breporte/{codigo}/{id_programa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<BeneficioReporte> getBeneficioReporte(@PathVariable("codigo") String codigo,@PathVariable("id_programa") Integer id_programa) {
+	public ResponseEntity<BeneficioReporteCredito> getBeneficioReporte(@PathVariable("codigo") String codigo,@PathVariable("id_programa") Integer id_programa) {
 		logger.info(">> getBeneficio Reporte <<");
 		
 		List<AlumnoProgramaBeneficioCon> list = null;
-		BeneficioReporte breporte = null;
+		BeneficioReporteCredito breporte = null;
 		
 		float descuento = 1;
 		
 		try {
+			
 			list = alumnobeneficioservice.getAllAlumnoBeneficio(codigo);
 			logger.error("lista: " + list);
+			
 			if (!(list == null)) {
 				for(AlumnoProgramaBeneficioCon alumno:list) {
 					
 					descuento *= (100 - alumno.getBenef_otrogado()); 
 					logger.error("double: " + alumno.getBenef_otrogado());
 				}
+				
 				descuento = (float) (descuento/(Math.pow(100,list.size())))*100;
 				descuento = (100 -descuento)/100;
+				
 				System.out.println("descuento: "+descuento);
 			
 				breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento,id_programa);
@@ -204,11 +208,11 @@ public class AlumnoBeneficioController {
 		} catch (Exception e) {
 			
 			logger.error("Unexpected Exception caught." + e.getMessage());
-			return new ResponseEntity<BeneficioReporte>(breporte, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<BeneficioReporteCredito>(breporte, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		logger.info("< alumnobeneficio");
-		return new ResponseEntity<BeneficioReporte>(breporte, HttpStatus.OK);
+		return new ResponseEntity<BeneficioReporteCredito>(breporte, HttpStatus.OK);
 	}
 	
 	

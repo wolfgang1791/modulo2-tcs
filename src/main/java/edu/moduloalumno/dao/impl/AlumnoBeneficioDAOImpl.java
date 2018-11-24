@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.moduloalumno.dao.IAlumnoBeneficioDAO;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
-import edu.moduloalumno.entity.BeneficioReporte;
+import edu.moduloalumno.entity.BeneficioReporteCredito;
 import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoAplicaBeneficio;
 import edu.moduloalumno.entity.TipoBeneficio;
@@ -113,11 +113,11 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	}
 
 	@Override
-	public BeneficioReporte funcionDescuento(String codigo, float descuento,Integer id_programa) {
+	public BeneficioReporteCredito funcionDescuento(String codigo, float descuento,Integer id_programa) {
 		try {
-			String sql = "select * from fn_presupuesto_ciclo(?,?,?);";
-			RowMapper<BeneficioReporte> rowMapper = new BeneficioReporteRowMapper();
-			BeneficioReporte br = jdbcTemplate.queryForObject(sql, rowMapper, codigo,descuento,id_programa);
+			String sql = "select * from fn_beneficio_1(?,?,?);";
+			RowMapper<BeneficioReporteCredito> rowMapper = new BeneficioReporteRowMapper();
+			BeneficioReporteCredito br = jdbcTemplate.queryForObject(sql, rowMapper, codigo,descuento,id_programa);
 			return br;
 			}
 			catch (EmptyResultDataAccessException e) {

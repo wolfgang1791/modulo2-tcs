@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import edu.moduloalumno.entity.Concepto;
+import edu.moduloalumno.entity.Moneda;
 
 public interface IConceptoDAO {
 
@@ -16,6 +17,8 @@ public interface IConceptoDAO {
 	List<Concepto> getConceptoIdByApeNomRestringido(String apeNom);
 	
 	List<Concepto> getConceptoIdByNombresApellidos(String nombres,String apellidos);
+	
+	List<Moneda> getAllMoneda();
 
 	Concepto getConceptoById(int idConcepto);
 	

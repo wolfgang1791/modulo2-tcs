@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import edu.moduloalumno.dao.IConceptoDAO;
 import edu.moduloalumno.entity.Concepto;
+import edu.moduloalumno.entity.Moneda;
 import edu.moduloalumno.service.IConceptoService;
 
 @Service
@@ -90,6 +91,11 @@ public class ConceptoServiceImpl implements IConceptoService {
 	@Override
 	public Float getTipodecambio(Date fecha) {
 		return conceptoDAO.getTipodecambio(fecha);
+	}
+
+	@Override
+	public List<Moneda> getAllMoneda() {
+		return conceptoDAO.getAllMoneda();
 	}
 
 }
