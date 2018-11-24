@@ -24,6 +24,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
     
     private String moneda;
     
+    private String moneda2;
+    
     private double importe;
     
     private float importe_tc;
@@ -124,6 +126,14 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 
 	public void setMoneda(String moneda) {
 		this.moneda = moneda;
+	}
+	
+	public String getMoneda2() {
+		return moneda2;
+	}
+
+	public void setMoneda2(String moneda2) {
+		this.moneda2 = moneda2;
 	}
 
 	public double getImporte() {
