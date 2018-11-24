@@ -199,13 +199,19 @@ public class AlumnoBeneficioController {
 				breporte.setD_total(floatformat.round(breporte.getD_total(), 2));
 				breporte.setD_upg(floatformat.round(breporte.getD_upg(), 2));
 				
-				breporte.setD_Total(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total());
+				breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
 				breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
+				
+				
+				
+				breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*descuento),2));
+				
 				
 				logger.error("Breporte: " + breporte);
 			}
 			else {
 				breporte = alumnobeneficioservice.funcionDescuento(codigo,0,id_programa);
+				breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*0),2));
 			}
 		
 		} catch (Exception e) {

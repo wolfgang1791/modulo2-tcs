@@ -4,6 +4,7 @@ public class BeneficioReporteCredito {
 	
 	
 	private Integer costo_credito;
+	private float costo_credito_d;
 	private Integer creditos;
 	private Integer total;
 	private Integer epg;
@@ -15,13 +16,18 @@ public class BeneficioReporteCredito {
 	private Integer _Total;
 	
 	
-	
-	
 	public Integer getCosto_credito() {
 		return costo_credito;
 	}
 	public void setCosto_credito(Integer costo_credito) {
 		this.costo_credito = costo_credito;
+	}
+	
+	public float getCosto_credito_d() {
+		return costo_credito_d;
+	}
+	public void setCosto_credito_d(float costo_credito_d) {
+		this.costo_credito_d = costo_credito_d;
 	}
 	public Integer getCreditos() {
 		return creditos;
@@ -90,9 +96,10 @@ public class BeneficioReporteCredito {
 	}
 	@Override
 	public String toString() {
-		return "BeneficioReporte [total=" + total + ", epg=" + epg + ", upg=" + upg + ", d_total=" + d_total
-				+ ", d_epg=" + d_epg + ", d_upg=" + d_upg + ", tipo=" + tipo + ", _Total=" + _Total + ", D_Total="
-				+ D_Total + "]";
+		return "BeneficioReporteCredito [costo_credito=" + costo_credito + ", costo_credito_d=" + costo_credito_d
+				+ ", creditos=" + creditos + ", total=" + total + ", epg=" + epg + ", upg=" + upg + ", d_total="
+				+ d_total + ", d_epg=" + d_epg + ", d_upg=" + d_upg + ", tipo=" + tipo + ", _Total=" + _Total
+				+ ", D_Total=" + D_Total + "]";
 	}
-
+	
 }
