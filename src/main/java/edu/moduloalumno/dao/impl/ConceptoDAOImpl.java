@@ -34,7 +34,7 @@ public class ConceptoDAOImpl implements IConceptoDAO {
 
 	@Override
 	public List<Concepto> getAllConceptos() {
-		String sql = "SELECT id_concepto, concepto, concep_a, concep_b, descripcion, id_clase_pagos FROM concepto where concep_a='210' and id_clase_pagos=2";
+		String sql = "SELECT id_concepto, concepto, concep_a, concep_b, descripcion, id_clase_pagos FROM concepto where id_clase_pagos=2";//concep_a='210' and
 		// RowMapper<Concepto> rowMapper = new
 		// BeanPropertyRowMapper<Concepto>(Concepto.class);
 		RowMapper<Concepto> rowMapper = new ConceptoRowMapper();
