@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.moduloalumno.component.FloatFormat;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
+import edu.moduloalumno.entity.BeneficioReporteCiclo;
 import edu.moduloalumno.entity.BeneficioReporteCredito;
 import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoAplicaBeneficio;
@@ -168,18 +169,124 @@ public class AlumnoBeneficioController {
 		return new ResponseEntity<List<TipoAplicaBeneficio>>(list, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/breporte/{codigo}/{id_programa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<BeneficioReporteCredito> getBeneficioReporte(@PathVariable("codigo") String codigo,@PathVariable("id_programa") Integer id_programa) {
+	/*a berrr*/
+	@RequestMapping(value = "/comprobacion/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Integer> comprobarBeneficio(@PathVariable("codigo") String codigo){
+		
 		logger.info(">> getBeneficio Reporte <<");
 		
 		List<AlumnoProgramaBeneficioCon> list = null;
-		BeneficioReporteCredito breporte = null;
-		
-		
-		float descuento = 1;
+		Integer response = -1;
 		
 		try {
 			
+			list = alumnobeneficioservice.getAllAlumnoBeneficio(codigo);
+			logger.info(">> comprobacion<< "+list);
+			if(list.size()>0) {
+				if(list.get(0).getCriterio().equals("Credito")) {
+					response = 1;
+				}
+				else {
+					response = 2;
+				}
+				
+			}
+			else {
+				response = 3;
+			}
+		}
+		catch (Exception e) {
+			
+			logger.error("Unexpected Exception caught." + e.getMessage());
+			return new ResponseEntity<Integer>(-1, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Integer>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@RequestMapping(value = "/breporte_cr/{codigo}/{id_programa}/{idx}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BeneficioReporteCredito> getBeneficioReporte_Credito(@PathVariable("codigo") String codigo,@PathVariable("id_programa") Integer id_programa,@PathVariable("idx") Integer idx) {
+		logger.info(">> getBeneficio Reporte credito<< "+idx);
+		
+		BeneficioReporteCredito breporte = null;
+		
+		try {
+				if(idx == 1) {	
+					
+					breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento(codigo),id_programa);
+					
+					// dos decimales
+					breporte.setD_total(floatformat.round(breporte.getD_total(), 2));
+					breporte.setD_upg(floatformat.round(breporte.getD_upg(), 2));
+					
+					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
+					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
+					
+					breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*descuento(codigo)),2));
+					
+					logger.error("Breporte: " + breporte);
+				}
+				else {
+					//sin beneficio
+					breporte = alumnobeneficioservice.funcionDescuento(codigo,0,id_programa);
+					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
+					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
+					breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*0),2));
+					
+					logger.error("Breporte: " + breporte);
+				}
+				
+		} catch (Exception e) {
+			
+			logger.error("Unexpected Exception caught." + e.getMessage());
+			return new ResponseEntity<BeneficioReporteCredito>(breporte, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< alumnobeneficio");
+		return new ResponseEntity<BeneficioReporteCredito>(breporte, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/breporte_ci/{codigo}/{id_programa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BeneficioReporteCiclo> getBeneficioReporte_Ciclo(@PathVariable("codigo") String codigo,@PathVariable("id_programa") Integer id_programa) {
+		logger.info(">> getBeneficio ReporteCICLO<<");
+		
+		BeneficioReporteCiclo bcreporte = null;
+		
+		BeneficioReporteCiclo b = new BeneficioReporteCiclo(); //objeto de prueba 
+		
+		try {
+			
+			b.setCiclo(1000);
+			b.setD_ciclo(800);
+			b.setEpg(145);
+			b.setUpg(789);
+			b.setTipo("por ciclo");
+			b.setD_epg(144);
+			b.setD_upg(700);
+			
+			
+			bcreporte = b;
+			//bcreporte = alumnobeneficioservice.funcionDescuento_(codigo,descuento(codigo),id_programa);
+			bcreporte.setD_Total(floatformat.round(bcreporte.getD_upg()+bcreporte.getD_epg()+bcreporte.getD_ciclo(), 2));
+			bcreporte.setTotal(bcreporte.getEpg()+bcreporte.getUpg()+bcreporte.getCiclo());
+			
+			
+			logger.error("Breporte: " + bcreporte);				
+					
+		} catch (Exception e) {
+			
+			logger.error("Unexpected Exception caught." + e.getMessage());
+			return new ResponseEntity<BeneficioReporteCiclo>(bcreporte, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< alumnobeneficio");
+		return new ResponseEntity<BeneficioReporteCiclo>(bcreporte, HttpStatus.OK);
+	}
+	
+	
+	public float descuento(String codigo) {
+		List<AlumnoProgramaBeneficioCon> list = null;
+		float descuento = 1;
+		try {
 			list = alumnobeneficioservice.getAllAlumnoBeneficio(codigo);
 			logger.error("lista: " + list);
 			
@@ -194,53 +301,15 @@ public class AlumnoBeneficioController {
 				descuento = (100 -descuento)/100;
 				
 				System.out.println("descuento: "+descuento+" "+list.get(0).getCriterio());
-			
-				
-				if(list.get(0).getCriterio().equals("Credito")) {
-					
-					breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento,id_programa);
-					
-					breporte.setD_total(floatformat.round(breporte.getD_total(), 2));
-					breporte.setD_upg(floatformat.round(breporte.getD_upg(), 2));
-					
-					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
-					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
-					
-					breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*descuento),2));
-					
-					breporte.setCiclo(0);
-					breporte.setD_ciclo(0);
-					
-					logger.error("Breporte: " + breporte);
-				}
-				else {
-					breporte = alumnobeneficioservice.funcionDescuento_(codigo,descuento,id_programa);
-					breporte.setCreditos(0);
-					breporte.setCosto_credito(0);
-					breporte.setCosto_credito_d(0);
-					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_ciclo(), 2));
-					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getCiclo());
-
-					
-					logger.error("Breporte: " + breporte);
-				}
-				
 			}
-			else {
-				breporte = alumnobeneficioservice.funcionDescuento(codigo,0,id_programa);
-				breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*0),2));
-			}
-		
-		} catch (Exception e) {
-			
-			logger.error("Unexpected Exception caught." + e.getMessage());
-			return new ResponseEntity<BeneficioReporteCredito>(breporte, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
-		logger.info("< alumnobeneficio");
-		return new ResponseEntity<BeneficioReporteCredito>(breporte, HttpStatus.OK);
+		catch(Exception e) {
+			logger.error("Unexpected Exception caught." + e.getMessage());
+			return 0;
+		}
+		
+		return descuento;
 	}
-	
 	
 	
 }

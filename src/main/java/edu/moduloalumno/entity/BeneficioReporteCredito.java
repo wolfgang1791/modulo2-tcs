@@ -18,8 +18,7 @@ public class BeneficioReporteCredito {
 	
 	
 	
-	private float ciclo; //antipatron
-	private float d_ciclo;
+	
 	
 	public Integer getCosto_credito() {
 		return costo_credito;
@@ -87,18 +86,6 @@ public class BeneficioReporteCredito {
 	public void set_Total(Float _Total) {
 		this._Total = _Total;
 	}
-	public float getCiclo() {
-		return ciclo;
-	}
-	public void setCiclo(float ciclo) {
-		this.ciclo = ciclo;
-	}
-	public float getD_ciclo() {
-		return d_ciclo;
-	}
-	public void setD_ciclo(float d_ciclo) {
-		this.d_ciclo = d_ciclo;
-	}
 	
 	public Float getD_Total() {
 		return D_Total;
@@ -111,7 +98,7 @@ public class BeneficioReporteCredito {
 		return "BeneficioReporteCredito [costo_credito=" + costo_credito + ", costo_credito_d=" + costo_credito_d
 				+ ", creditos=" + creditos + ", total=" + total + ", epg=" + epg + ", upg=" + upg + ", d_total="
 				+ d_total + ", d_epg=" + d_epg + ", d_upg=" + d_upg + ", tipo=" + tipo + ", _Total=" + _Total
-				+ ", ciclo=" + ciclo + ", d_ciclo=" + d_ciclo + "]";
+				+ ", D_Total=" + D_Total + "]";
 	}
 	
 	

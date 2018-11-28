@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import edu.moduloalumno.dao.IAlumnoBeneficioDAO;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
+import edu.moduloalumno.entity.BeneficioReporteCiclo;
 import edu.moduloalumno.entity.BeneficioReporteCredito;
 import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoAplicaBeneficio;
@@ -57,7 +58,7 @@ public class AlumnoBeneficioServiceImpl implements IAlumnoBeneficioService{
 	}
 
 	@Override
-	public BeneficioReporteCredito funcionDescuento_(String codigo, float descuento, Integer id_programa) {
+	public BeneficioReporteCiclo funcionDescuento_(String codigo, float descuento, Integer id_programa) {
 		return alumnobeneficiodao.funcionDescuento_(codigo,descuento,id_programa);
 	}
 	

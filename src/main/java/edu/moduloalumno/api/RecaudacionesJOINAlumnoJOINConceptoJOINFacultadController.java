@@ -1,12 +1,5 @@
 package edu.moduloalumno.api;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,14 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import edu.moduloalumno.component.FloatFormat;
 import edu.moduloalumno.entity.CodigosporNomApe;
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 import edu.moduloalumno.model.DataActualizar;
 import edu.moduloalumno.model.Filtro;
-import edu.moduloalumno.model.PruebaTCambio;
 import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService;
 import edu.moduloalumno.util.Operaciones;
 
@@ -153,7 +143,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 			else {
 				for(RecaudacionesJOINAlumnoJOINConceptoJOINFacultad r:list) {
 					if(r.getMoneda().equals("113")) {
-						r.setImporte_tc(( (float) r.getImporte() )*dolares_a_soles(r.getFecha()).getCompra());
+						r.setImporte_tc(( (float) r.getImporte() )*floatformat.dolares_a_soles(r.getFecha()).getCompra());
 					}
 					else {
 						r.setImporte_tc(( (float) r.getImporte() )*1);
@@ -171,7 +161,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
 		return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(list, HttpStatus.OK);
 	}
-  
+  	/*
   	public PruebaTCambio dolares_a_soles(Date fecha) throws MalformedURLException {
   		PruebaTCambio p= null;
 		URL url = new URL("https://api.sunat.cloud/cambio/"+fecha);
@@ -209,7 +199,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		}
 	
 		return p; 
-  	}
+  	}*/
         
 /**/    @RequestMapping(value = "/listar_codigos/{nomApe}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CodigosporNomApe>> getCodigosByNombre(@PathVariable("nomApe") String nomApe) {
