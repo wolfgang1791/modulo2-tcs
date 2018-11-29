@@ -143,7 +143,11 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 			else {
 				for(RecaudacionesJOINAlumnoJOINConceptoJOINFacultad r:list) {
 					if(r.getMoneda().equals("113")) {
-						r.setImporte_tc(( (float) r.getImporte() )*floatformat.dolares_a_soles(r.getFecha()).getCompra());
+					//	logger.info(" XX "+( (float) r.getImporte() ));
+					//	logger.info(" XyX "+ floatformat.dolares_a_soles(r.getFecha().toString()).getCompra());
+						
+						r.setImporte_tc(( (float) r.getImporte() )*floatformat.dolares_a_soles(r.getFecha().toString()).getCompra());
+					//	logger.info("importe "+r.getImporte_tc());
 					}
 					else {
 						r.setImporte_tc(( (float) r.getImporte() )*1);
