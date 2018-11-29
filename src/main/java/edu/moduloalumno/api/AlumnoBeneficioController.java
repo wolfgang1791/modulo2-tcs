@@ -171,7 +171,7 @@ public class AlumnoBeneficioController {
 	
 	/*a berrr*/
 	@RequestMapping(value = "/comprobacion/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Integer> comprobarBeneficio(@PathVariable("codigo") String codigo){
+	public Integer comprobarBeneficio(@PathVariable("codigo") String codigo){
 		
 		logger.info(">> getBeneficio Reporte <<");
 		
@@ -198,9 +198,9 @@ public class AlumnoBeneficioController {
 		catch (Exception e) {
 			
 			logger.error("Unexpected Exception caught." + e.getMessage());
-			return new ResponseEntity<Integer>(-1, HttpStatus.INTERNAL_SERVER_ERROR);
+			return response;
 		}
-		return new ResponseEntity<Integer>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		return response;
 	}
 	
 	@RequestMapping(value = "/breporte_cr/{codigo}/{id_programa}/{idx}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

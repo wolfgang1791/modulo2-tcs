@@ -24,7 +24,8 @@ import edu.moduloalumno.model.PruebaTCambio;
 public class FloatFormat {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+	private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	private static String dateString = format.format( new Date()   );
 	
 	public float round(float number, int decimalPlace) {
 		BigDecimal bd = new BigDecimal(number);
@@ -63,8 +64,6 @@ public class FloatFormat {
 			
 			logger.info("> objeto "+p);
 			if(p.getCompra() == 0.0) {
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-				String dateString = format.format( new Date()   );
 				logger.info("> string "+ dateString);
 				p=dolares_a_soles(dateString);
 			}
