@@ -251,10 +251,10 @@ public class AlumnoBeneficioController {
 		
 		BeneficioReporteCiclo bcreporte = null;
 		
-		BeneficioReporteCiclo b = new BeneficioReporteCiclo(); //objeto de prueba 
+	//	BeneficioReporteCiclo b = new BeneficioReporteCiclo(); //objeto de prueba 
 		
 		try {
-			
+			/*
 			b.setCiclo(1000);
 			b.setD_ciclo(800);
 			b.setEpg(145);
@@ -264,8 +264,8 @@ public class AlumnoBeneficioController {
 			b.setD_upg(700);
 			
 			
-			bcreporte = b;
-			//bcreporte = alumnobeneficioservice.funcionDescuento_(codigo,descuento(codigo),id_programa);
+			bcreporte = b;*/
+			bcreporte = alumnobeneficioservice.funcionDescuento_(codigo,descuento(codigo),id_programa);
 			bcreporte.setD_Total(floatformat.round(bcreporte.getD_upg()+bcreporte.getD_epg()+bcreporte.getD_ciclo(), 2));
 			bcreporte.setTotal(bcreporte.getEpg()+bcreporte.getUpg()+bcreporte.getCiclo());
 			
