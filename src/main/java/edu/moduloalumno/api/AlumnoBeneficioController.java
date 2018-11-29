@@ -265,7 +265,7 @@ public class AlumnoBeneficioController {
 			
 			
 			bcreporte = b;*/
-			if(idx == 3) {
+			if(idx == 2) {
 				bcreporte = alumnobeneficioservice.funcionDescuento_(codigo,descuento(codigo),id_programa);
 				bcreporte.setD_Total(floatformat.round(bcreporte.getD_upg()+bcreporte.getD_epg()+bcreporte.getD_ciclo(), 2));
 				bcreporte.setTotal(bcreporte.getEpg()+bcreporte.getUpg()+bcreporte.getCiclo());
