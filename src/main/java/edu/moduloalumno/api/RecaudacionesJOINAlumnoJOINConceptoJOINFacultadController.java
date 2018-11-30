@@ -353,6 +353,22 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 			
 			logger.info("LISTA DE RECAUDACIONES INTERSECCION: \n " + list03);
 			logger.info("Hola mundo");
+			
+			for(RecaudacionesJOINAlumnoJOINConceptoJOINFacultad obj:list03) {
+					if(obj.getMoneda().equals("113")) {
+						
+						obj.setImporte_tc(( (float) obj.getImporte() )*floatformat.dolares_a_soles(obj.getFecha().toString()).getCompra());
+					
+					//	logger.info("importe "+r.getImporte_tc());
+					}
+					else {
+						obj.setImporte_tc(( (float) obj.getImporte() )*1);
+					}
+					
+					obj.setImporte_tc(floatformat.round(obj.getImporte_tc(), 2));
+			
+			}
+			logger.info("LISTA DE RECAUDACIONES INTERSECCION: \n " + list03);
 
 		} catch (Exception e) {
 			logger.error("Unexpected Exception caught.", e);
